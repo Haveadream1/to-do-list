@@ -4,18 +4,30 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
     <title>To-do-list</title>
 </head>
 <body>
     <aside>
-        <button class="tab">show tab</button>
+        <button class="tab"><img src="../dist/images/Vector (1).svg" alt="More button"></button>
     </aside>
-    <section class="container">
 
+    <section class="container">
+        <section class="align-title">
+            <p class="text-t">Todo</p>
+            <p class="text-c">Completed</p>
+        </section>
+        <section class="todo">
+            <input class="checkbox" type="checkbox">
+            <input class="text" type="text">
+        </section>
     </section>
-    <button class="add"></button>
-    <div id="content"></div>
+
+    <button class="add"><img src="../dist/images/Vector.svg" alt="Add button"></button>
+
 	<script src="main.js" defer></script>
 </body>
 </html>

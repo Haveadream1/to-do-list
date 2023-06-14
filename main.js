@@ -16,7 +16,7 @@
   \*********************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\nconst home = () => {\n    console.log('girg');\n}\n\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (home);\n\n//# sourceURL=webpack://to-do-list/./src/home.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\nconst home = () => {\n    let container = document.querySelector('.container');\n    let buttonAdd = document.querySelector('.add');\n\n    const createTodo = () => {\n        let createSection = document.createElement('section');\n        createSection.classList.add('todo');\n        container.appendChild(createSection);\n\n        let createCheckBox = document.createElement('input');\n        createCheckBox.type = 'checkbox';\n        createCheckBox.classList.add('checkbox');\n        createSection.appendChild(createCheckBox);\n\n        let createText = document.createElement('input');\n        createText.type = 'text';\n        createText.classList.add('text');\n        createSection.appendChild(createText);\n     }\n    buttonAdd.addEventListener('click', createTodo);\n\n}\n\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (home);\n\n//# sourceURL=webpack://to-do-list/./src/home.js?");
 
 /***/ }),
 
