@@ -11,22 +11,59 @@
     <title>To-do-list</title>
 </head>
 <body>
-    <aside>
-        <button class="tab"><img src="../dist/images/Vector (1).svg" alt="More button"></button>
+    <aside class="visibility">
+        <button class="tab">
+            <img src="../dist/images/Vector (1).svg" alt="More button">
+        </button>
+
+        <Section class="align-button">
+            <p class="my-project">My project</p>
+            <button class="add-project">
+                <img src="../dist/images/Vector (copy 1).svg" alt="Add project button">
+            </button>
+        </Section>
+
+        <section class="section-aside">
+            <form id="form-aside" action="post">
+                <fieldset class="fieldset-project">
+                    <input type="text" id="project-name" placeholder="Add a project" required>
+                </fieldset>
+                <section class="form-button">
+                    <button class="button-project">Submit</button>
+                    <button type="button" class="button-project-cancel">Cancel</button>
+                </section>
+            </form>
+        </section>
+        <section class="created-project">
+                
+        </section>
     </aside>
 
     <section class="container">
         <section class="align-title">
-            <p class="text-t">Todo</p>
-            <p class="text-c">Completed</p>
+            <button class="button-to">Todo</button>
+            <button class="button-completed">Completed</button>
         </section>
-        <section class="todo">
-            <input class="checkbox" type="checkbox">
-            <input class="text" type="text">
+
+        <section class="form-section">
+            <form id="form" action="post">
+                <fieldset class="fieldset-form">
+                    <input type="text" id="form-text" placeholder="Add a new task" required>
+                    <select name="date" id="form-date">
+                        <option value="20/22/02">20/22/02</option>
+                        <option value="1/04/21" selected>1/04/21</option>
+                    </select>
+                </fieldset>
+                <section class="form-button">
+                    <!--Specify the type on button otherwise error when visibility is on hidden-->
+                    <button class="button-submit">Submit</button>
+                    <button type="button" class="button-submit-cancel">Cancel</button>
+                </section>
+            </form>
         </section>
     </section>
 
-    <button class="add"><img src="../dist/images/Vector.svg" alt="Add button"></button>
+    <button class="add-to-do"><img src="../dist/images/Vector.svg" alt="Add to-do button"></button>
 
 	<script src="main.js" defer></script>
 </body>

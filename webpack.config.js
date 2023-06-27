@@ -1,18 +1,19 @@
-const path = require('path');
+const path = require("path");
 
 module.exports = {
-    mode: 'development',
-    entry: './src/index.js',
-    output: {
-        filename: 'main.js',
-        path: path.resolve(__dirname, 'dist'),
-    },
-    module: {
-        rules: [
-            {
-                test: /\.(png|svg|jpg|jpeg|gif)$/i,
-                type: 'asset/resource',
-            },
-        ],
+  mode: "development",
+  entry: "./src/index.js",
+  output: {
+    filename: "main.js",
+    library: "date_fns",
+    path: path.resolve(__dirname, "dist"),
+  },
+  module: {
+    rules: [
+      {
+        test: /\.(png|svg|jpg|jpeg|gif)$/i,
+        type: "asset/resource",
       },
+    ],
+  },
 };

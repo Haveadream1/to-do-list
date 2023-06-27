@@ -3,7 +3,7 @@ const todo = () => {
   let buttonTodo = document.querySelector(".button-to");
 
   const changeColor = (() => {
-    buttonCompleted.style.color = "#F5F5F5";
+    buttonCompleted.style.color = "#B0B0B0";
     buttonTodo.style.color = "black";
   })();
 };

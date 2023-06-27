@@ -5,7 +5,7 @@ const completed = () => {
 
   const changeColor = (() => {
     buttonCompleted.style.color = "black";
-    buttonTodo.style.color = "#F5F5F5";
+    buttonTodo.style.color = "#B0B0B0";
     todo.remove();
   })();
 };
