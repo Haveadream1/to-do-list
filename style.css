@@ -64,8 +64,8 @@ aside {
     padding: 0 20px;
     font-size: 15px;
 }
-
 .created-project {
+    grid-row: 3;
     color: white;
 }
 
