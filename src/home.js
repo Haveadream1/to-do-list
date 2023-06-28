@@ -24,36 +24,37 @@ const home = () => {
             this.text = text;
         };
     }
-    
+
+    const createTodo = () => {
+        let createSection = document.createElement('section');
+        createSection.classList.add('todo');
+        container.appendChild(createSection);
+
+        let createCheckBox = document.createElement('input');
+        createCheckBox.type = 'checkbox';
+        createCheckBox.classList.add('checkbox');
+        createSection.appendChild(createCheckBox);
+
+        let createText = document.createElement('p');
+        createText.type = 'text';
+        createText.classList.add('text');
+        createSection.appendChild(createText);
+
+        for(let i = 0; i < myArray.length; i++) {
+            let object = myArray[i];
+            createText.textContent = `${object.text}`;
+        }
+     }
+
+         
     const getValue = () => {
         let text = document.querySelector('#form-text').value;
         let date = document.querySelector('#form-date').value;
         let newTodo = new Object(date, text);
         myArray.push(newTodo);
         console.log(myArray); 
+        createTodo();
     }
-
-    //double creation issue
-    const createTodo = () => {
-        for(let i = 0; i < myArray.length; i++) {
-            let object = myArray[i];
-
-            let createSection = document.createElement('section');
-            createSection.classList.add('todo');
-            container.appendChild(createSection);
-    
-            let createCheckBox = document.createElement('input');
-            createCheckBox.type = 'checkbox';
-            createCheckBox.classList.add('checkbox');
-            createSection.appendChild(createCheckBox);
-    
-            let createText = document.createElement('p');
-            createText.type = 'text';
-            createText.classList.add('text');
-            createText.textContent = `${object.text}`;
-            createSection.appendChild(createText);
-        }
-     }
 
 
     buttonAdd.addEventListener('click', function() {
@@ -65,7 +66,6 @@ const home = () => {
         event.preventDefault();
         getValue();
         formSection.style.visibility = 'hidden';
-        createTodo();
     });
         
     buttonSubmitCancel.addEventListener('click', function() {
@@ -86,13 +86,21 @@ const home = () => {
     formAside.addEventListener('submit', function(event) {
         event.preventDefault();
         sectionAside.style.visibility = 'hidden';
+        createProject()
     })
 
     let buttonProjectCancel = document.querySelector('.button-project-cancel');
     buttonProjectCancel.addEventListener('click', function() {
         sectionAside.style.visibility = 'hidden';
         projectName.value = '';
-    } )
+    })
+
+    let createdProject = document.querySelector('.created-project');
+    const createProject = () => {
+        let projectP = document.createElement('p');
+        projectP.textContent = 'tet';
+        createdProject.appendChild(projectP);
+    }
 
     // tab
     buttonCompleted.addEventListener('click', completed);
