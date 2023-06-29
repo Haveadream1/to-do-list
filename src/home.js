@@ -16,6 +16,8 @@ const home = () => {
     let sectionAside = document.querySelector('.section-aside');
     let projectName = document.querySelector('#project-name');
     let buttonSubmitCancel = document.querySelector('.button-submit-cancel');
+    let createdProject = document.querySelector('.created-project');
+    let buttonProjectCancel = document.querySelector('.button-project-cancel');
     let myArray = [];
 
     class Object {
@@ -30,9 +32,19 @@ const home = () => {
         createSection.classList.add('todo');
         container.appendChild(createSection);
 
+        let createLine = document.createElement('div');
+
         let createCheckBox = document.createElement('input');
         createCheckBox.type = 'checkbox';
         createCheckBox.classList.add('checkbox');
+        createCheckBox.addEventListener('change', function(){
+            if(this.checked) {
+                createLine.classList.add('line');
+                createSection.appendChild(createLine);
+            } else if(!this.checked) {
+                createLine.remove();
+            }
+        })
         createSection.appendChild(createCheckBox);
 
         let createText = document.createElement('p');
@@ -46,7 +58,6 @@ const home = () => {
         }
      }
 
-         
     const getValue = () => {
         let text = document.querySelector('#form-text').value;
         let date = document.querySelector('#form-date').value;
@@ -55,7 +66,6 @@ const home = () => {
         console.log(myArray); 
         createTodo();
     }
-
 
     buttonAdd.addEventListener('click', function() {
         formSection.style.visibility = 'visible';
@@ -74,6 +84,14 @@ const home = () => {
     });
 
     // aside
+    let myProject = [];
+
+    class project {
+        constructor(projectName) {
+            this.projectName = projectName;
+        };
+    }
+
     buttonTab.addEventListener('click', function() {
         aside.classList.toggle('visibility');
     });
@@ -81,24 +99,32 @@ const home = () => {
     buttonAddProject.addEventListener('click', function() {
         sectionAside.style.visibility = 'visible';
         projectName.value = '';
+        sectionAside.style.gridRow = '3';
+        createdProject.style.gridRow = '4';
+        /*grid place */
     });
 
     formAside.addEventListener('submit', function(event) {
         event.preventDefault();
         sectionAside.style.visibility = 'hidden';
+        sectionAside.style.gridRow = '5';
+        createdProject.style.gridRow = '3';
         createProject()
     })
 
-    let buttonProjectCancel = document.querySelector('.button-project-cancel');
     buttonProjectCancel.addEventListener('click', function() {
         sectionAside.style.visibility = 'hidden';
         projectName.value = '';
     })
 
-    let createdProject = document.querySelector('.created-project');
     const createProject = () => {
+        let projectName = document.querySelector('#project-name').value;
+        let newProject = new project(projectName);
+        myProject.push(newProject);
+        console.log(myProject);
+
         let projectP = document.createElement('p');
-        projectP.textContent = 'tet';
+        projectP.textContent = projectName;
         createdProject.appendChild(projectP);
     }
 
