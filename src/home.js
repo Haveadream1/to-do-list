@@ -1,151 +1,180 @@
+import { addDays, addMonths, format} from 'date-fns';
 import completed from './completed';
 import todo from './todo';
 
+// API and project
 const home = () => {
-    let container = document.querySelector('.container');
-    let buttonAdd = document.querySelector('.add-to-do');
-    let buttonTab = document.querySelector('.tab');
-    let aside = document.querySelector('aside');
-    let buttonCompleted = document.querySelector('.button-completed');
-    let buttonTodo = document.querySelector('.button-to');
-    let formSection = document.querySelector('.form-section');
-    let FormText = document.querySelector('#form-text');
-    let form = document.querySelector('#form');
-    let formAside = document.querySelector('#form-aside');
-    let buttonAddProject = document.querySelector('.add-project');
-    let sectionAside = document.querySelector('.section-aside');
-    let projectName = document.querySelector('#project-name');
-    let buttonSubmitCancel = document.querySelector('.button-submit-cancel');
-    let createdProject = document.querySelector('.created-project');
-    let buttonProjectCancel = document.querySelector('.button-project-cancel');
-    let myArray = [];
+  const dateAPI = new Date();
+  const today = addDays(dateAPI, 0);
+  const month = addMonths(dateAPI, 1);
+  const formatMonth = format(month, 'MM');
+  console.log(formatMonth);
+  // const formatDate = format(dateAPI, 'MM/dd/yy');
+  // console.log(formatDate);
 
-    class Object {
-        constructor(date, text) {
-            this.date = date;
-            this.text = text;
-        };
+  const container = document.querySelector('.container');
+  const buttonAdd = document.querySelector('.add-to-do');
+  const buttonTab = document.querySelector('.tab');
+  const aside = document.querySelector('aside');
+  const buttonCompleted = document.querySelector('.button-completed');
+  const buttonTodo = document.querySelector('.button-to');
+  const formSection = document.querySelector('.form-section');
+  const formText = document.querySelector('#form-text');
+  const form = document.querySelector('#form');
+  const formAside = document.querySelector('#form-aside');
+  const buttonAddProject = document.querySelector('.add-project');
+  const sectionAside = document.querySelector('.section-aside');
+  const projectName = document.querySelector('#project-name');
+  const buttonSubmitCancel = document.querySelector('.button-submit-cancel');
+  const createdProject = document.querySelector('.created-project');
+  const buttonProjectCancel = document.querySelector('.button-project-cancel');
+  const myArray = [];
+
+  class Object {
+    constructor(date, text) {
+      this.date = date;
+      this.text = text;
+      // need to fix 
+      //this.projectNameValue = projectNameValue;
     }
+  }
 
-    const createTodo = () => {
-        let createSection = document.createElement('section');
-        createSection.classList.add('todo');
-        container.appendChild(createSection);
+  const createTodo = () => {
+    const createSection = document.createElement('section');
+    createSection.classList.add('todo');
+    container.appendChild(createSection);
 
-        let createLine = document.createElement('div');
+    const createLine = document.createElement('div');
 
-        let createCheckBox = document.createElement('input');
-        createCheckBox.type = 'checkbox';
-        createCheckBox.classList.add('checkbox');
-        createCheckBox.addEventListener('change', function(){
-            if(this.checked) {
-                createLine.classList.add('line');
-                createSection.appendChild(createLine);
-            } else if(!this.checked) {
-                createLine.remove();
-            }
-        })
-        createSection.appendChild(createCheckBox);
+    const createCheckBox = document.createElement('input');
+    createCheckBox.type = 'checkbox';
+    createCheckBox.classList.add('checkbox');
+    createCheckBox.addEventListener('change', () => {
+      if (createCheckBox.checked) {
+        createLine.classList.add('line');
+        createSection.appendChild(createLine);
+      } else if (!createCheckBox.checked) {
+        createLine.remove();
+      }
+    });
+    createSection.appendChild(createCheckBox);
 
-        let createText = document.createElement('p');
-        createText.type = 'text';
-        createText.classList.add('text');
-        createSection.appendChild(createText);
+    const createText = document.createElement('p');
+    createText.type = 'text';
+    createText.classList.add('text');
+    createSection.appendChild(createText);
 
-        for(let i = 0; i < myArray.length; i++) {
-            let object = myArray[i];
-            createText.textContent = `${object.text}`;
-        }
-     }
+    const createDate = document.createElement('p');
+    createDate.type = 'text';
+    createDate.classList.add('date');
+    createSection.appendChild(createDate);
 
-    const getValue = () => {
-        let text = document.querySelector('#form-text').value;
-        let date = document.querySelector('#form-date').value;
-        let newTodo = new Object(date, text);
-        myArray.push(newTodo);
-        console.log(myArray); 
-        createTodo();
+    for (let i = 0; i < myArray.length; i+=1) {
+      const object = myArray[i];
+      createText.textContent = `${object.text}`;
+      createDate.textContent = `${object.date}`;
+      // DATE API
+      // const formatDate = format(object.date, 'MM/dd/yy');
+      // createDate.textContent = `${object.date}`;
     }
+  };
 
-    buttonAdd.addEventListener('click', function() {
-        formSection.style.visibility = 'visible';
-        FormText.value = '';
-    });
+  const getValue = () => {
+    const text = document.querySelector('#form-text').value;
+    const date = document.querySelector('#form-date').value;
+    const newTodo = new Object(date, text);
+    myArray.push(newTodo);
+    console.log(myArray);
+    createTodo();
+  };
 
-    form.addEventListener('submit', function(event) {
-        event.preventDefault();
-        getValue();
-        formSection.style.visibility = 'hidden';
-    });
-        
-    buttonSubmitCancel.addEventListener('click', function() {
-        formSection.style.visibility = 'hidden';
-        FormText.value = '';
-    });
+  buttonAdd.addEventListener('click', () => {
+    formSection.style.visibility = 'visible';
+    formText.value = '';
+  });
 
-    // aside
-    let myProject = [];
+  // issue cannot hide the form
+  form.addEventListener('submit', (event) => {
+    event.preventDefault();
+    getValue();
+    formSection.style.visibility = 'hidden';
+  });
 
-    class project {
-        constructor(projectName) {
-            this.projectName = projectName;
-        };
-    }
+  buttonSubmitCancel.addEventListener('click', () => {
+    formSection.style.visibility = 'hidden';
+    formText.value = '';
+  });
 
-    buttonTab.addEventListener('click', function() {
-        aside.classList.toggle('visibility');
-    });
+  // aside
 
-    buttonAddProject.addEventListener('click', function() {
-        sectionAside.style.visibility = 'visible';
-        projectName.value = '';
-        sectionAside.style.gridRow = '3';
-        createdProject.style.gridRow = '4';
-        /*grid place */
-    });
+  // const myProject = [];
+  /*
+  class project {
+      constructor(projectName) {
+        this.projectName = projectName;
+      };
+  }
+  */
 
-    formAside.addEventListener('submit', function(event) {
-        event.preventDefault();
-        sectionAside.style.visibility = 'hidden';
-        sectionAside.style.gridRow = '5';
-        createdProject.style.gridRow = '3';
-        createProject()
-    })
+  buttonTab.addEventListener('click', () => {
+    aside.classList.toggle('visibility');
+    sectionAside.style.visibility = 'hidden';
+  });
 
-    buttonProjectCancel.addEventListener('click', function() {
-        sectionAside.style.visibility = 'hidden';
-        projectName.value = '';
-    })
+  buttonAddProject.addEventListener('click', () => {
+    sectionAside.style.visibility = 'visible';
+    projectName.value = '';
+    sectionAside.style.gridRow = '3';
+    createdProject.style.gridRow = '4';
+  });
 
-    const createProject = () => {
-        let projectName = document.querySelector('#project-name').value;
-        let newProject = new project(projectName);
-        myProject.push(newProject);
-        console.log(myProject);
+  buttonProjectCancel.addEventListener('click', () => {
+    sectionAside.style.visibility = 'hidden';
+    projectName.value = '';
+    sectionAside.style.gridRow = '5';
+    createdProject.style.gridRow = '3';
+  });
 
-        let projectP = document.createElement('p');
-        projectP.textContent = projectName;
-        createdProject.appendChild(projectP);
-    }
+  const createProject = () => {
+    const projectNameValue = document.querySelector('#project-name').value;
+    const newProject = new Object(projectNameValue);
+    myArray.push(newProject);
+    console.log(myArray);
 
-    // tab
-    buttonCompleted.addEventListener('click', completed);
-    buttonTodo.addEventListener('click', todo);
-}
+    // need to pass the project name as a object value
+
+    /* 
+    const projectNameValue = document.querySelector('#project-name').value;
+    const newProject = new project(projectNameValue);
+    myProject.push(newProject);
+    console.log(myProject); */
+
+    const projectP = document.createElement('p');
+    projectP.textContent = projectName;
+    createdProject.appendChild(projectP);
+  };
+
+  formAside.addEventListener('submit', (event) => {
+    event.preventDefault();
+    sectionAside.style.visibility = 'hidden';
+    sectionAside.style.gridRow = '5';
+    createdProject.style.gridRow = '3';
+    createProject();
+  });
+
+  // tab
+  buttonCompleted.addEventListener('click', completed);
+  buttonTodo.addEventListener('click', todo);
+};
 
 export default home;
 
-/*
-
-
-Create an object each time we create a new todo
-Take the input value after focus loose
-need to find a way to change the object and not creating a new one
-for completed remove the capacity of  creating new todo
-put it like only read
-if the checkbox if on on take the object and create that one in the completed page
-add style line with position relative to the box 
-tab show with toggle
-option create a group
-
-*/
+/*  Create an object each time we create a new todo
+    Take the input value after focus loose
+    need to find a way to change the object and not creating a new one
+    for completed remove the capacity of  creating new todo
+    put it like only read
+    if the checkbox if on on take the object and create that one in the completed page
+    add style line with position relative to the box
+    tab show with toggle
+    option create a group */

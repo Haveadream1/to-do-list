@@ -1,3 +1,3 @@
-import initializeWebsite from "./home";
+import initializeWebsite from './home';
 
 initializeWebsite();

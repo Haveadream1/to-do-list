@@ -21,16 +21,6 @@ module.exports = {
             /@hapi[\\/]joi-date/,
           ]
         },
-        type: 'asset/resource',
-        // test: /\.(?:js|mjs|cjs)$/,
-        use: {
-          loader: 'babel-loader',
-          options: {
-            presets: [
-              ['@babel/preset-env', { targets: 'defaults' }]
-            ]
-          }
-        },
       },
     ],
   },
