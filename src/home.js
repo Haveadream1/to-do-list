@@ -148,19 +148,11 @@ const home = () => {
     createdProject.appendChild(projectP);
   };
 
-  formAside.addEventListener('submit', (event) => {
-    event.preventDefault();
-    sectionAside.style.visibility = 'hidden';
-    sectionAside.style.gridRow = '5';
-    createdProject.style.gridRow = '3';
-    createProject();
-  });
-
   // tab
   buttonCompleted.addEventListener('click', completed);
   buttonTodo.addEventListener('click', todo);
 
-  // validation 
+  // validation main 
   const isRequired = (value) => {
     if (value === '') {
       return false;
@@ -240,6 +232,42 @@ const home = () => {
       case 'form-date':
         checkFormDate();
         break;
+    }
+  })
+
+  // validation tab 
+  const checkAsideText = () => {
+    let valid = false;
+    const text = projectName.value.trim();
+    if (!isRequired(text)) {
+      showError(projectName, 'Please fill this field');
+    } else {
+      showSuccess(projectName);
+      valid = true;
+    }
+    return valid;
+  }
+
+  formAside.addEventListener('submit', (event) => {
+    event.preventDefault();
+
+    const formAsideValid = checkAsideText();
+    const isFormValid = formAsideValid;
+
+    if (isFormValid) {
+      sectionAside.style.visibility = 'hidden';
+      sectionAside.style.gridRow = '5';
+      createdProject.style.gridRow = '3';
+      createProject();
+      console.log('Valid form');
+    } else {
+      console.log('Error in form');
+    }
+  });
+
+  formAside.addEventListener('input', (event) => {
+    if(event.target.id  === 'project-name') {
+        checkAsideText()
     }
   })
 };

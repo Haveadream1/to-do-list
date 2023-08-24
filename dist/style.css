@@ -149,7 +149,8 @@ small {
   color: rgba(0, 0, 0, 0.31);
 } 
 #form-text:focus,
-#form-date:focus {
+#form-date:focus,
+#project-name {
   border: none;
   outline: none;
 }
