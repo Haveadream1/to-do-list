@@ -1,70 +1,96 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
     <title>To-do-list</title>
-</head>
-<body>
+  </head>
+  <body>
     <aside class="visibility">
-        <button class="tab">
-            <img src="../dist/images/Vector (1).svg" alt="More button">
+      <button class="tab">
+        <img src="../dist/images/Vector (1).svg" alt="More button" />
+      </button>
+
+      <section class="align-button">
+        <p class="my-project">My project</p>
+        <button class="add-project">
+          <img
+            src="../dist/images/Vector (copy 1).svg"
+            alt="Add project button"
+          />
         </button>
+      </section>
 
-        <Section class="align-button">
-            <p class="my-project">My project</p>
-            <button class="add-project">
-                <img src="../dist/images/Vector (copy 1).svg" alt="Add project button">
-            </button>
-        </Section>
-
-        <section class="section-aside">
-            <form id="form-aside" action="post">
-                <fieldset class="fieldset-project">
-                    <input type="text" id="project-name" placeholder="Add a project" required>
-                </fieldset>
-                <section class="form-button">
-                    <button class="button-project">Submit</button>
-                    <button type="button" class="button-project-cancel">Cancel</button>
-                </section>
-            </form>
-        </section>
-        <section class="created-project">
-            <p class="title-project">de</p>
-        </section>
+      <section class="section-aside">
+        <form id="form-aside" action="post">
+          <fieldset class="fieldset-project">
+            <input
+              type="text"
+              id="project-name"
+              placeholder="Add a project"
+            />
+            <small></small>
+          
+          </fieldset>
+          <section class="form-button">
+            <button class="button-project">Submit</button>
+            <button type="button" class="button-project-cancel">Cancel</button>
+          </section>
+        </form>
+      </section>
+      <section class="created-project">
+        <p class="title-project">Default project</p>
+      </section>
     </aside>
 
     <section class="container">
-        <section class="align-title">
-            <button class="button-to">Todo</button>
-            <button class="button-completed">Completed</button>
-        </section>
+      <section class="align-title">
+        <button class="button-to">Todo</button>
+        <button class="button-completed">Completed</button>
+      </section>
 
-        <section class="form-section">
-            <form id="form" action="post">
-                <fieldset class="fieldset-form">
-                    <input type="text" id="form-text" placeholder="Add a new task" required>
-                    <select name="date" id="form-date">
-                        <option value="20/22/02">20/22/02</option>
-                        <option value="1/04/21" selected>1/04/21</option>
-                    </select>
-                </fieldset>
-                <section class="form-button">
-                    <!--Specify the type on button otherwise error when visibility is on hidden-->
-                    <button class="button-submit">Submit</button>
-                    <button type="button" class="button-submit-cancel">Cancel</button>
-                </section>
-            </form>
-        </section>
+      <section class="form-section">
+        <form id="form" action="post" novalidate>
+
+          <fieldset class="fieldset-form">
+            <fieldset>
+              <input
+              type="text"
+              id="form-text"
+              placeholder="Add a new task"
+              />
+              <small></small>
+            </fieldset>
+            <fieldset>
+              <input type="date" id="form-date">
+            <small></small>
+            </fieldset>
+          </fieldset>
+
+          <section class="form-button">
+            <!--Specify the type on button otherwise error when visibility is on hidden-->
+            <button class="button-submit">Submit</button>
+            <button type="button" class="button-submit-cancel">Cancel</button>
+          </section>
+
+        </form>
+      </section>
     </section>
 
-    <button class="add-to-do"><img src="../dist/images/Vector.svg" alt="Add to-do button"></button>
+    <section class="correct-alignment-button-add">
+      <button class="add-to-do">
+        <img src="../dist/images/Vector.svg" alt="Add to-do button" />
+      </button>
+    </section>
 
-	<script src="main.js" defer></script>
-</body>
+    <script src="main.js" defer></script>
+  </body>
 </html>

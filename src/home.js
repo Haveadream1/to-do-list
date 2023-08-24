@@ -20,6 +20,7 @@ const home = () => {
   const buttonTodo = document.querySelector('.button-to');
   const formSection = document.querySelector('.form-section');
   const formText = document.querySelector('#form-text');
+  const formDate = document.querySelector('#form-date');
   const form = document.querySelector('#form');
   const formAside = document.querySelector('#form-aside');
   const buttonAddProject = document.querySelector('.add-project');
@@ -93,13 +94,6 @@ const home = () => {
     formText.value = '';
   });
 
-  // issue cannot hide the form
-  form.addEventListener('submit', (event) => {
-    event.preventDefault();
-    getValue();
-    formSection.style.visibility = 'hidden';
-  });
-
   buttonSubmitCancel.addEventListener('click', () => {
     formSection.style.visibility = 'hidden';
     formText.value = '';
@@ -165,6 +159,89 @@ const home = () => {
   // tab
   buttonCompleted.addEventListener('click', completed);
   buttonTodo.addEventListener('click', todo);
+
+  // validation 
+  const isRequired = (value) => {
+    if (value === '') {
+      return false;
+    // eslint-disable-next-line no-else-return
+    } else {
+      return true;
+    }
+  }
+
+  const showError = (input, message) => {
+    const fieldset = input.parentElement;
+    input.classList.add('error');
+    input.classList.remove('success');
+
+    const small = fieldset.querySelector('small');
+    small.textContent = message;
+  }
+  
+  const showSuccess = (input) => {
+    const fieldset = input.parentElement;
+    input.classList.add('success');
+    input.classList.remove('error');
+
+    const small = fieldset.querySelector('small');
+    small.textContent = '';
+  }
+  
+  const checkFormText = () => {
+    let valid = false;
+    const text = formText.value.trim();
+    if (!isRequired(text)) {
+      showError(formText, 'Please fill this field');
+    } else {
+      showSuccess(formText);
+      valid = true;
+    }
+    return valid;
+  }
+
+  const checkFormDate = () => {
+    let valid = false;
+    const date = formDate.value.trim();
+    if (!isRequired(date)) {
+      showError(formDate, 'Please fill this field');
+    } else {
+      showSuccess(formDate);
+      valid = true;
+    }
+    return valid;
+  }
+
+  form.addEventListener('submit', (event) => {
+    event.preventDefault();
+
+    // eslint-disable-next-line one-var
+    const isFormDateValid = checkFormDate(),
+    isFormTextValid = checkFormText();
+
+    const isFormValid = isFormDateValid && isFormTextValid;
+
+    if (isFormValid) {
+      // to submit date to server
+      getValue();
+      formSection.style.visibility = 'hidden';
+      console.log('Valid form');
+    } else {
+      console.log('Error in the form');
+    }
+  });
+
+  form.addEventListener('input', (e) => {
+    // eslint-disable-next-line default-case
+    switch (e.target.id) {
+      case 'form-text':
+        checkFormText();
+        break;
+      case 'form-date':
+        checkFormDate();
+        break;
+    }
+  })
 };
 
 export default home;
