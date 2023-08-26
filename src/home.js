@@ -4,14 +4,6 @@ import todo from './todo';
 
 // API and project
 const home = () => {
-  const dateAPI = new Date();
-  const today = addDays(dateAPI, 0);
-  const month = addMonths(dateAPI, 1);
-  const formatMonth = format(month, 'MM');
-  console.log(formatMonth);
-  // const formatDate = format(dateAPI, 'MM/dd/yy');
-  // console.log(formatDate);
-
   const container = document.querySelector('.container');
   const buttonAdd = document.querySelector('.add-to-do');
   const buttonTab = document.querySelector('.tab');
@@ -88,6 +80,22 @@ const home = () => {
     console.log(myArray);
     createTodo();
   };
+  
+  const dateAPI = new Date();
+  const dateToday = format(dateAPI, 'MM/dd/yy');
+  console.log(dateToday);
+
+  const thisWeek  = addDays(new Date(dateToday), 7)
+  const dateThisWeek = format(thisWeek, 'MM/dd/yy');
+  console.log(dateThisWeek);
+
+  const thisMonth  = addMonths(new Date(dateToday), 1)
+  const dateNextWeek = format(thisMonth, 'MM/dd/yy');
+  console.log(dateNextWeek);
+
+
+  const classByDate = () => {
+  }
 
   buttonAdd.addEventListener('click', () => {
     formSection.style.visibility = 'visible';
@@ -143,8 +151,9 @@ const home = () => {
     myProject.push(newProject);
     console.log(myProject); */
 
-    const projectP = document.createElement('p');
-    projectP.textContent = projectName;
+    const projectP = document.createElement('button');
+    projectP.classList.add('title-project');
+    projectP.textContent = projectNameValue;
     createdProject.appendChild(projectP);
   };
 
@@ -282,4 +291,11 @@ export default home;
     if the checkbox if on on take the object and create that one in the completed page
     add style line with position relative to the box
     tab show with toggle
-    option create a group */
+    option create a group
+    project name as a button
+    when we click on a project the todo are ordered 
+    by time, thanks to the API that will display
+    date of today, in one week, in one month
+    so divide the page in 3
+    create page for each project and play with the visibility like
+    with the tab */
