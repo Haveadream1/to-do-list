@@ -4,6 +4,7 @@ body {
   height: 100vh;
   grid-template-columns: 1fr 3fr 100px;
   grid-template-rows: 10vh 80vh 10vh;
+  margin: 0;
 }
 .visibility {
   visibility: hidden;
@@ -72,6 +73,13 @@ aside {
   grid-row: 3;
   color: white;
 }
+.title-project {
+  font-size: 18px;
+  color: white;
+  border: none;
+  background: none;
+  padding: 0;
+}
 
 .container {
   background-color: aqua;
@@ -100,6 +108,9 @@ aside {
   color: #b0b0b0;
 }
 
+.form-section {
+  height: 127px;
+}
 #form {
   height: 80px;
   display: flex;
@@ -179,6 +190,16 @@ small {
   font-size: 18px;
 }
 
+.class-todo {
+  display: grid;
+  width: 520px;
+  grid-template-rows: repeat(3,20vh);
+}
+.date-todo {
+  font-size: 20px;
+  color: rgba(0, 0, 0, 0.61);
+  text-decoration: underline 2px #d9d9d9;
+}
 .todo {
   background-color: #d9d9d9;
   width: 500px;
@@ -195,7 +216,6 @@ small {
   border: none;
   margin: 0 12px;
 }
-/*need custom checked*/
 .text {
   text-align: start;
   font-size: 20px;
