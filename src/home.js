@@ -1,4 +1,4 @@
-import { addDays, addMonths, format} from 'date-fns';
+import { addDays, format, compareAsc} from 'date-fns';
 import completed from './completed';
 import todo from './todo';
 
@@ -22,6 +22,22 @@ const home = () => {
   const createdProject = document.querySelector('.created-project');
   const buttonProjectCancel = document.querySelector('.button-project-cancel');
   const myArray = [];
+
+  const dateAPI = new Date();
+  const dateToday = format(dateAPI, 'yyyy-MM-dd');
+  console.log(dateToday);
+
+  const thisWeek  = addDays(new Date(dateToday), 7)
+  const dateThisWeek = format(thisWeek, 'yyyy-MM-dd');
+  console.log(dateThisWeek);
+
+  const test = compareAsc(new Date(dateToday), new Date(dateThisWeek));
+  console.log(test);
+  /*
+    const thisMonth  = addMonths(new Date(dateToday), 1)
+    const dateNextWeek = format(thisMonth, 'yyyy-MM-dd');
+    console.log(dateNextWeek);
+  */
 
   class Object {
     constructor(date, text) {
@@ -66,9 +82,17 @@ const home = () => {
       const object = myArray[i];
       createText.textContent = `${object.text}`;
       createDate.textContent = `${object.date}`;
-      // DATE API
-      // const formatDate = format(object.date, 'MM/dd/yy');
-      // createDate.textContent = `${object.date}`;
+      
+      const compareDate = compareAsc(new Date(dateToday), new Date(object.date));
+      console.log(compareDate);
+
+      if(compareDate === 0) {
+        console.log('dates are equal');
+      } else if(compareDate === -1) {
+        console.log('the date of today is before the object date');
+      } else if(compareDate === 1) {
+        console.log('the date of today is after the object date');
+      }
     }
   };
 
@@ -81,20 +105,13 @@ const home = () => {
     createTodo();
   };
   
-  const dateAPI = new Date();
-  const dateToday = format(dateAPI, 'MM/dd/yy');
-  console.log(dateToday);
-
-  const thisWeek  = addDays(new Date(dateToday), 7)
-  const dateThisWeek = format(thisWeek, 'MM/dd/yy');
-  console.log(dateThisWeek);
-
-  const thisMonth  = addMonths(new Date(dateToday), 1)
-  const dateNextWeek = format(thisMonth, 'MM/dd/yy');
-  console.log(dateNextWeek);
-
-
   const classByDate = () => {
+      /*
+  if the date is the same as today => 1st section
+  if the date is superior as today and smaller 
+  or equal as the date of this week => 2nd section
+  if the date is superior as this week => 3rd section
+   */
   }
 
   buttonAdd.addEventListener('click', () => {
