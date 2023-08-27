@@ -1,3 +1,4 @@
+/* eslint-disable no-else-return */
 import { addDays, format, compareAsc} from 'date-fns';
 import completed from './completed';
 import todo from './todo';
@@ -21,6 +22,9 @@ const home = () => {
   const buttonSubmitCancel = document.querySelector('.button-submit-cancel');
   const createdProject = document.querySelector('.created-project');
   const buttonProjectCancel = document.querySelector('.button-project-cancel');
+  const sectionToday = document.querySelector('.section-today');
+  const sectionThisWeek = document.querySelector('.section-this-week');
+  const sectionUpcoming = document.querySelector('.section-upcoming');
   const myArray = [];
 
   const dateAPI = new Date();
@@ -51,7 +55,7 @@ const home = () => {
   const createTodo = () => {
     const createSection = document.createElement('section');
     createSection.classList.add('todo');
-    container.appendChild(createSection);
+    //container.appendChild(createSection);
 
     const createLine = document.createElement('div');
 
@@ -87,14 +91,19 @@ const home = () => {
       console.log(compareDate);
 
       if(compareDate === 0) {
-        console.log('dates are equal');
-      } else if(compareDate === -1) {
-        console.log('the date of today is before the object date');
-      } else if(compareDate === 1) {
-        console.log('the date of today is after the object date');
+        sectionToday.appendChild(createSection);
+      } else if(object.date <= dateThisWeek) {
+        sectionThisWeek.appendChild(createSection);
+      } else if(object.date > dateThisWeek) {
+        sectionUpcoming.appendChild(createSection);
       }
     }
   };
+
+  /* use the compare date for the form validation
+     if the object date is before the date of today, put and error 
+     then class it with the function classByDate
+  */
 
   const getValue = () => {
     const text = document.querySelector('#form-text').value;
@@ -182,7 +191,14 @@ const home = () => {
   const isRequired = (value) => {
     if (value === '') {
       return false;
-    // eslint-disable-next-line no-else-return
+    } else {
+      return true;
+    }
+  }
+
+  const isDate = (value) => {
+    if (value === 1) {
+      return false;
     } else {
       return true;
     }
@@ -221,8 +237,13 @@ const home = () => {
   const checkFormDate = () => {
     let valid = false;
     const date = formDate.value.trim();
+    const dateNoTrim = formDate.value;
+    const compareDate = compareAsc(new Date(dateToday), new Date(dateNoTrim));
+
     if (!isRequired(date)) {
       showError(formDate, 'Please fill this field');
+    } else if (!isDate(compareDate)) {
+      showError(formDate, 'Please put a current date')
     } else {
       showSuccess(formDate);
       valid = true;
