@@ -3,9 +3,7 @@ import { addDays, format, compareAsc} from 'date-fns';
 import completed from './completed';
 import todo from './todo';
 
-// API and project
 const home = () => {
-  const container = document.querySelector('.container');
   const buttonAdd = document.querySelector('.add-to-do');
   const buttonTab = document.querySelector('.tab');
   const aside = document.querySelector('aside');
@@ -55,7 +53,6 @@ const home = () => {
   const createTodo = () => {
     const createSection = document.createElement('section');
     createSection.classList.add('todo');
-    //container.appendChild(createSection);
 
     const createLine = document.createElement('div');
 
@@ -100,11 +97,6 @@ const home = () => {
     }
   };
 
-  /* use the compare date for the form validation
-     if the object date is before the date of today, put and error 
-     then class it with the function classByDate
-  */
-
   const getValue = () => {
     const text = document.querySelector('#form-text').value;
     const date = document.querySelector('#form-date').value;
@@ -113,24 +105,22 @@ const home = () => {
     console.log(myArray);
     createTodo();
   };
-  
-  const classByDate = () => {
-      /*
-  if the date is the same as today => 1st section
-  if the date is superior as today and smaller 
-  or equal as the date of this week => 2nd section
-  if the date is superior as this week => 3rd section
-   */
+
+  const regroupResetFunction = () => {
+    formDate.value = '';
+    formText.value = '';
+    formDate.classList.remove('success');
+    formText.classList.remove('success');
   }
 
   buttonAdd.addEventListener('click', () => {
     formSection.style.visibility = 'visible';
-    formText.value = '';
+    regroupResetFunction();
   });
 
   buttonSubmitCancel.addEventListener('click', () => {
     formSection.style.visibility = 'hidden';
-    formText.value = '';
+    regroupResetFunction();
   });
 
   // aside
@@ -152,6 +142,7 @@ const home = () => {
   buttonAddProject.addEventListener('click', () => {
     sectionAside.style.visibility = 'visible';
     projectName.value = '';
+    projectName.classList.remove('success');
     sectionAside.style.gridRow = '3';
     createdProject.style.gridRow = '4';
   });
@@ -159,6 +150,7 @@ const home = () => {
   buttonProjectCancel.addEventListener('click', () => {
     sectionAside.style.visibility = 'hidden';
     projectName.value = '';
+    projectName.classList.remove('success');
     sectionAside.style.gridRow = '5';
     createdProject.style.gridRow = '3';
   });
