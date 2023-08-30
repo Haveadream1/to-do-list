@@ -5,7 +5,7 @@ import todo from './todo';
 
 const home = () => {
   const container = document.querySelector('container')
-  const buttonAdd = document.querySelector('.add-todo');
+  const buttonAddTodo = document.querySelector('.add-todo');
   const buttonTab = document.querySelector('.tab');
   const aside = document.querySelector('aside');
   const buttonCompleted = document.querySelector('.button-completed');
@@ -112,7 +112,7 @@ const home = () => {
     formText.classList.remove('success');
   }
 
-  buttonAdd.addEventListener('click', () => {
+  buttonAddTodo.addEventListener('click', () => {
     formSection.style.visibility = 'visible';
     regroupResetFunction();
   });
