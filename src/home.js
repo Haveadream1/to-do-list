@@ -4,7 +4,8 @@ import completed from './completed';
 import todo from './todo';
 
 const home = () => {
-  const buttonAdd = document.querySelector('.add-to-do');
+  const container = document.querySelector('container')
+  const buttonAdd = document.querySelector('.add-todo');
   const buttonTab = document.querySelector('.tab');
   const aside = document.querySelector('aside');
   const buttonCompleted = document.querySelector('.button-completed');
@@ -35,11 +36,6 @@ const home = () => {
 
   const test = compareAsc(new Date(dateToday), new Date(dateThisWeek));
   console.log(test);
-  /*
-    const thisMonth  = addMonths(new Date(dateToday), 1)
-    const dateNextWeek = format(thisMonth, 'yyyy-MM-dd');
-    console.log(dateNextWeek);
-  */
 
   class Object {
     constructor(date, text) {
@@ -53,6 +49,7 @@ const home = () => {
   const createTodo = () => {
     const createSection = document.createElement('section');
     createSection.classList.add('todo');
+    createSection.classList.add('not-checked');
 
     const createLine = document.createElement('div');
 
@@ -63,8 +60,10 @@ const home = () => {
       if (createCheckBox.checked) {
         createLine.classList.add('line');
         createSection.appendChild(createLine);
+        createSection.classList.remove('not-checked');  
       } else if (!createCheckBox.checked) {
         createLine.remove();
+        createSection.classList.add('not-checked');
       }
     });
     createSection.appendChild(createCheckBox);
@@ -123,8 +122,6 @@ const home = () => {
     regroupResetFunction();
   });
 
-  // aside
-
   // const myProject = [];
   /*
   class project {
@@ -167,7 +164,8 @@ const home = () => {
     const projectNameValue = document.querySelector('#project-name').value;
     const newProject = new project(projectNameValue);
     myProject.push(newProject);
-    console.log(myProject); */
+    console.log(myProject);
+    play with class todo */
 
     const projectP = document.createElement('button');
     projectP.classList.add('title-project');
@@ -175,11 +173,15 @@ const home = () => {
     createdProject.appendChild(projectP);
   };
 
-  // tab
+  /* the project name should be a button that will
+  display the container
+  and every time we create a new button, a new container created
+  maybe link them with a name class or a number
+  play with overflow and hide */
+
   buttonCompleted.addEventListener('click', completed);
   buttonTodo.addEventListener('click', todo);
 
-  // validation main 
   const isRequired = (value) => {
     if (value === '') {
       return false;
@@ -274,7 +276,6 @@ const home = () => {
     }
   })
 
-  // validation tab 
   const checkAsideText = () => {
     let valid = false;
     const text = projectName.value.trim();

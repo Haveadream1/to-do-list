@@ -1,21 +1,25 @@
+/* eslint-disable no-param-reassign */
+/* eslint-disable no-unused-vars */
 const completed = () => {
   const buttonCompleted = document.querySelector('.button-completed');
   const buttonTodo = document.querySelector('.button-to');
-  const allCheckbox = document.querySelectorAll('.checkbox');
-  const todo = document.querySelector('.todo');
+  const buttonAddTodo = document.querySelector('.add-todo');
+  const formSection = document.querySelector('.form-section');
 
   const changeColor = (() => {
     buttonCompleted.style.color = 'black';
     buttonTodo.style.color = '#B0B0B0';
   })();
 
-  const removeUncompleted = (() => {
-    if (test === 0) {
-      allCheckbox.forEach((i) => {
-        i.remove();
-      });
-    }
+  document.querySelectorAll('.not-checked').forEach((element) => {
+    element.style.display = 'none';
+  });
+
+  const hideElements = (() => {
+    buttonAddTodo.style.display = 'none';
+    formSection.style.display = 'none';
   })();
+
 };
 
 export default completed;

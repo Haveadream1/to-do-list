@@ -193,7 +193,6 @@ small {
 .class-todo {
   display: grid;
   width: 520px;
-  grid-template-rows: repeat(3,20vh);
 }
 .date-todo {
   font-size: 20px;
@@ -241,7 +240,7 @@ small {
   justify-content: center;
   align-items: center;
 }
-.add-to-do {
+.add-todo {
   height: 71px;
   width: 71px;
   border-radius: 36px;
