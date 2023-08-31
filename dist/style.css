@@ -69,16 +69,18 @@ aside {
   font-size: 15px;
 }
 .created-project {
+  display: flex;
+  flex-direction: column;
   font-size: 18px;
-  grid-row: 3;
   color: white;
 }
 .title-project {
   font-size: 18px;
+  text-align: left;
   color: white;
   border: none;
   background: none;
-  padding: 0;
+  padding: 0 0 5px 0;
 }
 
 .container {
