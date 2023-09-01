@@ -2,9 +2,9 @@
 import { addDays, format, compareAsc} from 'date-fns';
 import completed from './completed';
 import todo from './todo';
+import project from './project';
 
 const home = () => {
-  const container = document.querySelector('container')
   const buttonAddTodo = document.querySelector('.add-todo');
   const buttonTab = document.querySelector('.tab');
   const aside = document.querySelector('aside');
@@ -25,6 +25,51 @@ const home = () => {
   const sectionThisWeek = document.querySelector('.section-this-week');
   const sectionUpcoming = document.querySelector('.section-upcoming');
   const myArray = [];
+
+  buttonTab.addEventListener('click', () => {
+    aside.classList.toggle('visibility');
+    sectionAside.style.visibility = 'hidden';
+  });
+
+  buttonAddProject.addEventListener('click', () => {
+    sectionAside.style.visibility = 'visible';
+    projectName.value = '';
+    projectName.classList.remove('success');
+    sectionAside.style.gridRow = '3';
+    createdProject.style.gridRow = '4';
+  });
+
+  buttonProjectCancel.addEventListener('click', () => {
+    sectionAside.style.visibility = 'hidden';
+    projectName.value = '';
+    projectName.classList.remove('success');
+    sectionAside.style.gridRow = '5';
+    createdProject.style.gridRow = '3';
+  });
+
+  const createProject = () => {
+    const projectNameValue = document.querySelector('#project-name').value;
+    const newProject = new Object(projectNameValue);
+    myArray.push(newProject);
+    console.log(myArray);
+
+    // need to pass the project name as a object value
+
+    /* 
+    const projectNameValue = document.querySelector('#project-name').value;
+    const newProject = new project(projectNameValue);
+    myProject.push(newProject);
+    console.log(myProject);
+    play with class todo */
+
+    const projectP = document.createElement('button');
+    projectP.classList.add('title-project');
+    projectP.textContent = projectNameValue;
+    projectP.addEventListener('click',() => {
+      project()
+    })
+    createdProject.appendChild(projectP);
+  };
 
   const dateAPI = new Date();
   const dateToday = format(dateAPI, 'yyyy-MM-dd');
@@ -49,9 +94,6 @@ const home = () => {
     createSection.classList.add('not-checked');
 
     const createLine = document.createElement('div');
-
-    const test = document.querySelector('.title-project')
-    createSection.classList.add(test);
 
     const createCheckBox = document.createElement('input');
     createCheckBox.type = 'checkbox';
@@ -130,62 +172,6 @@ const home = () => {
       };
   }
   */
-
-  buttonTab.addEventListener('click', () => {
-    aside.classList.toggle('visibility');
-    sectionAside.style.visibility = 'hidden';
-  });
-
-  buttonAddProject.addEventListener('click', () => {
-    sectionAside.style.visibility = 'visible';
-    projectName.value = '';
-    projectName.classList.remove('success');
-    sectionAside.style.gridRow = '3';
-    createdProject.style.gridRow = '4';
-  });
-
-  buttonProjectCancel.addEventListener('click', () => {
-    sectionAside.style.visibility = 'hidden';
-    projectName.value = '';
-    projectName.classList.remove('success');
-    sectionAside.style.gridRow = '5';
-    createdProject.style.gridRow = '3';
-  });
-
-  const createProject = () => {
-    const projectNameValue = document.querySelector('#project-name').value;
-    const newProject = new Object(projectNameValue);
-    myArray.push(newProject);
-    console.log(myArray);
-
-    // need to pass the project name as a object value
-
-    /* 
-    const projectNameValue = document.querySelector('#project-name').value;
-    const newProject = new project(projectNameValue);
-    myProject.push(newProject);
-    console.log(myProject);
-    play with class todo */
-
-    const projectP = document.createElement('button');
-    projectP.classList.add('title-project');
-    projectP.textContent = projectNameValue;
-    projectP.addEventListener('click',() => {
-      console.log('fe')
-    })
-    createdProject.appendChild(projectP);
-  };
-  /* re-make container in js */
-
-  /* do the same as the completed tab, 
-  add a specific class from the button to the todo
-  and remove it when we click on another project */
-
-  /* the project name should be a button that will
-  display the container
-  and every time we create a new button, a new container created
-  maybe link them with a name class or a number
-  play with overflow and hide */
 
   buttonCompleted.addEventListener('click', completed);
   buttonTodo.addEventListener('click', todo);
