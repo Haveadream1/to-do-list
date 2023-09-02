@@ -21,55 +21,7 @@ const home = () => {
   const buttonSubmitCancel = document.querySelector('.button-submit-cancel');
   const createdProject = document.querySelector('.created-project');
   const buttonProjectCancel = document.querySelector('.button-project-cancel');
-  const sectionToday = document.querySelector('.section-today');
-  const sectionThisWeek = document.querySelector('.section-this-week');
-  const sectionUpcoming = document.querySelector('.section-upcoming');
   const myArray = [];
-
-  buttonTab.addEventListener('click', () => {
-    aside.classList.toggle('visibility');
-    sectionAside.style.visibility = 'hidden';
-  });
-
-  buttonAddProject.addEventListener('click', () => {
-    sectionAside.style.visibility = 'visible';
-    projectName.value = '';
-    projectName.classList.remove('success');
-    sectionAside.style.gridRow = '3';
-    createdProject.style.gridRow = '4';
-  });
-
-  buttonProjectCancel.addEventListener('click', () => {
-    sectionAside.style.visibility = 'hidden';
-    projectName.value = '';
-    projectName.classList.remove('success');
-    sectionAside.style.gridRow = '5';
-    createdProject.style.gridRow = '3';
-  });
-
-  const createProject = () => {
-    const projectNameValue = document.querySelector('#project-name').value;
-    const newProject = new Object(projectNameValue);
-    myArray.push(newProject);
-    console.log(myArray);
-
-    // need to pass the project name as a object value
-
-    /* 
-    const projectNameValue = document.querySelector('#project-name').value;
-    const newProject = new project(projectNameValue);
-    myProject.push(newProject);
-    console.log(myProject);
-    play with class todo */
-
-    const projectP = document.createElement('button');
-    projectP.classList.add('title-project');
-    projectP.textContent = projectNameValue;
-    projectP.addEventListener('click',() => {
-      project()
-    })
-    createdProject.appendChild(projectP);
-  };
 
   const dateAPI = new Date();
   const dateToday = format(dateAPI, 'yyyy-MM-dd');
@@ -92,6 +44,10 @@ const home = () => {
     const createSection = document.createElement('section');
     createSection.classList.add('todo');
     createSection.classList.add('not-checked');
+
+    const sectionToday = document.querySelector('.section-today');
+    const sectionThisWeek = document.querySelector('.section-this-week');
+    const sectionUpcoming = document.querySelector('.section-upcoming');
 
     const createLine = document.createElement('div');
 
@@ -172,6 +128,51 @@ const home = () => {
       };
   }
   */
+
+  buttonTab.addEventListener('click', () => {
+    aside.classList.toggle('visibility');
+    sectionAside.style.visibility = 'hidden';
+  });
+
+  buttonAddProject.addEventListener('click', () => {
+    sectionAside.style.visibility = 'visible';
+    projectName.value = '';
+    projectName.classList.remove('success');
+    sectionAside.style.gridRow = '3';
+    createdProject.style.gridRow = '4';
+  });
+
+  buttonProjectCancel.addEventListener('click', () => {
+    sectionAside.style.visibility = 'hidden';
+    projectName.value = '';
+    projectName.classList.remove('success');
+    sectionAside.style.gridRow = '5';
+    createdProject.style.gridRow = '3';
+  });
+
+  const createProject = () => {
+    const projectNameValue = document.querySelector('#project-name').value;
+    const newProject = new Object(projectNameValue);
+    myArray.push(newProject);
+    console.log(myArray);
+
+    // need to pass the project name as a object value
+
+    /* 
+    const projectNameValue = document.querySelector('#project-name').value;
+    const newProject = new project(projectNameValue);
+    myProject.push(newProject);
+    console.log(myProject);
+    play with class todo */
+
+    const projectP = document.createElement('button');
+    projectP.classList.add('title-project');
+    projectP.textContent = projectNameValue;
+    projectP.addEventListener('click',() => {
+      project()
+    })
+    createdProject.appendChild(projectP);
+  };
 
   buttonCompleted.addEventListener('click', completed);
   buttonTodo.addEventListener('click', todo);
