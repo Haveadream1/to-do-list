@@ -169,7 +169,9 @@ const home = () => {
     projectP.classList.add('title-project');
     projectP.textContent = projectNameValue;
     projectP.addEventListener('click',() => {
-      project()
+      const test = document.querySelector('.test')
+      test.hasClass('class-todo')
+      project();
     })
     createdProject.appendChild(projectP);
   };

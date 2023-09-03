@@ -1,12 +1,14 @@
 const project = () => {
     const container = document.querySelector('.container');
 
-    document.querySelectorAll('.test').forEach((element) => {
+    document.querySelectorAll('.class-todo').forEach((element) => {
         element.style.display = 'none';
     });
 
     // kinda work , so i want to add and remove those class when i 
     // add remove the todo and give a class or a container for the project
+    // find a way to go back so check if a section is already create don't 
+    // recreate one just give it the class class-todo
     const previousSection0 = document.querySelector('.class-todo');
     previousSection0.classList.remove('class-todo');
 
@@ -19,61 +21,6 @@ const project = () => {
     const previousSection3 = document.querySelector('.section-upcoming');
     previousSection3.classList.remove('section-upcoming');
 
-    
-    // issue todo doesn't show 
-    /*
-    const formSection = document.createElement('section');
-    formSection.classList.add('form-section');
-    container.appendChild(formSection);
-
-    const form = document.createElement('form');
-    form.setAttribute('id','form');
-    form.setAttribute('action','post');
-    form.noValidate = true;
-    formSection.appendChild(form);
-
-    const fieldset = document.createElement('fieldset');
-    fieldset.classList.add('fieldset-form');
-    form.appendChild(fieldset);
-
-    const fieldsetIn1 = document.createElement('fieldset');
-    fieldset.appendChild(fieldsetIn1);
-
-    const inputText = document.createElement('input');
-    inputText.setAttribute('type','text');
-    inputText.setAttribute('id','form-text');
-    inputText.setAttribute('placeholder','Add a new task');
-    fieldsetIn1.appendChild(inputText);
-
-    const small1 = document.createElement('small');
-    fieldsetIn1.appendChild(small1);
-
-    const fieldsetIn2 = document.createElement('fieldset');
-    fieldset.appendChild(fieldsetIn2);
-
-    const inputDate = document.createElement('input');
-    inputDate.setAttribute('type','date');
-    inputDate.setAttribute('id','form-date');
-    fieldsetIn2.appendChild(inputDate);
-
-    const small2 = document.createElement('small');
-    fieldsetIn2.appendChild(small2);
-
-    const sectionButton = document.createElement('section');
-    sectionButton.classList.add('form-button');
-    form.appendChild(sectionButton);
-
-    const buttonSubmit = document.createElement('button');
-    buttonSubmit.classList.add('button-submit');
-    buttonSubmit.textContent = 'Submit';
-    sectionButton.appendChild(buttonSubmit);
-
-    const buttonSubmitCancel = document.createElement('button');
-    buttonSubmitCancel.classList.add('button-submit-cancel');
-    buttonSubmitCancel.textContent = 'Cancel';
-    buttonSubmitCancel.setAttribute('type','button');
-    sectionButton.appendChild(buttonSubmitCancel);
-    */
 
     const sectionClassTodo = document.createElement('section');
     sectionClassTodo.classList.add('class-todo');
