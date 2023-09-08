@@ -2,7 +2,7 @@
 import { addDays, format, compareAsc} from 'date-fns';
 import completed from './completed';
 import todo from './todo';
-import project from './project';
+import {project, createProject} from './project';
 
 const home = () => {
   const buttonAddTodo = document.querySelector('.add-todo');
@@ -150,7 +150,7 @@ const home = () => {
     createdProject.style.gridRow = '3';
   });
 
-  const createProject = () => {
+  const giveProjectValue = () => {
     const projectNameValue = document.querySelector('#project-name').value;
     const newProject = new Object(projectNameValue);
     myArray.push(newProject);
@@ -168,9 +168,22 @@ const home = () => {
     const projectP = document.createElement('button');
     projectP.classList.add('title-project');
     projectP.textContent = projectNameValue;
-    projectP.addEventListener('click',() => {
-      projectP.disabled = true;
-      project();
+
+    projectP.addEventListener('click',(e) => {
+      e.target.classList.add('current');
+      const verifyClassExistence = e.target.classList.contains('past');
+      if(verifyClassExistence) {
+        document.querySelectorAll('.class-todo').forEach((element) => {
+          element.style.display = 'none';
+        });
+        project()
+        console.log('Already existing project');
+      } else {
+        createProject()
+        console.log('New project element');
+        e.target.classList.remove('current');
+        e.target.classList.add('past');
+      }
     })
     createdProject.appendChild(projectP);
   };
@@ -294,7 +307,7 @@ const home = () => {
       sectionAside.style.visibility = 'hidden';
       sectionAside.style.gridRow = '5';
       createdProject.style.gridRow = '3';
-      createProject();
+      giveProjectValue();
       console.log('Valid form');
     } else {
       console.log('Error in form');
