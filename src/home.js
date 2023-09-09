@@ -172,10 +172,8 @@ const home = () => {
     projectP.addEventListener('click',(e) => {
       e.target.classList.add('current');
       const verifyClassExistence = e.target.classList.contains('past');
+
       if(verifyClassExistence) {
-        document.querySelectorAll('.class-todo').forEach((element) => {
-          element.style.display = 'none';
-        });
         project()
         console.log('Already existing project');
       } else {
