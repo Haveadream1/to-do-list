@@ -31,12 +31,11 @@ const home = () => {
   const dateThisWeek = format(thisWeek, 'yyyy-MM-dd');
   console.log(dateThisWeek);
 
-  class Object {
-    constructor(date, text) {
+  class Todo {
+    constructor(date, text, projectNameValue) {
       this.date = date;
-      this.text = text;
-      // need to fix 
-      //this.projectNameValue = projectNameValue;
+      this.text = text
+      this.projectNameValue = projectNameValue;
     }
   }
 
@@ -97,7 +96,9 @@ const home = () => {
   const getValue = () => {
     const text = document.querySelector('#form-text').value;
     const date = document.querySelector('#form-date').value;
-    const newTodo = new Object(date, text);
+    const projectNameValue = document.querySelector('#project-name').value;
+  
+    const newTodo = new Todo(date, text, projectNameValue);
     myArray.push(newTodo);
     console.log(myArray);
     createTodo();
@@ -119,15 +120,6 @@ const home = () => {
     formSection.style.visibility = 'hidden';
     regroupResetFunction();
   });
-
-  // const myProject = [];
-  /*
-  class project {
-      constructor(projectName) {
-        this.projectName = projectName;
-      };
-  }
-  */
 
   buttonTab.addEventListener('click', () => {
     aside.classList.toggle('visibility');
@@ -152,18 +144,6 @@ const home = () => {
 
   const giveProjectValue = () => {
     const projectNameValue = document.querySelector('#project-name').value;
-    const newProject = new Object(projectNameValue);
-    myArray.push(newProject);
-    console.log(myArray);
-
-    // need to pass the project name as a object value
-
-    /* 
-    const projectNameValue = document.querySelector('#project-name').value;
-    const newProject = new project(projectNameValue);
-    myProject.push(newProject);
-    console.log(myProject);
-    play with class todo */
 
     const projectP = document.createElement('button');
     projectP.classList.add('title-project');
@@ -261,8 +241,8 @@ const home = () => {
 
     const isFormValid = isFormDateValid && isFormTextValid;
 
+    // to submit data to server
     if (isFormValid) {
-      // to submit date to server
       getValue();
       formSection.style.visibility = 'hidden';
       console.log('Valid form');
