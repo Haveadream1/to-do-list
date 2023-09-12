@@ -150,17 +150,19 @@ const home = () => {
     projectP.textContent = projectNameValue;
 
     projectP.addEventListener('click',(e) => {
+      const currentSection = document.querySelector('.current');
+      currentSection.classList.remove('current');
+      currentSection.classList.add('past');
       e.target.classList.add('current');
-      const verifyClassExistence = e.target.classList.contains('past');
 
+      const verifyClassExistence = e.target.classList.contains('past');
       if(verifyClassExistence) {
+        e.target.classList.remove('past');
         project()
         console.log('Already existing project');
       } else {
         createProject()
         console.log('New project element');
-        e.target.classList.remove('current');
-        e.target.classList.add('past');
       }
     })
     createdProject.appendChild(projectP);
