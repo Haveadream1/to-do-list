@@ -26,6 +26,7 @@
     * Input border => outline
     * Todo section, replace todo
     * Add info in which project we are
+    * Review height
 4. HTML
     * Review name
     * Review semantic choice
@@ -33,3 +34,4 @@
     * Readme credit image
     * Readme description and goal
     * Rename JS file index to => script.js
+> Look at recorder inside inspect
