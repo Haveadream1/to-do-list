@@ -100,12 +100,30 @@ aside {
   background: var(--light-grey);
 }
 
-
 main {
-
+  background: var(--dark-beige);
+  display: grid;
 }
 footer {
-
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+}
+.add-todo-button {
+  height: 50px;
+  width: 50px;
+  border-radius: 25px;
+  border: none;
+  background-color: var(--light-grey);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.add-todo-button > img {
+  width: 30px;
+  height: 30px;
 }
 
 /*
