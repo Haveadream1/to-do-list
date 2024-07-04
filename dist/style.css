@@ -10,16 +10,97 @@ body {
   height: 100vh;
   margin: 0;
   display: grid;
-  grid-template-columns: 15% 70% 15%;
+  grid-template-columns: 250px 1fr 250px;
+  /* grid-template-columns: 15% 70% 15%; Put a min or px */
+}
+
+button,
+input {
+  font-family: 'inter', Tahoma, sans-serif;
+  border: none;
 }
 
 aside {
-  background-color: #d9d9d9;
+  background-color: var(--dark-grey);
   height: 100vh;
   display: grid;
+  justify-items: center;
+  align-items: center;
   grid-template-columns: 1fr;
   grid-template-rows: 100px 200px 1fr;
 }
+.aside-button {
+  visibility: visible;
+  width: 40px;
+  height: 30px;
+  padding: 0;
+  background: none;
+}
+
+.add-project-section {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+.add-project-button {
+  padding: 3px;
+  outline: solid white 2px;
+  background: var(--light-grey);
+}
+.add-project-button > img {
+  display: block; /* To center*/
+  width: 20px;
+  height: 20px;
+}
+
+#project-form {
+  display: flex;
+  flex-direction: column;
+}
+#project-form > fieldset {
+  border: none;
+}
+#project-form > fieldset > input {
+  padding: 10px;
+  width: 180px;
+}
+
+.form-button {
+  display: flex;
+  justify-content: space-evenly;
+}
+.submit-project-button,
+.cancel-project-button {
+  padding: 8px;
+  outline: solid var(--light-grey);
+}
+.submit-project-button {
+  background-color: #7fff73;
+}
+.cancel-project-button {
+  background-color: #ff8473;
+}
+
+.project-section {
+  display: flex;
+  flex-direction: column;
+}
+.project-section > p {
+  text-decoration: underline white 2px;
+  text-underline-offset: 2px;
+}
+.project-button {
+  border: none;
+  background: none;
+  padding: 10px;
+}
+.project-button:hover {
+  border: none;
+  outline: solid white 2px;
+  background: var(--light-grey);
+}
+
+
 main {
 
 }
@@ -35,21 +116,7 @@ footer {
   visibility: visible;
 }
 
-aside {
-  background-color: #d9d9d9;
-  grid-row: 1 / span 3;
-  display: grid;
-  grid-template-columns: 1fr;
-  grid-template-rows: 70px 80px 100px 1fr;
-  padding: 20px;
-}
-.tab {
-  visibility: visible;
-  background: none;
-  border: none;
-  width: 40px;
-  height: 30px;
-}
+
 .my-project {
   font-size: 20px;
 }
