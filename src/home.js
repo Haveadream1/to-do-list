@@ -23,6 +23,7 @@ const home = () => {
   const buttonProjectCancel = document.querySelector('.button-project-cancel');
   const myArray = [];
 
+  console.log('test');
   const dateAPI = new Date();
   const dateToday = format(dateAPI, 'yyyy-MM-dd');
   console.log(dateToday);

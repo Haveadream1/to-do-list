@@ -2,7 +2,7 @@ const path = require('path');
 
 module.exports = {
   mode: 'development',
-  entry: './src/index.js',
+  entry: './src/init.js',
   output: {
     filename: 'main.js',
     library: 'date_fns',
