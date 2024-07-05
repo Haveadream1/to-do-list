@@ -15,9 +15,8 @@
   </head>
 
   <body>
-    <aside class="visibility">
-
-      <button class="aside-button"> <!--mb 2buttons -->
+    <aside>
+      <button class="aside-button">
         <img src="../dist/images/Vector (1).svg" alt="Aside button"/>
       </button>
 
@@ -52,22 +51,19 @@
 
       <section class="project-section">
         <p>My projects:</p>
-        <button class="project-button">Gym</button>
+        <button class="project-button">Winter holidays</button>
       </section>
     </aside>
 
-    
-    <main class="container">
-      <img src="https://medium.com/@worachote/building-a-todo-list-app-with-reactjs-a-step-by-step-guide-2c58b9b6c0f5" alt="">
-      <!-- <section class="align-title">
-        <button class="button-to">Todo</button>
-        <button class="button-completed">Completed</button>
+    <main>
+      <section class="main-button-section">
+        <button class="todo-button">Todo</button>
+        <button class="completed-button">Completed</button>
       </section>
 
       <section class="form-section">
-        <form id="form" action="post" novalidate>
-
-          <fieldset class="fieldset-form">
+        <form id="todo-form" action="post" novalidate>
+          <fieldset>
             <fieldset>
               <input
               type="text"
@@ -76,6 +72,7 @@
               />
               <small></small>
             </fieldset>
+
             <fieldset>
               <input type="date" id="form-date">
             <small></small>
@@ -83,126 +80,33 @@
           </fieldset>
 
           <section class="form-button">
-            Specify button type otherwise error when hidden visibility
-            <button class="button-submit">Submit</button>
-            <button type="button" class="button-submit-cancel">Cancel</button>
+            <button class="submit-project-button">Submit</button>
+            <button type="button" class="cancel-project-button">Cancel</button> <!--Specify button type otherwise error when hidden visibility-->
           </section>
-
         </form>
       </section>
 
-      <section class="class-todo">
-        <section class="section-today">
-          <p class="date-todo">Today</p>
+      <section class="time-section">
+        <section class="today-section">
+          <p>Today</p>
         </section>
-        <section class="section-this-week">
-          <p class="date-todo">This week</p>
-        </section>
-        <section class="section-upcoming">
-          <p class="date-todo">Upcoming</p>
-        </section>
-      </section> -->
-      
-    </main>
 
-    <footer class="correct-alignment-button-add">
-      <!-- <button class="add-todo">
-        <img src="../dist/images/Vector.svg" alt="Add to-do button" />
-      </button> -->
+        <section class="actual-week-section">
+          <p>This week</p>
+        </section>
+
+        <section class="upcoming-week-section">
+          <p>Upcoming</p>
+        </section>
+      </section>
+    </main>
+    
+    <footer>
+      <button class="add-todo-button">
+        <img src="../dist/images/Vector.svg" alt="Add to-do"/>
+      </button>
     </footer>
 
     <script src="main.js" defer></script>
   </body>
 </html>
-
-<!--  <aside class="visibility">
-      
-      <button class="tab">
-        <img src="../dist/images/Vector (1).svg" alt="Aside button"/>
-      </button>
-
-      <section class="align-button">
-        <p class="my-project">My project</p>
-        <button class="add-project">
-          <img
-            src="../dist/images/Vector (copy 1).svg"
-            alt="Add project button"
-          />
-        </button>
-      </section>
-
-      <section class="section-aside">
-        <form id="form-aside" action="post" novalidate>
-          <fieldset class="fieldset-project">
-            <input
-              type="text"
-              id="project-name"
-              placeholder="Add a project"
-            />
-            <small></small>
-          </fieldset>
-          <section class="form-button">
-            <button class="button-project">Submit</button>
-            <button type="button" class="button-project-cancel">Cancel</button>
-          </section>
-        </form>
-        
-      </section>
-      <section class="created-project">
-        <button class="title-project">Default project</button>
-      </section>
-    </aside>
-
-    <main class="container">
-      <section class="align-title">
-        <button class="button-to">Todo</button>
-        <button class="button-completed">Completed</button>
-      </section>
-
-      <section class="form-section">
-        <form id="form" action="post" novalidate>
-
-          <fieldset class="fieldset-form">
-            <fieldset>
-              <input
-              type="text"
-              id="form-text"
-              placeholder="Add a new task"
-              />
-              <small></small>
-            </fieldset>
-            <fieldset>
-              <input type="date" id="form-date">
-            <small></small>
-            </fieldset>
-          </fieldset>
-
-          <section class="form-button">
-            Specify button type otherwise error when hidden visibility
-            <button class="button-submit">Submit</button>
-            <button type="button" class="button-submit-cancel">Cancel</button>
-          </section>
-
-        </form>
-      </section>
-
-      <section class="class-todo">
-        <section class="section-today">
-          <p class="date-todo">Today</p>
-        </section>
-        <section class="section-this-week">
-          <p class="date-todo">This week</p>
-        </section>
-        <section class="section-upcoming">
-          <p class="date-todo">Upcoming</p>
-        </section>
-      </section> 
-      
-    </main>
-
-    <footer class="correct-alignment-button-add">
-      <button class="add-todo">
-        <img src="../dist/images/Vector.svg" alt="Add to-do button" />
-      </button> 
-    </footer>
- -->
