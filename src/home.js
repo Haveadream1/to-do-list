@@ -1,42 +1,40 @@
 /* eslint-disable no-else-return */
-import { addDays, format, compareAsc} from 'date-fns';
-import completed from './completed';
-import todo from './todo';
-import {project, createProject} from './project';
+// import { addDays, format, compareAsc} from 'date-fns';
+// import completed from './completed';
+// import todo from './todo';
+// import {project, createProject} from './project';
 
 const home = () => {
-  const buttonAddTodo = document.querySelector('.add-todo');
-  const buttonTab = document.querySelector('.tab');
   const aside = document.querySelector('aside');
-  const buttonCompleted = document.querySelector('.button-completed');
-  const buttonTodo = document.querySelector('.button-to');
-  const formSection = document.querySelector('.form-section');
-  const formText = document.querySelector('#form-text');
-  const formDate = document.querySelector('#form-date');
-  const form = document.querySelector('#form');
-  const formAside = document.querySelector('#form-aside');
-  const buttonAddProject = document.querySelector('.add-project');
-  const sectionAside = document.querySelector('.section-aside');
-  const projectName = document.querySelector('#project-name');
-  const buttonSubmitCancel = document.querySelector('.button-submit-cancel');
-  const createdProject = document.querySelector('.created-project');
-  const buttonProjectCancel = document.querySelector('.button-project-cancel');
+  const asideButton = document.querySelector('.aside-button');
+
+  asideButton.addEventListener('click', () => {
+    if (aside.style.visibility === 'hidden') {
+      aside.style.visibility = 'visible';
+      asideButton.style.justifySelf = 'end';
+    } else {
+      aside.style.visibility = 'hidden';
+      asideButton.style.justifySelf = 'start';
+    }
+  });
+};
+export default home;
+/*
   const myArray = [];
 
-  console.log('test');
-  const dateAPI = new Date();
-  const dateToday = format(dateAPI, 'yyyy-MM-dd');
-  console.log(dateToday);
+  const todayDate = new Date();
+  const todayDateFormat = format(todayDate, 'yyyy-MM-dd');
+  console.log(todayDateFormat);
 
-  const thisWeek  = addDays(new Date(dateToday), 7)
-  const dateThisWeek = format(thisWeek, 'yyyy-MM-dd');
-  console.log(dateThisWeek);
+  const actualWeek  = addDays(new Date(todayDate), 7)
+  const actualWeekFormat = format(actualWeek, 'yyyy-MM-dd');
+  console.log(actualWeekFormat);
 
   class Todo {
-    constructor(date, text, projectNameValue) {
+    constructor(date, text, projectName) {
       this.date = date;
       this.text = text
-      this.projectNameValue = projectNameValue;
+      this.projectName = projectName;
     }
   }
 
@@ -81,14 +79,14 @@ const home = () => {
       createText.textContent = `${object.text}`;
       createDate.textContent = `${object.date}`;
       
-      const compareDate = compareAsc(new Date(dateToday), new Date(object.date));
+      const compareDate = compareAsc(new Date(todayDate), new Date(object.date));
       console.log(compareDate);
 
       if(compareDate === 0) {
         sectionToday.appendChild(createSection);
-      } else if(object.date <= dateThisWeek) {
+      } else if(object.date <= actualWeekFormat) {
         sectionThisWeek.appendChild(createSection);
-      } else if(object.date > dateThisWeek) {
+      } else if(object.date > actualWeekFormat) {
         sectionUpcoming.appendChild(createSection);
       }
     }
@@ -301,8 +299,8 @@ const home = () => {
     }
   })
 };
-
 export default home;
+*/
 
 /*  Create an object each time we create a new todo
     Take the input value after focus loose
