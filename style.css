@@ -30,6 +30,7 @@ input:focus {
 }
 
 aside {
+  visibility: visible;
   padding: 10px;
   background-color: var(--light-grey);
   display: grid;
