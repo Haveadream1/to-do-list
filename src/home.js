@@ -8,6 +8,9 @@ const home = () => {
   const aside = document.querySelector('aside');
   const asideButton = document.querySelector('.aside-button');
 
+  const formSection = document.querySelector('.form-section')
+  const addProjectButton = document.querySelector('.add-project-button');
+
   asideButton.addEventListener('click', () => {
     if (aside.style.visibility === 'hidden') {
       aside.style.visibility = 'visible';
@@ -17,6 +20,49 @@ const home = () => {
       asideButton.style.justifySelf = 'start';
     }
   });
+
+  const createProjectForm = () => {
+    const projectForm = document.createElement('form');
+    projectForm.setAttribute('id','project-form');
+    projectForm.setAttribute('action','post');
+    projectForm.setAttribute('novalidate','true'); /*WHY NOVALIDATE*/
+
+    const fieldset = document.createElement('fieldset');
+
+    const input = document.createElement('input');
+    input.type = 'text';
+    input.setAttribute('id','project-name');
+    input.placeholder = 'Ex: Birthday';
+    fieldset.appendChild(input);
+
+    const small = document.createElement('small');
+    fieldset.appendChild(small);
+    projectForm.appendChild(fieldset);
+
+    const formButton = document.createElement('section')
+    formButton.classList.add('form-button');
+    
+    const submitProjectButton = document.createElement('button');
+    submitProjectButton.classList.add('submit-project-button');
+    submitProjectButton.textContent = 'Submit';
+    formButton.appendChild(submitProjectButton);
+
+    const cancelProjectButton = document.createElement('button');
+    cancelProjectButton.classList.add('cancel-project-button');
+    cancelProjectButton.textContent = 'Cancel';
+    cancelProjectButton.type = 'button';
+    formButton.appendChild(cancelProjectButton);
+    projectForm.appendChild(formButton);
+
+    formSection.appendChild(projectForm);
+  }
+
+  addProjectButton.addEventListener('click', () => {
+    createProjectForm();
+    aside.style.gridTemplateRows = '100px 200px 1fr';
+    addProjectButton.disabled = true;
+  })
+
 };
 export default home;
 /*
