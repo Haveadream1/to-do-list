@@ -24,9 +24,13 @@ fieldset {
   margin: 0;
   padding: 10px;
 }
+
 input:focus {
   border: none;
   outline: solid var(---light-beige) 2px;
+}
+button:active {
+  opacity: 70%;
 }
 
 aside {
