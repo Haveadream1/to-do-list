@@ -25,7 +25,7 @@ const home = () => {
     const projectForm = document.createElement('form');
     projectForm.setAttribute('id','project-form');
     projectForm.setAttribute('action','post');
-    projectForm.setAttribute('novalidate','true'); /*WHY NOVALIDATE*/
+    projectForm.setAttribute('novalidate','true'); /* WHY NOVALIDATE */
 
     const fieldset = document.createElement('fieldset');
 
@@ -52,8 +52,14 @@ const home = () => {
     cancelProjectButton.textContent = 'Cancel';
     cancelProjectButton.type = 'button';
     formButton.appendChild(cancelProjectButton);
-    projectForm.appendChild(formButton);
 
+    cancelProjectButton.addEventListener('click', () => {
+      projectForm.remove();
+      aside.style.gridTemplateRows = '100px 80px 1fr';
+      addProjectButton.disabled = false;
+    })
+
+    projectForm.appendChild(formButton);
     formSection.appendChild(projectForm);
   }
 
