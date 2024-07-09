@@ -11,6 +11,8 @@ const home = () => {
   const formSection = document.querySelector('.form-section')
   const addProjectButton = document.querySelector('.add-project-button');
 
+  const projectSection = document.querySelector('.project-section');
+
   asideButton.addEventListener('click', () => {
     if (aside.style.visibility === 'hidden') {
       aside.style.visibility = 'visible';
@@ -20,6 +22,58 @@ const home = () => {
       asideButton.style.justifySelf = 'start';
     }
   });
+
+  const displayProjectName = () => {
+    const projectButton = document.createElement('button')
+    const projectName = document.querySelector('#project-name').value;
+
+    projectButton.classList.add('project-button');
+    projectButton.textContent = projectName;
+    projectSection.appendChild(projectButton);
+  }
+
+  const isRequired = (value) => {
+    if (value === '') {
+      return false;
+    } else {
+      return true;
+    }
+  }
+
+  const showError = (input, message) => {
+    const fieldset = input.parentElement;
+    input.classList.add('error');
+    input.classList.remove('success');
+
+    const small = fieldset.querySelector('small');
+    small.style.padding = '10px 10px 0 10px';
+    small.textContent = message;
+  }
+  
+  const showSuccess = (input) => {
+    const fieldset = input.parentElement;
+    input.classList.add('success');
+    input.classList.remove('error');
+
+    const small = fieldset.querySelector('small');
+    small.style.padding = '0';
+    small.textContent = '';
+  }
+
+  const checkProjectName = () => {
+    const projectName = document.querySelector('#project-name');
+
+    let valid = false;
+    const text = projectName.value.trim();
+
+    if (!isRequired(text)) {
+      showError(projectName, '*Please fill this field');
+    } else {
+      showSuccess(projectName);
+      valid = true;
+    }
+    return valid;
+  }
 
   const createProjectForm = () => {
     const projectForm = document.createElement('form');
@@ -44,8 +98,29 @@ const home = () => {
     
     const submitProjectButton = document.createElement('button');
     submitProjectButton.classList.add('submit-project-button');
+    submitProjectButton.setAttribute('type', 'submit');
     submitProjectButton.textContent = 'Submit';
     formButton.appendChild(submitProjectButton);
+
+    projectForm.addEventListener('submit', (event) => {
+      event.preventDefault();
+
+      const formAsideValid = checkProjectName();
+      const isFormValid = formAsideValid;
+
+      if (isFormValid) {
+        displayProjectName();
+        console.log('Valid form');
+      } else {
+        console.log('Invalid form');
+      }
+    })
+
+    projectForm.addEventListener('input', (event) => {
+      if (event.target.id === 'project-name') {
+        checkProjectName();
+      }
+    })
 
     const cancelProjectButton = document.createElement('button');
     cancelProjectButton.classList.add('cancel-project-button');
