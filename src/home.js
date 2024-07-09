@@ -135,7 +135,7 @@ const home = () => {
     })
 
     projectForm.addEventListener('input', (event) => {
-      if (event.target.id === 'project-nfildsetame') {
+      if (event.target.id === 'project-name') {
         checkProjectName();
       }
     })
