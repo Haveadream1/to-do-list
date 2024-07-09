@@ -8,10 +8,14 @@ const home = () => {
   const aside = document.querySelector('aside');
   const asideButton = document.querySelector('.aside-button');
 
-  const formSection = document.querySelector('.form-section')
+  const asideFormSection = aside.querySelector('.form-section')
   const addProjectButton = document.querySelector('.add-project-button');
 
   const projectSection = document.querySelector('.project-section');
+
+  const main = document.querySelector('main');
+  const mainFormSection = main.querySelector('.form-section');
+  const addTodoButton = document.querySelector('.add-todo-button');
 
   asideButton.addEventListener('click', () => {
     if (aside.style.visibility === 'hidden') {
@@ -102,6 +106,20 @@ const home = () => {
     submitProjectButton.textContent = 'Submit';
     formButton.appendChild(submitProjectButton);
 
+    const cancelProjectButton = document.createElement('button');
+    cancelProjectButton.classList.add('cancel-project-button');
+    cancelProjectButton.setAttribute('type', 'button');
+    cancelProjectButton.textContent = 'Cancel';
+    formButton.appendChild(cancelProjectButton);
+
+    cancelProjectButton.addEventListener('click', () => {
+      projectForm.remove();
+      aside.style.gridTemplateRows = '100px 80px 1fr';
+      addProjectButton.disabled = false;
+    })
+    projectForm.appendChild(formButton);
+    asideFormSection.appendChild(projectForm);
+
     projectForm.addEventListener('submit', (event) => {
       event.preventDefault();
 
@@ -117,31 +135,71 @@ const home = () => {
     })
 
     projectForm.addEventListener('input', (event) => {
-      if (event.target.id === 'project-name') {
+      if (event.target.id === 'project-nfildsetame') {
         checkProjectName();
       }
     })
-
-    const cancelProjectButton = document.createElement('button');
-    cancelProjectButton.classList.add('cancel-project-button');
-    cancelProjectButton.textContent = 'Cancel';
-    cancelProjectButton.type = 'button';
-    formButton.appendChild(cancelProjectButton);
-
-    cancelProjectButton.addEventListener('click', () => {
-      projectForm.remove();
-      aside.style.gridTemplateRows = '100px 80px 1fr';
-      addProjectButton.disabled = false;
-    })
-
-    projectForm.appendChild(formButton);
-    formSection.appendChild(projectForm);
   }
 
   addProjectButton.addEventListener('click', () => {
-    createProjectForm();
     aside.style.gridTemplateRows = '100px 200px 1fr';
     addProjectButton.disabled = true;
+    createProjectForm();
+  })
+
+  const createTodo = () => {
+    const todoForm = document.createElement('form');
+    todoForm.setAttribute('id','todo-form');
+    todoForm.setAttribute('action','post');
+    todoForm.setAttribute('novalidate','true');
+
+    const mainfieldset = document.createElement('fieldset');
+
+    const textFieldset = document.createElement('fieldset');
+    const formText = document.createElement('input');
+    formText.type = 'text';
+    formText.setAttribute('id','form-text');
+    formText.placeholder = 'Ex: morning task';
+    textFieldset.appendChild(formText);
+
+    const formTextSmall = document.createElement('small');
+    textFieldset.appendChild(formTextSmall);
+    mainfieldset.appendChild(textFieldset);
+
+    const dateFieldset = document.createElement('fieldset');
+    const formDate = document.createElement('input');
+    formDate.type = 'date';
+    formDate.setAttribute('id','form-date');
+    dateFieldset.appendChild(formDate);
+
+    const formDateSmall = document.createElement('small');
+    dateFieldset.appendChild(formDateSmall);
+    mainfieldset.appendChild(dateFieldset);
+
+    todoForm.appendChild(mainfieldset);
+
+    const formButton = document.createElement('section')
+    formButton.classList.add('form-button');
+
+    const submitProjectButton = document.createElement('button');
+    submitProjectButton.classList.add('submit-project-button');
+    submitProjectButton.setAttribute('type', 'submit');
+    submitProjectButton.textContent = 'Submit';
+    formButton.appendChild(submitProjectButton);
+
+    const cancelProjectButton = document.createElement('button');
+    cancelProjectButton.classList.add('cancel-project-button');
+    cancelProjectButton.setAttribute('type', 'button');
+    cancelProjectButton.textContent = 'Cancel';
+    formButton.appendChild(cancelProjectButton);
+
+    todoForm.appendChild(formButton);
+    mainFormSection.appendChild(todoForm);
+  }
+
+  addTodoButton.addEventListener('click', () => {
+    addTodoButton.disabled = true;
+    createTodo();
   })
 
 };
