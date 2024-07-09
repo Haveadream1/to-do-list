@@ -2,7 +2,9 @@
   --dark-grey: #B4B4B8;
   --light-grey: #C7C8CC;
   --dark-beige: #E3E1D9;
-  ---light-beige: #F2EFE5;
+  --light-beige: #F2EFE5;
+  --green: #7fff73;
+  --red: #ff8473;
 }
 
 body {
@@ -27,7 +29,7 @@ fieldset {
 
 input:focus {
   border: none;
-  outline: solid var(---light-beige) 2px;
+  outline: solid var(--light-beige) 2px;
 }
 button:active {
   opacity: 70%;
@@ -74,11 +76,13 @@ aside > .form-section {
   flex-direction: column;
 }
 #project-form > fieldset {
+  display: flex;
+  flex-direction: column;
   align-self: center;
 }
 #project-form > fieldset > input {
   padding: 10px;
-  width: 180px;
+  width: 170px;
 }
 
 .form-button {
@@ -91,10 +95,10 @@ aside > .form-section {
   padding: 8px;
 }
 .submit-project-button {
-  background-color: #7fff73;
+  background-color: var(--green);
 }
 .cancel-project-button {
-  background-color: #ff8473;
+  background-color: var(--red);
 }
 
 .project-section {
@@ -108,6 +112,7 @@ aside > .form-section {
 }
 .project-button {
   padding: 10px;
+  margin-bottom: 5px;
   border: none;
   background: none;
 }
@@ -175,4 +180,11 @@ footer {
 .add-todo-button > img {
   width: 30px;
   height: 30px;
+}
+
+.success {
+  outline: solid var(--green) 2px;
+}
+.error {
+  outline: solid var(--red) 2px;
 }
