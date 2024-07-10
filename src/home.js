@@ -1,5 +1,5 @@
 /* eslint-disable no-else-return */
-// import { addDays, format, compareAsc} from 'date-fns';
+import { addDays, format, compareAsc} from 'date-fns';
 // import completed from './completed';
 // import todo from './todo';
 // import {project, createProject} from './project';
@@ -16,6 +16,14 @@ const home = () => {
   const main = document.querySelector('main');
   const mainFormSection = main.querySelector('.form-section');
   const addTodoButton = document.querySelector('.add-todo-button');
+
+  const todayDate = new Date();
+  const todayDateFormat = format(todayDate, 'yyyy-MM-dd');
+  console.log(todayDateFormat);
+
+  const actualWeek  = addDays(new Date(todayDate), 7)
+  const actualWeekFormat = format(actualWeek, 'yyyy-MM-dd'); // Check format
+  console.log(actualWeekFormat);
 
   asideButton.addEventListener('click', () => {
     if (aside.style.visibility === 'hidden') {
@@ -34,6 +42,14 @@ const home = () => {
     projectButton.classList.add('project-button');
     projectButton.textContent = projectName;
     projectSection.appendChild(projectButton);
+  }
+
+  const isDate = (value) => {
+    if (value === 1) {
+      return false;
+    } else {
+      return true;
+    }
   }
 
   const isRequired = (value) => {
@@ -147,7 +163,42 @@ const home = () => {
     createProjectForm();
   })
 
-  const createTodo = () => {
+  const checkTodoName = () => {
+    const todoName = document.querySelector('#todo-name');
+
+    let valid = false;
+    const text = todoName.value.trim();
+
+    if (!isRequired(text)) {
+      showError(todoName, '*Please fill this field');
+    } else {
+      showSuccess(todoName);
+      valid = true;
+    }
+    return valid;
+  }
+
+  const checkTodoDate = () => {
+    const todoDate = document.querySelector('#todo-date');
+
+    let valid = false;
+    const date = todoDate.value.trim();
+
+    const dateNoTrim = todoDate.value;
+    const compareDate = compareAsc(new Date(todayDate), new Date(dateNoTrim)); //
+
+    if (!isRequired(date)) {
+      showError(todoDate, '*Please fill this field');
+    } else if (!isDate(compareDate)) {
+      showError(todoDate, '*Please put a current date')
+    } else {
+      showSuccess(todoDate);
+      valid = true;
+    }
+    return valid;
+  }
+
+  const createTodoForm = () => {
     const todoForm = document.createElement('form');
     todoForm.setAttribute('id','todo-form');
     todoForm.setAttribute('action','post');
@@ -158,7 +209,7 @@ const home = () => {
     const textFieldset = document.createElement('fieldset');
     const formText = document.createElement('input');
     formText.type = 'text';
-    formText.setAttribute('id','form-text');
+    formText.setAttribute('id','todo-name');
     formText.placeholder = 'Ex: morning task';
     textFieldset.appendChild(formText);
 
@@ -169,7 +220,7 @@ const home = () => {
     const dateFieldset = document.createElement('fieldset');
     const formDate = document.createElement('input');
     formDate.type = 'date';
-    formDate.setAttribute('id','form-date');
+    formDate.setAttribute('id','todo-date');
     dateFieldset.appendChild(formDate);
 
     const formDateSmall = document.createElement('small');
@@ -193,13 +244,45 @@ const home = () => {
     cancelProjectButton.textContent = 'Cancel';
     formButton.appendChild(cancelProjectButton);
 
+    cancelProjectButton.addEventListener('click', () => {
+      todoForm.remove();
+      addTodoButton.disabled = false;
+    })
+
     todoForm.appendChild(formButton);
     mainFormSection.appendChild(todoForm);
+
+    todoForm.addEventListener('submit', (event) => {
+      event.preventDefault();
+
+      const formNameValid = checkTodoName();
+      const formDateValid = checkTodoDate();
+      const isFormValid = formNameValid && formDateValid;
+
+      if (isFormValid) {
+        // createTodo()
+        console.log('Valid form');
+      } else {
+        console.log('Invalid form');
+      }
+    })
+
+    todoForm.addEventListener('input', (event) => {
+      if (event.target.id === 'todo-name') {
+        checkTodoName();
+      } else if (event.target.id === 'todo-date') {
+        checkTodoDate();
+      }
+    })
   }
+  /* Check outline when focuse for the form verif */
+
+  createTodoForm(); // change position
+  addTodoButton.disabled = true;
 
   addTodoButton.addEventListener('click', () => {
+    createTodoForm();
     addTodoButton.disabled = true;
-    createTodo();
   })
 
 };
