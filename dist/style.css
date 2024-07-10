@@ -13,7 +13,6 @@ body {
   margin: 0;
   display: grid;
   grid-template-columns: 250px 1fr 250px;
-  /* grid-template-columns: 15% 70% 15%; Put a min or px */
 }
 
 button,
@@ -68,7 +67,7 @@ aside > .form-section {
 .add-project-button > img {
   width: 20px;
   height: 20px;
-  display: block; /* To center*/
+  display: block;
 }
 
 #project-form {
@@ -138,11 +137,14 @@ main {
 
 #todo-form > fieldset {
   display: flex;
-  align-items: center;
   background-color: var(--light-grey);
 }
-#form-text,
-#form-date {
+#todo-form > fieldset > fieldset {
+  display: flex;
+  flex-direction: column;
+}
+#todo-name,
+#todo-date {
   padding: 10px;
   color: grey;
 }
