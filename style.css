@@ -166,7 +166,7 @@ main {
 
 .time-section {
   display: grid;
-  grid-template-rows: repeat(3, 1fr);
+  /* grid-template-rows: repeat(3, 1fr); */
 }
 .time-section > section {
   display: grid;
