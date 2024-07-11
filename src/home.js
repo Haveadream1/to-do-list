@@ -15,15 +15,30 @@ const home = () => {
 
   const main = document.querySelector('main');
   const mainFormSection = main.querySelector('.form-section');
+
+  const todaySection = document.querySelector('.today-section');
+  const actualWeekSection = document.querySelector('.actual-week-section');
+  const upcomingWeekSection = document.querySelector('.upcoming-week-section');
+
   const addTodoButton = document.querySelector('.add-todo-button');
 
+
   const todayDate = new Date();
-  const todayDateFormat = format(todayDate, 'yyyy-MM-dd');
+  const todayDateFormat = format(todayDate, 'dd-MM-yyyy'); // 'yyyy-MM-dd'
   console.log(todayDateFormat);
 
   const actualWeek  = addDays(new Date(todayDate), 7)
-  const actualWeekFormat = format(actualWeek, 'yyyy-MM-dd'); // Check format
+  const actualWeekFormat = format(actualWeek, 'dd-MM-yyyy'); // Check format
   console.log(actualWeekFormat);
+
+  // class Todo {
+  //   constructor(project, name, date) {
+  //     this.project = project;
+  //     this.name = name;
+  //     this.date = date;
+  //   }
+  // }
+
 
   asideButton.addEventListener('click', () => {
     if (aside.style.visibility === 'hidden') {
@@ -45,7 +60,7 @@ const home = () => {
   }
 
   const isDate = (value) => {
-    if (value === 1) {
+    if (value === -1) {
       return false;
     } else {
       return true;
@@ -180,14 +195,15 @@ const home = () => {
 
   const checkTodoDate = () => {
     const todoDate = document.querySelector('#todo-date');
+    const todoDateValue = document.querySelector('#todo-date').value;
+
+    const splitDate = todoDateValue.split('-') 
+    const formatedDate = `${splitDate[2]}-${splitDate[1]}-${splitDate[0]}`;
+
+    const compareDate = compareAsc(new Date(formatedDate), new Date(todayDateFormat))
 
     let valid = false;
-    const date = todoDate.value.trim();
-
-    const dateNoTrim = todoDate.value;
-    const compareDate = compareAsc(new Date(todayDate), new Date(dateNoTrim)); //
-
-    if (!isRequired(date)) {
+    if (!isRequired(todoDateValue)) {
       showError(todoDate, '*Please fill this field');
     } else if (!isDate(compareDate)) {
       showError(todoDate, '*Please put a current date')
@@ -196,6 +212,44 @@ const home = () => {
       valid = true;
     }
     return valid;
+  }
+
+  const createTodo = () => {
+    const todoDate = document.querySelector('#todo-date').value;
+    const todoName = document.querySelector('#todo-name').value;
+
+    const splitDate = todoDate.split('-') 
+    const displayedDate = `${splitDate[2]}/${splitDate[1]}/${splitDate[0]}`;
+    const formatDate = `${splitDate[2]}-${splitDate[1]}-${splitDate[0]}`; // Needed for the comparaison
+    
+    const todo = document.createElement('section');
+    todo.classList.add('todo');
+
+    const checkbox = document.createElement('input');
+    checkbox.classList.add('checkbox');
+    checkbox.setAttribute('type', 'checkbox');
+    todo.appendChild(checkbox);
+
+    const name = document.createElement('p');
+    name.classList.add('name');
+    name.textContent = todoName;
+    todo.appendChild(name);
+
+    const date = document.createElement('p');
+    date.classList.add('date');
+    date.textContent = displayedDate;
+    todo.appendChild(date);
+
+    if (formatDate === todayDateFormat) {
+      console.log('today date')
+      todaySection.appendChild(todo);
+    } else if (formatDate > todayDateFormat && formatDate <= actualWeekFormat) {
+      console.log('actual week')
+      actualWeekSection.appendChild(todo);
+    } else if (formatDate > actualWeekFormat) {
+      console.log('next week')
+      upcomingWeekSection.appendChild(todo);
+    }
   }
 
   const createTodoForm = () => {
@@ -260,7 +314,7 @@ const home = () => {
       const isFormValid = formNameValid && formDateValid;
 
       if (isFormValid) {
-        // createTodo()
+        createTodo()
         console.log('Valid form');
       } else {
         console.log('Invalid form');
@@ -275,7 +329,6 @@ const home = () => {
       }
     })
   }
-  /* Check outline when focuse for the form verif */
 
   createTodoForm(); // change position
   addTodoButton.disabled = true;
