@@ -149,6 +149,21 @@ main {
   color: grey;
 }
 
+.todo {
+  padding: 10px;
+  margin-bottom: 10px;
+  background-color: var(--light-grey);
+  display: grid;
+  grid-template-columns: 60px 1fr 90px;
+  align-items: center;
+}
+.checkbox {
+  width: 30px;
+  height: 30px;
+  clip-path: circle(46% at 50% 50%);
+  border: none;
+}
+
 .time-section {
   display: grid;
   grid-template-rows: repeat(3, 1fr);
