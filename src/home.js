@@ -24,11 +24,11 @@ const home = () => {
 
 
   const todayDate = new Date();
-  const todayDateFormat = format(todayDate, 'dd-MM-yyyy'); // 'yyyy-MM-dd'
+  const todayDateFormat = format(todayDate, 'dd-MM-yyyy');
   console.log(todayDateFormat);
 
   const actualWeek  = addDays(new Date(todayDate), 7)
-  const actualWeekFormat = format(actualWeek, 'dd-MM-yyyy'); // Check format
+  const actualWeekFormat = format(actualWeek, 'dd-MM-yyyy');
   console.log(actualWeekFormat);
 
   // class Todo {
@@ -220,8 +220,9 @@ const home = () => {
 
     const splitDate = todoDate.split('-') 
     const displayedDate = `${splitDate[2]}/${splitDate[1]}/${splitDate[0]}`;
-    const formatDate = `${splitDate[2]}-${splitDate[1]}-${splitDate[0]}`; // Needed for the comparaison
-    
+    const formatedDate = `${splitDate[2]}-${splitDate[1]}-${splitDate[0]}`; // Needed for the comparaison
+    // isSameWeek(new Date(todayDateFormat), new Date(formatedDate)); // Alt
+
     const todo = document.createElement('section');
     todo.classList.add('todo');
 
@@ -240,13 +241,13 @@ const home = () => {
     date.textContent = displayedDate;
     todo.appendChild(date);
 
-    if (formatDate === todayDateFormat) {
+    if (formatedDate === todayDateFormat) {
       console.log('today date')
       todaySection.appendChild(todo);
-    } else if (formatDate > todayDateFormat && formatDate <= actualWeekFormat) {
+    } else if (formatedDate > todayDateFormat && formatedDate <= actualWeekFormat) {
       console.log('actual week')
       actualWeekSection.appendChild(todo);
-    } else if (formatDate > actualWeekFormat) {
+    } else if (formatedDate > actualWeekFormat) {
       console.log('next week')
       upcomingWeekSection.appendChild(todo);
     }
