@@ -135,6 +135,10 @@ main {
   background: none;
 }
 
+.completed-button {
+  color: var(--light-grey);
+}
+
 #todo-form > fieldset {
   display: flex;
   background-color: var(--light-grey);
@@ -204,4 +208,10 @@ footer {
 }
 .error {
   outline: solid var(--red) 2px;
+}
+
+.hide {
+  position: absolute !important;
+  top: -9999px !important;
+  left: -9999px !important;
 }
