@@ -16,6 +16,9 @@ const home = () => {
   const main = document.querySelector('main');
   const mainFormSection = main.querySelector('.form-section');
 
+  const completedButton = document.querySelector('.completed-button');
+  const todoButton = document.querySelector('.todo-button');
+
   const todaySection = document.querySelector('.today-section');
   const actualWeekSection = document.querySelector('.actual-week-section');
   const upcomingWeekSection = document.querySelector('.upcoming-week-section');
@@ -225,11 +228,22 @@ const home = () => {
 
     const todo = document.createElement('section');
     todo.classList.add('todo');
+    todo.classList.add('not-checked');
 
     const checkbox = document.createElement('input');
     checkbox.classList.add('checkbox');
     checkbox.setAttribute('type', 'checkbox');
     todo.appendChild(checkbox);
+
+    checkbox.addEventListener('change', () => {
+      if (todo.classList.contains('not-checked')) {
+        todo.classList.add('checked');
+        todo.classList.remove('not-checked');
+      } else {
+        todo.classList.add('not-checked');
+        todo.classList.remove('checked');
+      }
+    })
 
     const name = document.createElement('p');
     name.classList.add('name');
@@ -339,6 +353,27 @@ const home = () => {
     addTodoButton.disabled = true;
   })
 
+  completedButton.addEventListener('click', () => {
+    const notCheckedTodo = document.querySelectorAll('.not-checked');
+
+    completedButton.style.color = 'black';
+    todoButton.style.color = 'var(--light-grey)';
+
+    notCheckedTodo.forEach((todo) => {
+      todo.classList.add('hide');
+    });
+  })
+
+  todoButton.addEventListener('click', () => {
+    const notCheckedTodo = document.querySelectorAll('.not-checked');
+
+    completedButton.style.color = 'var(--light-grey)';
+    todoButton.style.color = 'black';
+
+    notCheckedTodo.forEach((todo) => {
+      todo.classList.remove('hide');
+    });
+  })
 };
 export default home;
 /*
