@@ -330,6 +330,7 @@ const home = () => {
 
       if (isFormValid) {
         createTodo()
+        todoForm.remove();
         console.log('Valid form');
       } else {
         console.log('Invalid form');
@@ -352,9 +353,13 @@ const home = () => {
     addTodoButton.disabled = true;
   })
 
-
   completedButton.addEventListener('click', () => {
     const notCheckedTodo = document.querySelectorAll('.not-checked');
+    const todoForm = document.querySelector('#todo-form');
+
+    if (mainFormSection.hasChildNodes()) {
+      todoForm.remove();
+    }
 
     addTodoButton.classList.add('hide');
 
@@ -369,6 +374,7 @@ const home = () => {
   todoButton.addEventListener('click', () => {
     const notCheckedTodo = document.querySelectorAll('.not-checked');
 
+    addTodoButton.disabled = false;
     addTodoButton.classList.remove('hide');
 
     completedButton.style.color = 'var(--light-grey)';
