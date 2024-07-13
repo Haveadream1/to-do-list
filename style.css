@@ -129,6 +129,9 @@ main {
   justify-content: space-around;
 }
 
+.main-button-section {
+  width: 435px;
+}
 .main-button-section > button {
   font-size: 20px;
   padding: 10px;
