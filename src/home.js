@@ -346,15 +346,17 @@ const home = () => {
   }
 
   createTodoForm(); // change position
-  addTodoButton.disabled = true;
 
   addTodoButton.addEventListener('click', () => {
     createTodoForm();
     addTodoButton.disabled = true;
   })
 
+
   completedButton.addEventListener('click', () => {
     const notCheckedTodo = document.querySelectorAll('.not-checked');
+
+    addTodoButton.classList.add('hide');
 
     completedButton.style.color = 'black';
     todoButton.style.color = 'var(--light-grey)';
@@ -366,6 +368,8 @@ const home = () => {
 
   todoButton.addEventListener('click', () => {
     const notCheckedTodo = document.querySelectorAll('.not-checked');
+
+    addTodoButton.classList.remove('hide');
 
     completedButton.style.color = 'var(--light-grey)';
     todoButton.style.color = 'black';
