@@ -34,13 +34,15 @@ const home = () => {
   const actualWeekFormat = format(actualWeek, 'dd-MM-yyyy');
   console.log(actualWeekFormat);
 
-  // class Todo {
-  //   constructor(project, name, date) {
-  //     this.project = project;
-  //     this.name = name;
-  //     this.date = date;
-  //   }
-  // }
+  const todoArray = [];
+
+  class Todo {
+    constructor(project, name, date) {
+      this.project = project;
+      this.name = name;
+      this.date = date;
+    }
+  }
 
 
   asideButton.addEventListener('click', () => {
@@ -117,7 +119,7 @@ const home = () => {
     const projectForm = document.createElement('form');
     projectForm.setAttribute('id','project-form');
     projectForm.setAttribute('action','post');
-    projectForm.setAttribute('novalidate','true'); /* WHY NOVALIDATE */
+    projectForm.setAttribute('novalidate','true');
 
     const fieldset = document.createElement('fieldset');
 
@@ -162,6 +164,9 @@ const home = () => {
 
       if (isFormValid) {
         displayProjectName();
+        projectForm.remove();
+        aside.style.gridTemplateRows = '100px 80px 1fr';
+        addProjectButton.disabled = false;
         console.log('Valid form');
       } else {
         console.log('Invalid form');
@@ -386,6 +391,13 @@ const home = () => {
   })
 };
 export default home;
+
+/*
+
+*/
+
+
+
 /*
   const myArray = [];
 
