@@ -1,104 +1,142 @@
 const project = () => {
-  document.querySelectorAll('.class-todo').forEach((element) => {
-    // eslint-disable-next-line no-param-reassign
-    element.style.display = 'none';
-    element.classList.remove('class-todo');
-    element.classList.add('rm-class-todo')
+  const aside = document.querySelector('aside');
+  const asideButton = document.querySelector('.aside-button');
+
+  const asideFormSection = aside.querySelector('.form-section');
+  const addProjectButton = document.querySelector('.add-project-button');
+
+  const projectSection = document.querySelector('.project-section');
+
+  asideButton.addEventListener('click', () => {
+    if (aside.style.visibility === 'hidden') {
+      aside.style.visibility = 'visible';
+      asideButton.style.justifySelf = 'end';
+    } else {
+      aside.style.visibility = 'hidden';
+      asideButton.style.justifySelf = 'start';
+    }
   });
 
-  // create a new class instead of changing class of that one
-  const previousSection0 = document.querySelector('.rm-class-todo');
-  previousSection0.classList.remove('rm-class-todo');
-  previousSection0.classList.add('class-todo');
-  previousSection0.style.display = 'block';
-  
-  const previousSection1 = document.querySelector('.rm-section-today');
-  previousSection1.classList.remove('rm-section-today');
-  previousSection1.classList.add('section-today');
-
-  const previousSection2 = document.querySelector('.rm-section-this-week');
-  previousSection2.classList.remove('rm-section-this-week');
-  previousSection2.classList.add('section-this-week');
-
-  const previousSection3 = document.querySelector('.rm-section-upcoming');
-  previousSection3.classList.remove('rm-section-upcoming');
-  previousSection3.classList.add('section-upcoming');
-};
-
-const createProject = () => {
-  // hide other sections
-  document.querySelectorAll('.class-todo').forEach((element) => {
-    element.style.display = 'none';
-  });
-  
-  let test = 0;
-
-  if (test > 0) {
-    const previousSection0 = document.querySelector('.class-todo');
-    previousSection0.classList.remove('class-todo');
-    previousSection0.classList.add('rm-class-todo');
-      
-    const previousSection1 = document.querySelector('.section-today');
-    previousSection1.classList.remove('section-today');
-    previousSection1.classList.add('rm-section-today');
-      
-    const previousSection2 = document.querySelector('.section-this-week');
-    previousSection2.classList.remove('section-this-week');
-    previousSection2.classList.add('rm-section-this-week');
-      
-    const previousSection3 = document.querySelector('.section-upcoming');
-    previousSection3.classList.remove('section-upcoming');
-    previousSection3.classList.add('rm-section-upcoming');
+  const isRequired = (value) => {
+    if (value === '') {
+      return false;
+    } 
+      return true;
   }
 
+  const showError = (input, message) => {
+    const fieldset = input.parentElement;
+    input.classList.add('error');
+    input.classList.remove('success');
 
-  // create project section
-  const container = document.querySelector('.container');
-  const sectionClassTodo = document.createElement('section');
-  sectionClassTodo.classList.add('class-todo');
-  container.appendChild(sectionClassTodo);
+    const small = fieldset.querySelector('small');
+    small.style.padding = '10px 10px 0 10px';
+    small.textContent = message;
+  }
+  
+  const showSuccess = (input) => {
+    const fieldset = input.parentElement;
+    input.classList.add('success');
+    input.classList.remove('error');
 
-  const sectionToday = document.createElement('section');
-  sectionToday.classList.add('section-today');
-  sectionClassTodo.appendChild(sectionToday);
+    const small = fieldset.querySelector('small');
+    small.style.padding = '0';
+    small.textContent = '';
+  }
 
-  const dateTodo = document.createElement('p');
-  dateTodo.classList.add('date-todo');
-  dateTodo.textContent = 'Today';
-  sectionToday.appendChild(dateTodo);
+  const checkProjectName = () => {
+    const projectName = document.querySelector('#project-name');
 
-  const sectionThisWeek = document.createElement('section');
-  sectionThisWeek.classList.add('section-this-week');
-  sectionClassTodo.appendChild(sectionThisWeek);
+    let valid = false;
+    const text = projectName.value.trim();
 
-  const dateTodoWeek = document.createElement('p');
-  dateTodoWeek.classList.add('date-todo');
-  dateTodoWeek.textContent = 'This week';
-  sectionThisWeek.appendChild(dateTodoWeek);
+    if (!isRequired(text)) {
+      showError(projectName, '*Please fill this field');
+    } else {
+      showSuccess(projectName);
+      valid = true;
+    }
+    return valid;
+  }
 
-  const sectionUpcoming = document.createElement('section');
-  sectionUpcoming.classList.add('section-upcoming');
-  sectionClassTodo.appendChild(sectionUpcoming);
+    const displayProjectName = () => {
+    const projectButton = document.createElement('button');
+    const projectName = document.querySelector('#project-name').value;
 
-  const dateTodoUpcoming = document.createElement('p');
-  dateTodoUpcoming.classList.add('date-todo');
-  dateTodoUpcoming.textContent = 'Upcoming';
-  sectionUpcoming.appendChild(dateTodoUpcoming);
+    projectButton.classList.add('project-button');
+    projectButton.textContent = projectName;
+    projectSection.appendChild(projectButton);
+  }
 
-  // eslint-disable-next-line no-plusplus
-  test++;
-  console.log(test);
+  const createProjectForm = () => {
+    const projectForm = document.createElement('form');
+    projectForm.setAttribute('id','project-form');
+    projectForm.setAttribute('action','post');
+    projectForm.setAttribute('novalidate','true');
 
-}
-export {project,createProject};
+    const fieldset = document.createElement('fieldset');
 
+    const input = document.createElement('input');
+    input.type = 'text';
+    input.setAttribute('id','project-name');
+    input.placeholder = 'Ex: Birthday';
+    fieldset.appendChild(input);
 
-  /* do the same as the completed tab, 
-  add a specific class from the button to the todo
-  and remove it when we click on another project */
+    const small = document.createElement('small');
+    fieldset.appendChild(small);
+    projectForm.appendChild(fieldset);
 
-  /* the project name should be a button that will
-  display the container
-  and every time we create a new button, a new container created
-  maybe link them with a name class or a number
-  play with overflow and hide */
+    const formButton = document.createElement('section');
+    formButton.classList.add('form-button');
+    
+    const submitProjectButton = document.createElement('button');
+    submitProjectButton.classList.add('submit-project-button');
+    submitProjectButton.setAttribute('type', 'submit');
+    submitProjectButton.textContent = 'Submit';
+    formButton.appendChild(submitProjectButton);
+
+    const cancelProjectButton = document.createElement('button');
+    cancelProjectButton.classList.add('cancel-project-button');
+    cancelProjectButton.setAttribute('type', 'button');
+    cancelProjectButton.textContent = 'Cancel';
+    formButton.appendChild(cancelProjectButton);
+
+    cancelProjectButton.addEventListener('click', () => {
+      projectForm.remove();
+      aside.style.gridTemplateRows = '100px 80px 1fr';
+      addProjectButton.disabled = false;
+    })
+    projectForm.appendChild(formButton);
+    asideFormSection.appendChild(projectForm);
+
+    projectForm.addEventListener('submit', (event) => {
+      event.preventDefault();
+
+      const formAsideValid = checkProjectName();
+      const isFormValid = formAsideValid;
+
+      if (isFormValid) {
+        displayProjectName();
+        projectForm.remove();
+        aside.style.gridTemplateRows = '100px 80px 1fr';
+        addProjectButton.disabled = false;
+        console.log('Valid form');
+      } else {
+        console.log('Invalid form');
+      }
+    })
+
+    projectForm.addEventListener('input', (event) => {
+      if (event.target.id === 'project-name') {
+        checkProjectName();
+      }
+    })
+  }
+
+  addProjectButton.addEventListener('click', () => {
+    aside.style.gridTemplateRows = '100px 200px 1fr';
+    addProjectButton.disabled = true;
+    createProjectForm();
+  })
+};
+export default project;
