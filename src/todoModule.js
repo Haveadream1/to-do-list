@@ -1,6 +1,6 @@
 import { addDays, format, compareAsc} from 'date-fns';
 
-const task = () => {
+const todoModule = () => {
   const main = document.querySelector('main');
   const mainFormSection = main.querySelector('.form-section');
 
@@ -258,4 +258,4 @@ const task = () => {
     });
   })
 };
-export default task;
+export default todoModule;
