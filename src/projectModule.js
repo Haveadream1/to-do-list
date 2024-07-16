@@ -1,4 +1,4 @@
-const project = () => {
+const projectModule = () => {
   const aside = document.querySelector('aside');
   const asideButton = document.querySelector('.aside-button');
 
@@ -6,6 +6,19 @@ const project = () => {
   const addProjectButton = document.querySelector('.add-project-button');
 
   const projectSection = document.querySelector('.project-section');
+
+  const projectList = [];
+
+  class Project {
+    constructor(name) {
+      this.name = name;
+      this.todoList = [];
+    }
+
+    addTodo(todo) {
+      this.todoList.push(todo);
+    }
+  }
 
   asideButton.addEventListener('click', () => {
     if (aside.style.visibility === 'hidden') {
@@ -116,8 +129,13 @@ const project = () => {
       const isFormValid = formAsideValid;
 
       if (isFormValid) {
+        const projectName = document.querySelector('#project-name').value;
+        const project = new Project(projectName);
+        projectList.push(project);
+
         displayProjectName();
         projectForm.remove();
+
         aside.style.gridTemplateRows = '100px 80px 1fr';
         addProjectButton.disabled = false;
         console.log('Valid form');
@@ -139,4 +157,4 @@ const project = () => {
     createProjectForm();
   })
 };
-export default project;
+export default projectModule;
