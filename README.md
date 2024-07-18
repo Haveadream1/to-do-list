@@ -24,4 +24,5 @@ The main goal of the project is to practice the use of the class and set up the 
     * Change todo if the project is changed
 4. Others
     * Display an alert to inform us we need to create first project and select one
+    * Check image display, not found on gh-pages
 > Look at recorder inside inspect  
