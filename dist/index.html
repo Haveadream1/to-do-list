@@ -16,7 +16,7 @@
 
   <body>
     <aside>
-      <button class="aside-button">
+      <button type="button" class="aside-button">
         <img src="/dist/images/Vector (1).svg" alt="Aside button"/>
       </button>
       
@@ -24,7 +24,7 @@
         <section class="add-project-section">
           <p>Add project</p>
 
-          <button class="add-project-button">
+          <button type="button" class="add-project-button">
             <img
               src="/dist/images/Vector (copy 1).svg"
               alt="Add project"
@@ -40,8 +40,8 @@
 
     <main>
       <section class="main-button-section">
-        <button class="todo-button">Todo</button>
-        <button class="completed-button">Completed</button>
+        <button type="button" class="todo-button">Todo</button>
+        <button type="button" class="completed-button">Completed</button>
       </section>
 
       <section class="form-section"></section>
@@ -62,11 +62,11 @@
     </main>
     
     <footer>
-      <button class="add-todo-button">
+      <button type="button" class="add-todo-button">
         <img src="/dist/images/Vector.svg" alt="Add to-do"/>
       </button>
     </footer>
 
-    <script src="main.js" defer></script>
+    <script type="module" src="main.js"></script> <!--Webpack normaly take care of module/defer-->
   </body>
 </html>
