@@ -145,6 +145,7 @@ main {
   color: var(--light-grey);
 }
 
+/* MAIN FORM */
 #todo-form > fieldset {
   display: flex;
   background-color: var(--light-grey);
@@ -155,6 +156,7 @@ main {
 }
 #todo-name,
 #todo-date {
+  height: 25px;
   padding: 10px;
   color: grey;
 }
