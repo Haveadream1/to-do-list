@@ -148,6 +148,7 @@ main {
 /* MAIN FORM */
 #todo-form > fieldset {
   display: flex;
+  justify-content: center;
   background-color: var(--light-grey);
 }
 #todo-form > fieldset > fieldset {
