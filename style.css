@@ -34,6 +34,7 @@ button:active {
   opacity: 70%;
 }
 
+/* ASIDE */
 aside {
   visibility: visible;
   padding: 10px;
@@ -70,6 +71,7 @@ aside > .form-section {
   display: block;
 }
 
+/* ASIDE FORM */
 #project-form {
   display: flex;
   flex-direction: column;
@@ -121,6 +123,7 @@ aside > .form-section {
   background: var(--light-grey);
 }
 
+/* Main */
 main {
   padding: 15px;
   display: grid;
@@ -156,6 +159,7 @@ main {
   color: grey;
 }
 
+/* MAIN TODO */
 .todo {
   padding: 10px;
   margin-bottom: 10px;
@@ -184,6 +188,7 @@ main {
   text-underline-offset: 2px;
 }
 
+/* FOOTER */
 footer {
   padding: 10px;
   display: flex;
