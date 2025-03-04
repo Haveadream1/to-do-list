@@ -17,6 +17,9 @@ The main goal of the project is to practice the use of the class and set up the 
 * JS
     * Button add should be disable if the form is already present
     * Separate logic from DOM
+* Form
+    * css don't have the same size
+    * size up main container
 1. Aside      
     * Review backgroud-color  
     * Review outline on focus  
