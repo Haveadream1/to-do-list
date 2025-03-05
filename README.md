@@ -17,8 +17,8 @@ The main goal of the project is to practice the use of the class and set up the 
 * JS
     * Button add should be disable if the form is already present
     * Separate logic from DOM
+    * add labels for inputs
 1. Aside      
-    * Review backgroud-color  
     * Review outline on focus  
 2. Main   
     * Add info in which project we are  

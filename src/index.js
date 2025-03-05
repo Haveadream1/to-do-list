@@ -1,6 +1,8 @@
 import { addDays, format, compareAsc} from 'date-fns';
-import Project from './projectModule';
-import Todo from './todoModule';
+import Project from './project_handler';
+import Todo from './todo_handler';
+
+import * as domHandler from './dom_handler';
 
 const home = () => {
   const main = document.querySelector('main');
@@ -16,7 +18,7 @@ const home = () => {
   const addTodoButton = document.querySelector('.add-todo-button');
 
   const aside = document.querySelector('aside');
-  const asideButton = document.querySelector('.aside-button');
+  // const asideButton = document.querySelector('.aside-button');
 
   const asideFormSection = aside.querySelector('.form-section');
   const addProjectButton = document.querySelector('.add-project-button');
@@ -32,15 +34,16 @@ const home = () => {
   const actualWeekFormat = format(actualWeek, 'dd-MM-yyyy');
   console.log(todayDateFormat, actualWeekFormat);
 
-  asideButton.addEventListener('click', () => {
-    if (aside.style.visibility === 'hidden') {
-      aside.style.visibility = 'visible';
-      asideButton.style.justifySelf = 'end';
-    } else {
-      aside.style.visibility = 'hidden';
-      asideButton.style.justifySelf = 'start';
-    }
-  });
+  // asideButton.addEventListener('click', () => {
+  //   if (aside.style.visibility === 'hidden') {
+  //     aside.style.visibility = 'visible';
+  //     asideButton.style.justifySelf = 'end';
+  //   } else {
+  //     aside.style.visibility = 'hidden';
+  //     asideButton.style.justifySelf = 'start';
+  //   }
+  // });
+  domHandler.renderAside();
 
   const isDate = (value) => {
     if (value === -1) {
