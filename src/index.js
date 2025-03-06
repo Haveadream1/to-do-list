@@ -81,7 +81,7 @@ const home = () => {
         projectList.push(project);
         console.log(projectList);
 
-        domHandler.displayProjectName();
+        domHandler.createProject(projectName);
         projectForm.remove();
 
         domHandler.handleAsideGrid('hide');
@@ -97,6 +97,13 @@ const home = () => {
       }
     })
   }
+
+  (() => { // Init default project
+    const project = new Project('Default');
+    projectList.push(project);
+
+    domHandler.createProject('Default');
+  })();
 
   addProjectButton.addEventListener('click', () => {
     domHandler.handleAsideGrid('visible');
@@ -174,15 +181,23 @@ const home = () => {
       const isFormValid = formNameValid && formDateValid;
 
       if (isFormValid) {
-        const selectedProject = document.querySelector('.selected').textContent;
         const todoName = document.querySelector('#todo-name').value;
         const todoDate = document.querySelector('#todo-date').value;
         const todo = new Todo(todoName, todoDate);
-        const project = projectList.find(p => p.name === selectedProject);
 
-        project.addTodo(todo);
-        console.log(todo, project, projectList);
+        if (!document.contains(document.querySelector('.selected'))) {
+          const selectedProject = 'Default'
+          const project = projectList.find(p => p.name === selectedProject);
 
+          project.addTodo(todo);
+          console.log(todo, project, projectList);
+        } else {
+          const selectedProject = document.querySelector('.selected').textContent;
+          const project = projectList.find(p => p.name === selectedProject);
+  
+          project.addTodo(todo);
+          console.log(todo, project, projectList);
+        }
         handleTodo();
         todoForm.remove();
 

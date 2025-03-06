@@ -35,9 +35,8 @@ export const showSuccess = (input) => {
   small.textContent = '';
 };
 
-export const displayProjectName = () => {
+export const createProject = (projectName) => {
   const projectButton = document.createElement('button');
-  const projectName = document.querySelector('#project-name').value;
   const projectSection = document.querySelector('.project-section');
 
   projectButton.classList.add('project-button');
@@ -49,7 +48,6 @@ export const displayProjectName = () => {
     if (!projectButton.classList.contains('selected')) {
       selected.forEach(e => e.classList.remove('selected'));
       projectButton.classList.add('selected');
-      // window.alert('test');
     }
   })
 }
@@ -235,3 +233,5 @@ export const handleTabButtons = (state) => {
     });
   }
 }
+
+// FIX PADDING ON TODO BUTTON
