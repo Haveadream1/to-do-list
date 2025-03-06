@@ -214,9 +214,7 @@ const home = () => {
     if (mainFormSection.hasChildNodes()) {
       todoForm.remove();
     }
-
     domHandler.handleTabButtons('completed');
-
   })
 
   todoButton.addEventListener('click', () => {
