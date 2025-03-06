@@ -67,9 +67,8 @@ const home = () => {
   }
 
   const handleProjectForm = () => {
-    domHandler.createProjectForm();
+    const projectForm = domHandler.createProjectForm();
 
-    const projectForm = document.querySelector('#project-form')
     projectForm.addEventListener('submit', (event) => {
       event.preventDefault();
 
@@ -141,7 +140,7 @@ const home = () => {
     return valid;
   }
 
-  const createTodo = () => {
+  const handleTodo = () => {
     const todoDate = document.querySelector('#todo-date').value;
     const todoName = document.querySelector('#todo-name').value;
 
@@ -150,34 +149,7 @@ const home = () => {
     const formatedDate = `${splitDate[2]}-${splitDate[1]}-${splitDate[0]}`;
     // isSameWeek(new Date(todayDateFormat), new Date(formatedDate)); // Alt
 
-    const todo = document.createElement('section');
-    todo.classList.add('todo');
-    todo.classList.add('not-checked');
-
-    const checkbox = document.createElement('input');
-    checkbox.classList.add('checkbox');
-    checkbox.setAttribute('type', 'checkbox');
-    todo.appendChild(checkbox);
-
-    checkbox.addEventListener('change', () => {
-      if (todo.classList.contains('not-checked')) {
-        todo.classList.add('checked');
-        todo.classList.remove('not-checked');
-      } else {
-        todo.classList.add('not-checked');
-        todo.classList.remove('checked');
-      }
-    })
-
-    const name = document.createElement('p');
-    name.classList.add('name');
-    name.textContent = todoName;
-    todo.appendChild(name);
-
-    const date = document.createElement('p');
-    date.classList.add('date');
-    date.textContent = displayedDate;
-    todo.appendChild(date);
+    const todo = domHandler.createTodo(todoName, displayedDate);
 
     if (formatedDate === todayDateFormat) {
       console.log('today date');
@@ -191,59 +163,8 @@ const home = () => {
     }
   }
 
-  const createTodoForm = () => {
-    const todoForm = document.createElement('form');
-    todoForm.setAttribute('id','todo-form');
-    todoForm.setAttribute('action','post');
-    todoForm.setAttribute('novalidate','true');
-
-    const mainfieldset = document.createElement('fieldset');
-
-    const textFieldset = document.createElement('fieldset');
-    const formText = document.createElement('input');
-    formText.type = 'text';
-    formText.setAttribute('id','todo-name');
-    formText.placeholder = 'Ex: morning task';
-    textFieldset.appendChild(formText);
-
-    const formTextSmall = document.createElement('small');
-    textFieldset.appendChild(formTextSmall);
-    mainfieldset.appendChild(textFieldset);
-
-    const dateFieldset = document.createElement('fieldset');
-    const formDate = document.createElement('input');
-    formDate.type = 'date';
-    formDate.setAttribute('id','todo-date');
-    dateFieldset.appendChild(formDate);
-
-    const formDateSmall = document.createElement('small');
-    dateFieldset.appendChild(formDateSmall);
-    mainfieldset.appendChild(dateFieldset);
-
-    todoForm.appendChild(mainfieldset);
-
-    const formButton = document.createElement('section')
-    formButton.classList.add('form-button');
-
-    const submitProjectButton = document.createElement('button');
-    submitProjectButton.classList.add('submit-project-button');
-    submitProjectButton.setAttribute('type', 'submit');
-    submitProjectButton.textContent = 'Submit';
-    formButton.appendChild(submitProjectButton);
-
-    const cancelProjectButton = document.createElement('button');
-    cancelProjectButton.classList.add('cancel-project-button');
-    cancelProjectButton.setAttribute('type', 'button');
-    cancelProjectButton.textContent = 'Cancel';
-    formButton.appendChild(cancelProjectButton);
-
-    cancelProjectButton.addEventListener('click', () => {
-      todoForm.remove();
-      addTodoButton.disabled = false;
-    })
-
-    todoForm.appendChild(formButton);
-    mainFormSection.appendChild(todoForm);
+  const handleTodoForm = () => {
+    const todoForm = domHandler.createTodoForm();
 
     todoForm.addEventListener('submit', (event) => {
       event.preventDefault();
@@ -262,7 +183,7 @@ const home = () => {
         project.addTodo(todo);
         console.log(todo, project, projectList);
 
-        createTodo();
+        handleTodo();
         todoForm.remove();
 
         console.log('Valid form');
@@ -280,43 +201,26 @@ const home = () => {
     })
   }
 
-  createTodoForm(); // change position
+  handleTodoForm(); // change position
 
   addTodoButton.addEventListener('click', () => {
-    createTodoForm();
+    handleTodoForm();
     addTodoButton.disabled = true;
   })
 
   completedButton.addEventListener('click', () => {
-    const notCheckedTodo = document.querySelectorAll('.not-checked');
     const todoForm = document.querySelector('#todo-form');
 
     if (mainFormSection.hasChildNodes()) {
       todoForm.remove();
     }
 
-    addTodoButton.classList.add('hide');
+    domHandler.handleTabButtons('completed');
 
-    completedButton.style.color = 'black';
-    todoButton.style.color = 'var(--light-grey)';
-
-    notCheckedTodo.forEach((e) => {
-      e.classList.add('hide');
-    });
   })
 
   todoButton.addEventListener('click', () => {
-    const notCheckedTodo = document.querySelectorAll('.not-checked');
-
-    addTodoButton.disabled = false;
-    addTodoButton.classList.remove('hide');
-
-    completedButton.style.color = 'var(--light-grey)';
-    todoButton.style.color = 'black';
-
-    notCheckedTodo.forEach((e) => {
-      e.classList.remove('hide');
-    });
+    domHandler.handleTabButtons('todo');
   })
 };
 export default home;
