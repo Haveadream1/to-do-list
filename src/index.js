@@ -17,13 +17,13 @@ const home = () => {
 
   const addTodoButton = document.querySelector('.add-todo-button');
 
-  const aside = document.querySelector('aside');
+  // const aside = document.querySelector('aside');
   // const asideButton = document.querySelector('.aside-button');
 
-  const asideFormSection = aside.querySelector('.form-section');
+  // const asideFormSection = aside.querySelector('.form-section');
   const addProjectButton = document.querySelector('.add-project-button');
 
-  const projectSection = document.querySelector('.project-section');
+  // const projectSection = document.querySelector('.project-section');
 
   const projectList = []; /* Why as we have a object property */
 
@@ -34,15 +34,6 @@ const home = () => {
   const actualWeekFormat = format(actualWeek, 'dd-MM-yyyy');
   console.log(todayDateFormat, actualWeekFormat);
 
-  // asideButton.addEventListener('click', () => {
-  //   if (aside.style.visibility === 'hidden') {
-  //     aside.style.visibility = 'visible';
-  //     asideButton.style.justifySelf = 'end';
-  //   } else {
-  //     aside.style.visibility = 'hidden';
-  //     asideButton.style.justifySelf = 'start';
-  //   }
-  // });
   domHandler.renderAside();
 
   const isDate = (value) => {
@@ -59,25 +50,6 @@ const home = () => {
       return true;
   }
 
-  const showError = (input, message) => {
-    const fieldset = input.parentElement;
-    input.classList.add('error');
-    input.classList.remove('success');
-
-    const small = fieldset.querySelector('small');
-    small.style.padding = '10px 10px 0 10px';
-    small.textContent = message;
-  }
-  
-  const showSuccess = (input) => {
-    const fieldset = input.parentElement;
-    input.classList.add('success');
-    input.classList.remove('error');
-
-    const small = fieldset.querySelector('small');
-    small.style.padding = '0';
-    small.textContent = '';
-  }
 
   const checkProjectName = () => {
     const projectName = document.querySelector('#project-name');
@@ -86,73 +58,18 @@ const home = () => {
     const text = projectName.value.trim();
 
     if (!isRequired(text)) {
-      showError(projectName, '*Please fill this field');
+      domHandler.showError(projectName, '*Please fill this field');
     } else {
-      showSuccess(projectName);
+      domHandler.showSuccess(projectName);
       valid = true;
     }
     return valid;
   }
 
-  const displayProjectName = () => {
-    const projectButton = document.createElement('button');
-    const projectName = document.querySelector('#project-name').value;
+  const handleProjectForm = () => {
+    domHandler.createProjectForm();
 
-    projectButton.classList.add('project-button');
-    projectButton.textContent = projectName;
-    projectSection.appendChild(projectButton);
-
-    projectButton.addEventListener('click', () => {
-      const selected = document.querySelectorAll('.selected');
-      if (projectButton.classList !== 'selected') { /* CHANGE TO ! WITH CONTAINS */
-        selected.forEach(e => e.classList.remove('selected'));
-        projectButton.classList.add('selected');
-        // window.alert('test');
-      }
-    })
-  }
-
-  const createProjectForm = () => {
-    const projectForm = document.createElement('form');
-    projectForm.setAttribute('id','project-form');
-    projectForm.setAttribute('action','post');
-    projectForm.setAttribute('novalidate','true');
-
-    const fieldset = document.createElement('fieldset');
-
-    const input = document.createElement('input');
-    input.type = 'text';
-    input.setAttribute('id','project-name');
-    input.placeholder = 'Ex: Birthday';
-    fieldset.appendChild(input);
-
-    const small = document.createElement('small');
-    fieldset.appendChild(small);
-    projectForm.appendChild(fieldset);
-
-    const formButton = document.createElement('section');
-    formButton.classList.add('form-button');
-    
-    const submitProjectButton = document.createElement('button');
-    submitProjectButton.classList.add('submit-project-button');
-    submitProjectButton.setAttribute('type', 'submit');
-    submitProjectButton.textContent = 'Submit';
-    formButton.appendChild(submitProjectButton);
-
-    const cancelProjectButton = document.createElement('button');
-    cancelProjectButton.classList.add('cancel-project-button');
-    cancelProjectButton.setAttribute('type', 'button');
-    cancelProjectButton.textContent = 'Cancel';
-    formButton.appendChild(cancelProjectButton);
-
-    cancelProjectButton.addEventListener('click', () => {
-      projectForm.remove();
-      aside.style.gridTemplateRows = '100px 80px 1fr';
-      addProjectButton.disabled = false;
-    })
-    projectForm.appendChild(formButton);
-    asideFormSection.appendChild(projectForm);
-
+    const projectForm = document.querySelector('#project-form')
     projectForm.addEventListener('submit', (event) => {
       event.preventDefault();
 
@@ -165,11 +82,10 @@ const home = () => {
         projectList.push(project);
         console.log(projectList);
 
-        displayProjectName();
+        domHandler.displayProjectName();
         projectForm.remove();
 
-        aside.style.gridTemplateRows = '100px 80px 1fr';
-        addProjectButton.disabled = false;
+        domHandler.handleAsideGrid('hide');
         console.log('Valid form');
       } else {
         console.log('Invalid form');
@@ -184,9 +100,8 @@ const home = () => {
   }
 
   addProjectButton.addEventListener('click', () => {
-    aside.style.gridTemplateRows = '100px 200px 1fr';
-    addProjectButton.disabled = true;
-    createProjectForm();
+    domHandler.handleAsideGrid('visible');
+    handleProjectForm();
   })
 
   const checkTodoName = () => {
@@ -196,9 +111,9 @@ const home = () => {
     const text = todoName.value.trim();
 
     if (!isRequired(text)) {
-      showError(todoName, '*Please fill this field');
+      domHandler.showError(todoName, '*Please fill this field');
     } else {
-      showSuccess(todoName);
+      domHandler.showSuccess(todoName);
       valid = true;
     }
     return valid;
@@ -216,11 +131,11 @@ const home = () => {
 
     let valid = false;
     if (!isRequired(todoDateValue)) {
-      showError(todoDate, '*Please fill this field');
+      domHandler.showError(todoDate, '*Please fill this field');
     } else if (!isDate(compareDate)) {
-      showError(todoDate, '*Please put a current date');
+      domHandler.showError(todoDate, '*Please put a current date');
     } else {
-      showSuccess(todoDate);
+      domHandler.showSuccess(todoDate);
       valid = true;
     }
     return valid;
