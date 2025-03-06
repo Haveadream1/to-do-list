@@ -220,14 +220,18 @@ export const handleTabButtons = (state) => {
 
     completedButton.style.color = 'black';
     todoButton.style.color = 'var(--light-grey)';
+
+    notCheckedTodo.forEach((e) => {
+      e.classList.add('hide');
+    });
   } else {
     addTodoButton.disabled = false;
     addTodoButton.classList.remove('hide');
 
     completedButton.style.color = 'var(--light-grey)';
     todoButton.style.color = 'black';
+    notCheckedTodo.forEach((e) => {
+      e.classList.remove('hide');
+    });
   }
-  notCheckedTodo.forEach((e) => {
-    e.classList.remove('hide');
-  });
 }
