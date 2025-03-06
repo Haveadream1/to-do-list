@@ -1,23 +1,23 @@
-// class Todo {
-//   constructor(name, date) {
-//     this.name = name;
-//     this.date = date;
-//   }
-// }
-// export default Todo;
-
-const todoModule = () => {
-  class Todo {
-    constructor(name, date) {
-      this.name = name;
-      this.date = date;
-    }
+class Todo {
+  constructor(name, date) {
+    this.name = name;
+    this.date = date;
   }
+}
+export default Todo;
+
+// const todoModule = () => {
+//   class Todo {
+//     constructor(name, date) {
+//       this.name = name;
+//       this.date = date;
+//     }
+//   }
 
 
-};
+// };
 
-export default todoModule;
+// export default todoModule;
 
 /*
 Separate the js:
