@@ -49,6 +49,15 @@ export const createProject = (projectName) => {
       selected.forEach(e => e.classList.remove('selected'));
       projectButton.classList.add('selected');
     }
+
+    const todo = document.querySelectorAll('.todo');
+    todo.forEach(e => {
+      if (!e.classList.contains(projectName)) {
+        e.classList.add('project-hide');
+      } else {
+        e.classList.remove('project-hide');
+      }
+    })
   })
 }
 
@@ -113,10 +122,11 @@ export const handleAsideGrid = (state) => {
   }
 }
 
-export const createTodo = (todoName, displayedDate) => {
+export const createTodo = (todoName, displayedDate, selectedProject) => {
   const todo = document.createElement('section');
   todo.classList.add('todo');
   todo.classList.add('not-checked');
+  todo.classList.add(selectedProject);
 
   const checkbox = document.createElement('input');
   checkbox.classList.add('checkbox');
@@ -214,24 +224,25 @@ export const handleTabButtons = (state) => {
   const notCheckedTodo = document.querySelectorAll('.not-checked');
 
   if (state === 'completed') {
-    addTodoButton.classList.add('hide');
+    addTodoButton.classList.add('tab-hide');
 
     completedButton.style.color = 'black';
     todoButton.style.color = 'var(--light-grey)';
 
     notCheckedTodo.forEach((e) => {
-      e.classList.add('hide');
+      e.classList.add('tab-hide');
     });
   } else {
     addTodoButton.disabled = false;
-    addTodoButton.classList.remove('hide');
+    addTodoButton.classList.remove('tab-hide');
 
     completedButton.style.color = 'var(--light-grey)';
     todoButton.style.color = 'black';
     notCheckedTodo.forEach((e) => {
-      e.classList.remove('hide');
+      e.classList.remove('tab-hide');
     });
   }
 }
 
 // FIX PADDING ON TODO BUTTON
+// FIX BUTTON DISABLED
