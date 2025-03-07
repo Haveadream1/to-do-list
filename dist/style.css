@@ -221,8 +221,7 @@ footer {
   outline: solid var(--red) 2px;
 }
 
-.hide {
-  position: absolute !important;
-  top: -9999px !important;
-  left: -9999px !important;
-}
+.tab-hide,
+.project-hide {
+  display: none;
+ }
