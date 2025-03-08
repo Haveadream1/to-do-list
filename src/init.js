@@ -1,3 +1,3 @@
-import initializeWebsite from './index';
+import initializeWebsite from './script';
 
 initializeWebsite();
