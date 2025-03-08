@@ -50,7 +50,6 @@ const home = () => {
       return true;
   }
 
-
   const checkProjectName = () => {
     const projectName = document.querySelector('#project-name');
 
@@ -147,7 +146,7 @@ const home = () => {
     return valid;
   }
 
-  const handleTodo = () => {
+  const handleTodo = (selectedProject) => {
     const todoDate = document.querySelector('#todo-date').value;
     const todoName = document.querySelector('#todo-name').value;
 
@@ -156,7 +155,7 @@ const home = () => {
     const formatedDate = `${splitDate[2]}-${splitDate[1]}-${splitDate[0]}`;
     // isSameWeek(new Date(todayDateFormat), new Date(formatedDate)); // Alt
 
-    const todo = domHandler.createTodo(todoName, displayedDate);
+    const todo = domHandler.createTodo(todoName, displayedDate, selectedProject);
 
     if (formatedDate === todayDateFormat) {
       console.log('today date');
@@ -191,14 +190,15 @@ const home = () => {
 
           project.addTodo(todo);
           console.log(todo, project, projectList);
+          handleTodo(selectedProject);
         } else {
           const selectedProject = document.querySelector('.selected').textContent;
           const project = projectList.find(p => p.name === selectedProject);
   
           project.addTodo(todo);
           console.log(todo, project, projectList);
+          handleTodo(selectedProject);
         }
-        handleTodo();
         todoForm.remove();
 
         console.log('Valid form');
