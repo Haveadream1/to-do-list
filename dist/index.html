@@ -46,10 +46,11 @@
 
       <section class="form-section"></section>
 
-      <section>
+      <section class="form-section1">
         <p>New Task</p>
 
-        <fieldset>
+        <form id="todo-form1">
+          <fieldset>
             <label for="todo-priority">Priority:</label>
             <select name="todo-priority" id="todo-priority">
               <option value="low">Low</option>
@@ -59,21 +60,31 @@
           </fieldset>
 
           <fieldset>
-            <label for="todo-name">Name:</label>
-            <input type="text" id="todo-name">
-          </fieldset>
+            <fieldset>
+              <label for="todo-name">Name:</label>
+              <input type="text" id="todo-name">
+              <small></small>
+            </fieldset>
 
-          <fieldset>
-            <label for="todo-data">Due date:</label>
-            <input type="date" id="todo-data">
+            <fieldset>
+              <label for="todo-date">Due date:</label>
+              <input type="date" id="todo-date">
+              <small></small>
+            </fieldset>
           </fieldset>
 
           <fieldset>
             <label for="todo-description">Description:</label>
             <input type="text" id="todo-description">
+            <small></small>
           </fieldset>
 
-        </fieldset>
+          <!-- Change the class name of the button, submit for all -->
+          <section class="form-button">
+            <button class="submit-project-button" type="submit">Submit</button>
+            <button class="cancel-project-button" type="button">Cancel</button>
+          </section>
+        </form>
       </section>  
 
       <section class="time-section">
