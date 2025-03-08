@@ -158,64 +158,187 @@ export const createTodo = (todoName, displayedDate, selectedProject) => {
 
 export const createTodoForm = () => {
   const main = document.querySelector('main');
-  const mainFormSection = main.querySelector('.form-section');
+  const mainFormSection = main.querySelector('.form-section1');
   const addTodoButton = document.querySelector('.add-todo-button');
 
+  const sectionTitle = document.createElement('p');
+  sectionTitle.textContent = 'New Task';
+  mainFormSection.appendChild(sectionTitle);
+
   const todoForm = document.createElement('form');
-  todoForm.setAttribute('id','todo-form');
+  todoForm.setAttribute('id','todo-form1');
   todoForm.setAttribute('action','post');
   todoForm.setAttribute('novalidate','true');
+  mainFormSection.appendChild(todoForm);
 
-  const mainfieldset = document.createElement('fieldset');
+  /* Priority input */
+  const priorityFieldset = document.createElement('fieldset');
+  todoForm.appendChild(priorityFieldset);
 
-  const textFieldset = document.createElement('fieldset');
-  const formText = document.createElement('input');
-  formText.type = 'text';
-  formText.setAttribute('id','todo-name');
-  formText.placeholder = 'Ex: morning task';
-  textFieldset.appendChild(formText);
+  const priorityLabel = document.createElement('label');
+  priorityLabel.setAttribute('for', 'todo-priority');
+  priorityLabel.textContent = 'Priority:';
+  priorityFieldset.appendChild(priorityLabel);
 
-  const formTextSmall = document.createElement('small');
-  textFieldset.appendChild(formTextSmall);
-  mainfieldset.appendChild(textFieldset);
+  const prioritySelect = document.createElement('select');
+  prioritySelect.setAttribute('name', 'todo-priority');
+  prioritySelect.setAttribute('id', 'todo-priority');
+  priorityFieldset.appendChild(prioritySelect);
 
+  const lowOption = document.createElement('option');
+  lowOption.setAttribute('value', 'low');
+  lowOption.textContent = 'Low';
+  prioritySelect.appendChild(lowOption);
+
+  const mediumOption = document.createElement('option');
+  mediumOption.setAttribute('value', 'medium');
+  mediumOption.textContent = 'Medium';
+  prioritySelect.appendChild(mediumOption);
+
+  const highOption = document.createElement('option');
+  highOption.setAttribute('value', 'high');
+  highOption.textContent = 'High';
+  prioritySelect.appendChild(highOption);
+
+  /* Name input */
+  const mainNameDateFieldset = document.createElement('fieldset');
+  todoForm.appendChild(mainNameDateFieldset);
+
+  const nameFieldset = document.createElement('fieldset');
+  mainNameDateFieldset.appendChild(nameFieldset);
+
+  const nameLabel = document.createElement('label');
+  nameLabel.setAttribute('for', 'todo-name');
+  nameLabel.textContent = 'Name:';
+  nameFieldset.appendChild(nameLabel);
+
+  const nameInput = document.createElement('input');
+  nameInput.setAttribute('type', 'text');
+  nameInput.setAttribute('id', 'todo-name');
+  nameFieldset.appendChild(nameInput);
+
+  const nameSmall = document.createElement('small');
+  nameFieldset.appendChild(nameSmall); 
+
+  /* Date input */
   const dateFieldset = document.createElement('fieldset');
-  const formDate = document.createElement('input');
-  formDate.type = 'date';
-  formDate.setAttribute('id','todo-date');
-  dateFieldset.appendChild(formDate);
+  mainNameDateFieldset.appendChild(dateFieldset);
 
-  const formDateSmall = document.createElement('small');
-  dateFieldset.appendChild(formDateSmall);
-  mainfieldset.appendChild(dateFieldset);
+  const dateLabel = document.createElement('label');
+  dateLabel.setAttribute('for', 'todo-date');
+  dateLabel.textContent = 'Due date:';
+  dateFieldset.appendChild(dateLabel);
 
-  todoForm.appendChild(mainfieldset);
+  const dateInput = document.createElement('input');
+  dateInput.setAttribute('type', 'date');
+  dateInput.setAttribute('id', 'todo-date');
+  dateFieldset.appendChild(dateInput);
 
+  const dateSmall = document.createElement('small');
+  dateFieldset.appendChild(dateSmall);
+  
+  /* Description input */
+  const descriptionFieldset = document.createElement('fieldset');
+  todoForm.appendChild(descriptionFieldset);
+
+  const descriptionLabel = document.createElement('label');
+  descriptionLabel.setAttribute('for', 'todo-description');
+  descriptionLabel.textContent = 'Description:';
+  descriptionFieldset.appendChild(descriptionLabel);
+
+  const descriptionInput = document.createElement('input');
+  descriptionInput.setAttribute('type', 'text');
+  descriptionInput.setAttribute('id', 'todo-description');
+  descriptionFieldset.appendChild(descriptionInput);
+
+  const descriptionSmall = document.createElement('small');
+  descriptionFieldset.appendChild(descriptionSmall);
+
+  /* Form buttons */
   const formButton = document.createElement('section')
   formButton.classList.add('form-button');
+  todoForm.appendChild(formButton);
 
-  const submitProjectButton = document.createElement('button');
-  submitProjectButton.classList.add('submit-project-button');
-  submitProjectButton.setAttribute('type', 'submit');
-  submitProjectButton.textContent = 'Submit';
-  formButton.appendChild(submitProjectButton);
+  const submitButton = document.createElement('button');
+  submitButton.classList.add('submit-todo-button');
+  submitButton.setAttribute('type', 'submit');
+  submitButton.textContent = 'Submit';
+  formButton.appendChild(submitButton);
 
-  const cancelProjectButton = document.createElement('button');
-  cancelProjectButton.classList.add('cancel-project-button');
-  cancelProjectButton.setAttribute('type', 'button');
-  cancelProjectButton.textContent = 'Cancel';
-  formButton.appendChild(cancelProjectButton);
+  const cancelButton = document.createElement('button');
+  cancelButton.classList.add('cancel-todo-button');
+  cancelButton.setAttribute('type', 'button');
+  cancelButton.textContent = 'Cancel';
+  formButton.appendChild(cancelButton);
 
-  cancelProjectButton.addEventListener('click', () => {
+  cancelButton.addEventListener('click', () => {
     todoForm.remove();
     addTodoButton.disabled = false;
   })
 
-  todoForm.appendChild(formButton);
-  mainFormSection.appendChild(todoForm);
-
   return todoForm;
 }
+
+// export const createTodoForm = () => {
+//   const main = document.querySelector('main');
+//   const mainFormSection = main.querySelector('.form-section');
+//   const addTodoButton = document.querySelector('.add-todo-button');
+
+//   const todoForm = document.createElement('form');
+//   todoForm.setAttribute('id','todo-form');
+//   todoForm.setAttribute('action','post');
+//   todoForm.setAttribute('novalidate','true');
+
+//   const mainfieldset = document.createElement('fieldset');
+
+//   const textFieldset = document.createElement('fieldset');
+//   const formText = document.createElement('input');
+//   formText.type = 'text';
+//   formText.setAttribute('id','todo-name');
+//   formText.placeholder = 'Ex: morning task';
+//   textFieldset.appendChild(formText);
+
+//   const formTextSmall = document.createElement('small');
+//   textFieldset.appendChild(formTextSmall);
+//   mainfieldset.appendChild(textFieldset);
+
+//   const dateFieldset = document.createElement('fieldset');
+//   const formDate = document.createElement('input');
+//   formDate.type = 'date';
+//   formDate.setAttribute('id','todo-date');
+//   dateFieldset.appendChild(formDate);
+
+//   const formDateSmall = document.createElement('small');
+//   dateFieldset.appendChild(formDateSmall);
+//   mainfieldset.appendChild(dateFieldset);
+
+//   todoForm.appendChild(mainfieldset);
+
+//   const formButton = document.createElement('section')
+//   formButton.classList.add('form-button');
+
+//   const submitProjectButton = document.createElement('button');
+//   submitProjectButton.classList.add('submit-project-button');
+//   submitProjectButton.setAttribute('type', 'submit');
+//   submitProjectButton.textContent = 'Submit';
+//   formButton.appendChild(submitProjectButton);
+
+//   const cancelProjectButton = document.createElement('button');
+//   cancelProjectButton.classList.add('cancel-project-button');
+//   cancelProjectButton.setAttribute('type', 'button');
+//   cancelProjectButton.textContent = 'Cancel';
+//   formButton.appendChild(cancelProjectButton);
+
+//   cancelProjectButton.addEventListener('click', () => {
+//     todoForm.remove();
+//     addTodoButton.disabled = false;
+//   })
+
+//   todoForm.appendChild(formButton);
+//   mainFormSection.appendChild(todoForm);
+
+//   return todoForm;
+// }
 
 export const handleTabButtons = (state) => {
   const completedButton = document.querySelector('.completed-button');
