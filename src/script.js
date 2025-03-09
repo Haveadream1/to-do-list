@@ -200,7 +200,8 @@ const home = () => {
           handleTodo(selectedProject);
         }
         alertSection.remove();
-
+        addTodoButton.disabled = false;
+        
         console.log('Valid form');
       } else {
         console.log('Invalid form');
@@ -215,8 +216,6 @@ const home = () => {
       }
     })
   }
-
-  handleTodoForm(); // change position
 
   addTodoButton.addEventListener('click', () => {
     handleTodoForm();
