@@ -170,7 +170,7 @@ const home = () => {
   }
 
   const handleTodoForm = () => {
-    const todoForm = domHandler.createTodoForm();
+    const {alertSection, todoForm} = domHandler.createTodoForm();
 
     todoForm.addEventListener('submit', (event) => {
       event.preventDefault();
@@ -199,7 +199,7 @@ const home = () => {
           console.log(todo, project, projectList);
           handleTodo(selectedProject);
         }
-        todoForm.remove();
+        alertSection.remove();
 
         console.log('Valid form');
       } else {
