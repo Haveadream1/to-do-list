@@ -157,9 +157,16 @@ export const createTodo = (todoName, displayedDate, selectedProject) => {
 }
 
 export const createTodoForm = () => {
-  const main = document.querySelector('main');
-  const mainFormSection = main.querySelector('.form-section1');
+  const body = document.querySelector('body')
   const addTodoButton = document.querySelector('.add-todo-button');
+
+  const alertSection = document.createElement('section');
+  alertSection.classList.add('alert-section');
+  body.appendChild(alertSection);
+
+  const mainFormSection = document.createElement('section');
+  mainFormSection.classList.add('class', 'form-section1');
+  alertSection.appendChild(mainFormSection);
 
   const sectionTitle = document.createElement('p');
   sectionTitle.textContent = 'New Task';
@@ -276,7 +283,7 @@ export const createTodoForm = () => {
     addTodoButton.disabled = false;
   })
 
-  return todoForm;
+  return {alertSection, todoForm};
 }
 
 // export const createTodoForm = () => {
