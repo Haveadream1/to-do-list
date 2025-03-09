@@ -279,7 +279,7 @@ export const createTodoForm = () => {
   formButton.appendChild(cancelButton);
 
   cancelButton.addEventListener('click', () => {
-    todoForm.remove();
+    alertSection.remove();
     addTodoButton.disabled = false;
   })
 
