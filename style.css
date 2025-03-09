@@ -4,6 +4,7 @@
   --dark-beige: #E3E1D9;
   --light-beige: #F2EFE5;
   --green: #7fff73;
+  --yellow: #fff07c;
   --red: #ff8473;
 }
 
@@ -216,20 +217,44 @@ main {
 }
 
 /* MAIN TODO */
-.todo {
+/* .todo {
   padding: 10px;
   margin-bottom: 10px;
   background-color: var(--light-grey);
   display: grid;
   grid-template-columns: 60px 1fr 90px;
   align-items: center;
+} */
+
+.todo1 {
+  margin-bottom: 10px;
+  background-color: var(--light-grey);
+  display: grid;
+  grid-gap: 10px;
+  grid-template-columns: 20px 35px 1fr 90px 50px 50px;
+  align-items: center;
+  justify-items: center;
 }
 .checkbox {
-  width: 30px;
-  height: 30px;
+  width: 35px;
+  height: 35px;
   clip-path: circle(46% at 50% 50%);
   border: none;
 }
+.priority-color {
+  height: 100%;
+  width: 100%;
+  background-color: var(--green);
+}
+.delete-button,
+.see-more-button {
+  background: none;
+}
+.delete-button > img,
+.see-more-button > img {
+  width: 20px;
+}
+
 
 .time-section {
   display: grid;
