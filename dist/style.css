@@ -12,7 +12,7 @@ body {
   height: 100vh;
   margin: 0;
   display: grid;
-  grid-template-columns: 250px 1fr 250px;
+  grid-template-columns: 250px 1fr;
 }
 
 button,
@@ -246,11 +246,10 @@ main {
 
 /* FOOTER */
 footer {
-  padding: 10px 10px 60px 10px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: flex-end;
+  position: absolute;
+  left: 90%;
+  top: 85%;
+  padding: 10px;
 }
 .add-todo-button {
   height: 50px;
