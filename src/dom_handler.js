@@ -122,14 +122,20 @@ export const handleAsideGrid = (state) => {
   }
 }
 
-export const createTodo = (todoName, displayedDate, selectedProject) => {
+export const createTodo = (todoName, displayedDate, todoPriority, selectedProject) => {
   const todo = document.createElement('section');
   todo.classList.add('todo1');
   todo.classList.add('not-checked');
   todo.classList.add(selectedProject);
 
   const priorityColor = document.createElement('section');
-  priorityColor.classList.add('priority-color');
+  if (todoPriority === 'low') {
+    priorityColor.classList.add('priority-color-low')
+  } else if (todoPriority === 'medium') {
+    priorityColor.classList.add('priority-color-medium')
+  } else if (todoPriority === 'high') {
+    priorityColor.classList.add('priority-color-high')
+  }
   todo.appendChild(priorityColor);
 
   const checkboxSection = document.createElement('section');
