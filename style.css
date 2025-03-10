@@ -218,15 +218,6 @@ main {
 }
 
 /* MAIN TODO */
-/* .todo {
-  padding: 10px;
-  margin-bottom: 10px;
-  background-color: var(--light-grey);
-  display: grid;
-  grid-template-columns: 60px 1fr 90px;
-  align-items: center;
-} */
-
 .todo {
   margin-bottom: 10px;
   background-color: var(--light-grey);
@@ -258,7 +249,8 @@ main {
   background-color: var(--red);
 }
 .name,
-.date {
+.date,
+.description-section > p {
   color: var(--todo-grey);
 }
 .delete-button,
@@ -269,6 +261,38 @@ main {
 .see-more-button > img {
   width: 17px;
 }
+
+/* Todo extended */
+.todo-extended {
+  height: 156px;
+  margin-bottom: 10px;
+  display: grid;
+  grid-template-rows: 52px 1fr;
+  background-color: var(--light-grey);
+}
+.todo-extended > :nth-child(1) {
+  display: grid;
+  grid-gap: 10px;
+  grid-template-columns: 20px 35px 1fr 90px 50px 50px;
+  align-items: center;
+  justify-items: center;
+}
+.description-section {
+  padding: 0 30px 0 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.description-section > :nth-child(1) {
+  padding: 0;
+  margin: 0;
+}
+.description-section > :nth-child(2) {
+  margin: 0px 0 10px 0;
+  height: 65px;
+  font-size: 15px;
+}
+
 
 /* Time Section */
 .time-section {
