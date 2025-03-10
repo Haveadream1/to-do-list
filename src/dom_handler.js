@@ -124,7 +124,7 @@ export const handleAsideGrid = (state) => {
 
 export const createTodo = (todoName, displayedDate, todoPriority, selectedProject) => {
   const todo = document.createElement('section');
-  todo.classList.add('todo1');
+  todo.classList.add('todo');
   todo.classList.add('not-checked');
   todo.classList.add(selectedProject);
 
@@ -185,6 +185,11 @@ export const createTodo = (todoName, displayedDate, todoPriority, selectedProjec
   deleteButton.classList.add('delete-button');
   todo.appendChild(deleteButton);
 
+  deleteButton.addEventListener('click', () => {
+    todo.remove();
+
+  })
+
   const deleteImage = document.createElement('img');
   deleteImage.setAttribute('src', '/dist/images/DeleteIcon.svg');
   deleteImage.setAttribute('alt', 'Delete todo button');
@@ -236,7 +241,7 @@ export const createTodoForm = () => {
   body.appendChild(alertSection);
 
   const mainFormSection = document.createElement('section');
-  mainFormSection.classList.add('class', 'form-section1');
+  mainFormSection.classList.add('class', 'form-section-todo');
   alertSection.appendChild(mainFormSection);
 
   const sectionTitle = document.createElement('p');
@@ -244,7 +249,7 @@ export const createTodoForm = () => {
   mainFormSection.appendChild(sectionTitle);
 
   const todoForm = document.createElement('form');
-  todoForm.setAttribute('id','todo-form1');
+  todoForm.setAttribute('id','todo-form');
   todoForm.setAttribute('action','post');
   todoForm.setAttribute('novalidate','true');
   mainFormSection.appendChild(todoForm);
