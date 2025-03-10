@@ -124,14 +124,25 @@ export const handleAsideGrid = (state) => {
 
 export const createTodo = (todoName, displayedDate, selectedProject) => {
   const todo = document.createElement('section');
-  todo.classList.add('todo');
+  todo.classList.add('todo1');
   todo.classList.add('not-checked');
   todo.classList.add(selectedProject);
+
+  const priorityColor = document.createElement('section');
+  priorityColor.classList.add('priority-color');
+  todo.appendChild(priorityColor);
+
+  const checkboxSection = document.createElement('section');
+  todo.appendChild(checkboxSection);
+
+  const checkboxLabel = document.createElement('label');
+  checkboxLabel.setAttribute('for', 'checkbox');
+  checkboxSection.appendChild(checkboxLabel);
 
   const checkbox = document.createElement('input');
   checkbox.classList.add('checkbox');
   checkbox.setAttribute('type', 'checkbox');
-  todo.appendChild(checkbox);
+  checkboxSection.appendChild(checkbox);
 
   checkbox.addEventListener('change', () => {
     if (todo.classList.contains('not-checked')) {
@@ -153,8 +164,62 @@ export const createTodo = (todoName, displayedDate, selectedProject) => {
   date.textContent = displayedDate;
   todo.appendChild(date);
 
+  const seeMoreButton = document.createElement('button');
+  seeMoreButton.setAttribute('type', 'button');
+  seeMoreButton.classList.add('see-more-button');
+  todo.appendChild(seeMoreButton);
+
+  const seeMoreImage = document.createElement('img');
+  seeMoreImage.setAttribute('src', '/dist/images/DownIcon.svg');
+  seeMoreImage.setAttribute('alt', 'See more button');
+  seeMoreButton.appendChild(seeMoreImage);
+
+  const deleteButton = document.createElement('button');
+  deleteButton.setAttribute('type', 'button');
+  deleteButton.classList.add('delete-button');
+  todo.appendChild(deleteButton);
+
+  const deleteImage = document.createElement('img');
+  deleteImage.setAttribute('src', '/dist/images/DeleteIcon.svg');
+  deleteImage.setAttribute('alt', 'Delete todo button');
+  deleteButton.appendChild(deleteImage);
+
   return todo;
 }
+
+// export const createTodo = (todoName, displayedDate, selectedProject) => {
+//   const todo = document.createElement('section');
+//   todo.classList.add('todo');
+//   todo.classList.add('not-checked');
+//   todo.classList.add(selectedProject);
+
+//   const checkbox = document.createElement('input');
+//   checkbox.classList.add('checkbox');
+//   checkbox.setAttribute('type', 'checkbox');
+//   todo.appendChild(checkbox);
+
+//   checkbox.addEventListener('change', () => {
+//     if (todo.classList.contains('not-checked')) {
+//       todo.classList.add('checked');
+//       todo.classList.remove('not-checked');
+//     } else {
+//       todo.classList.add('not-checked');
+//       todo.classList.remove('checked');
+//     }
+//   })
+
+//   const name = document.createElement('p');
+//   name.classList.add('name');
+//   name.textContent = todoName;
+//   todo.appendChild(name);
+
+//   const date = document.createElement('p');
+//   date.classList.add('date');
+//   date.textContent = displayedDate;
+//   todo.appendChild(date);
+
+//   return todo;
+// }
 
 export const createTodoForm = () => {
   const body = document.querySelector('body')
