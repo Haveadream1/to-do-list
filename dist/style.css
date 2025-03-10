@@ -1,6 +1,7 @@
 :root {
   --dark-grey: #B4B4B8;
   --light-grey: #C7C8CC;
+  --todo-grey: rgba(0, 0, 0,0.58);
   --dark-beige: #E3E1D9;
   --light-beige: #F2EFE5;
   --green: #7fff73;
@@ -241,10 +242,24 @@ main {
   clip-path: circle(46% at 50% 50%);
   border: none;
 }
-.priority-color {
+.priority-color-low,
+.priority-color-medium,
+.priority-color-high{
   height: 100%;
   width: 100%;
+}
+.priority-color-low {
   background-color: var(--green);
+}
+.priority-color-medium {
+  background-color: var(--yellow);
+}
+.priority-color-high {
+  background-color: var(--red);
+}
+.name,
+.date {
+  color: var(--todo-grey);
 }
 .delete-button,
 .see-more-button {
@@ -252,10 +267,10 @@ main {
 }
 .delete-button > img,
 .see-more-button > img {
-  width: 20px;
+  width: 17px;
 }
 
-
+/* Time Section */
 .time-section {
   display: grid;
   /* grid-template-rows: repeat(3, 1fr); */
