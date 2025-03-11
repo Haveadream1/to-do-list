@@ -231,40 +231,6 @@ export const createTodo = (todoName, displayedDate, todoPriority, todoDescriptio
   return todo;
 }
 
-// export const createTodo = (todoName, displayedDate, selectedProject) => {
-//   const todo = document.createElement('section');
-//   todo.classList.add('todo');
-//   todo.classList.add('not-checked');
-//   todo.classList.add(selectedProject);
-
-//   const checkbox = document.createElement('input');
-//   checkbox.classList.add('checkbox');
-//   checkbox.setAttribute('type', 'checkbox');
-//   todo.appendChild(checkbox);
-
-//   checkbox.addEventListener('change', () => {
-//     if (todo.classList.contains('not-checked')) {
-//       todo.classList.add('checked');
-//       todo.classList.remove('not-checked');
-//     } else {
-//       todo.classList.add('not-checked');
-//       todo.classList.remove('checked');
-//     }
-//   })
-
-//   const name = document.createElement('p');
-//   name.classList.add('name');
-//   name.textContent = todoName;
-//   todo.appendChild(name);
-
-//   const date = document.createElement('p');
-//   date.classList.add('date');
-//   date.textContent = displayedDate;
-//   todo.appendChild(date);
-
-//   return todo;
-// }
-
 export const createTodoForm = () => {
   const body = document.querySelector('body')
   const addTodoButton = document.querySelector('.add-todo-button');
@@ -395,67 +361,6 @@ export const createTodoForm = () => {
   return {alertSection, todoForm};
 }
 
-// export const createTodoForm = () => {
-//   const main = document.querySelector('main');
-//   const mainFormSection = main.querySelector('.form-section');
-//   const addTodoButton = document.querySelector('.add-todo-button');
-
-//   const todoForm = document.createElement('form');
-//   todoForm.setAttribute('id','todo-form');
-//   todoForm.setAttribute('action','post');
-//   todoForm.setAttribute('novalidate','true');
-
-//   const mainfieldset = document.createElement('fieldset');
-
-//   const textFieldset = document.createElement('fieldset');
-//   const formText = document.createElement('input');
-//   formText.type = 'text';
-//   formText.setAttribute('id','todo-name');
-//   formText.placeholder = 'Ex: morning task';
-//   textFieldset.appendChild(formText);
-
-//   const formTextSmall = document.createElement('small');
-//   textFieldset.appendChild(formTextSmall);
-//   mainfieldset.appendChild(textFieldset);
-
-//   const dateFieldset = document.createElement('fieldset');
-//   const formDate = document.createElement('input');
-//   formDate.type = 'date';
-//   formDate.setAttribute('id','todo-date');
-//   dateFieldset.appendChild(formDate);
-
-//   const formDateSmall = document.createElement('small');
-//   dateFieldset.appendChild(formDateSmall);
-//   mainfieldset.appendChild(dateFieldset);
-
-//   todoForm.appendChild(mainfieldset);
-
-//   const formButton = document.createElement('section')
-//   formButton.classList.add('form-button');
-
-//   const submitProjectButton = document.createElement('button');
-//   submitProjectButton.classList.add('submit-project-button');
-//   submitProjectButton.setAttribute('type', 'submit');
-//   submitProjectButton.textContent = 'Submit';
-//   formButton.appendChild(submitProjectButton);
-
-//   const cancelProjectButton = document.createElement('button');
-//   cancelProjectButton.classList.add('cancel-project-button');
-//   cancelProjectButton.setAttribute('type', 'button');
-//   cancelProjectButton.textContent = 'Cancel';
-//   formButton.appendChild(cancelProjectButton);
-
-//   cancelProjectButton.addEventListener('click', () => {
-//     todoForm.remove();
-//     addTodoButton.disabled = false;
-//   })
-
-//   todoForm.appendChild(formButton);
-//   mainFormSection.appendChild(todoForm);
-
-//   return todoForm;
-// }
-
 export const handleTabButtons = (state) => {
   const completedButton = document.querySelector('.completed-button');
   const todoButton = document.querySelector('.todo-button');
@@ -482,6 +387,3 @@ export const handleTabButtons = (state) => {
     });
   }
 }
-
-// FIX PADDING ON TODO BUTTON
-// FIX BUTTON DISABLED
