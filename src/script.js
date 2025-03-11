@@ -157,7 +157,7 @@ const home = () => {
     const formatedDate = `${splitDate[2]}-${splitDate[1]}-${splitDate[0]}`;
     // isSameWeek(new Date(todayDateFormat), new Date(formatedDate)); // Alt
 
-    const todo = domHandler.createTodo(todoName, displayedDate, todoPriority, todoDescription, selectedProject);
+    const todo = domHandler.createTodo(todoName, displayedDate, todoPriority, todoDescription, selectedProject, projectList);
 
     if (formatedDate === todayDateFormat) {
       console.log('today date');
