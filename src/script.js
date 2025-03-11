@@ -1,13 +1,10 @@
 import { addDays, format, compareAsc} from 'date-fns';
-import Project from './project_handler';
-import Todo from './todo_handler';
+import Project from './project_class';
+import Todo from './todo_class';
 
 import * as domHandler from './dom_handler';
 
 const home = () => {
-  const main = document.querySelector('main');
-  const mainFormSection = main.querySelector('.form-section');
-
   const completedButton = document.querySelector('.completed-button');
   const todoButton = document.querySelector('.todo-button');
 
@@ -16,16 +13,9 @@ const home = () => {
   const upcomingWeekSection = document.querySelector('.upcoming-week-section');
 
   const addTodoButton = document.querySelector('.add-todo-button');
-
-  // const aside = document.querySelector('aside');
-  // const asideButton = document.querySelector('.aside-button');
-
-  // const asideFormSection = aside.querySelector('.form-section');
   const addProjectButton = document.querySelector('.add-project-button');
 
-  // const projectSection = document.querySelector('.project-section');
-
-  const projectList = []; /* Why as we have a object property */
+  const projectList = []; 
 
   const todayDate = new Date();
   const todayDateFormat = format(todayDate, 'dd-MM-yyyy');
@@ -128,7 +118,7 @@ const home = () => {
     const todoDate = document.querySelector('#todo-date');
     const todoDateValue = document.querySelector('#todo-date').value;
 
-    const splitTodoDate = todoDateValue.split('-') ;
+    const splitTodoDate = todoDateValue.split('-');
     const splitTodayDate = todayDateFormat.split('-');
 
     const compareDate = compareAsc( new Date(splitTodoDate[0],splitTodoDate[1],splitTodoDate[2]),
@@ -227,11 +217,6 @@ const home = () => {
   })
 
   completedButton.addEventListener('click', () => {
-    const todoForm = document.querySelector('#todo-form');
-
-    if (mainFormSection.hasChildNodes()) {
-      todoForm.remove();
-    }
     domHandler.handleTabButtons('completed');
   })
 
