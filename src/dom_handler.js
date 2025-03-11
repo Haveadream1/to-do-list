@@ -122,7 +122,7 @@ export const handleAsideGrid = (state) => {
   }
 }
 
-export const createTodo = (todoName, displayedDate, todoPriority, todoDescription, selectedProject) => {
+export const createTodo = (todoName, displayedDate, todoPriority, todoDescription, selectedProject, projectList) => {
   const todo = document.createElement('section');
   todo.classList.add('todo');
   todo.classList.add('not-checked');
@@ -208,16 +208,17 @@ export const createTodo = (todoName, displayedDate, todoPriority, todoDescriptio
     }
   })
 
-
   const deleteButton = document.createElement('button');
   deleteButton.setAttribute('type', 'button');
   deleteButton.classList.add('delete-button');
   todoSection.appendChild(deleteButton);
 
   deleteButton.addEventListener('click', () => {
-    const project = selectedProject;
-    const todoIndex = project.todoList.findIndex((e) => e.name === todoName);
-    project.todoList.splice(todoIndex, 1);
+    const projectIndex = projectList.findIndex((project) => project.name === selectedProject);
+    const todoIndex = projectList[projectIndex].todoList.findIndex((toDo) => toDo.name === todoName);
+
+    projectList[projectIndex].todoList.splice(todoIndex, 1); // splice modifies the original array
+    console.log(projectList);
 
     todo.remove();
   })
