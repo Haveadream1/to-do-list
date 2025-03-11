@@ -147,15 +147,17 @@ const home = () => {
   }
 
   const handleTodo = (selectedProject) => {
+    const todoPriority = document.querySelector('#todo-priority').value;
     const todoDate = document.querySelector('#todo-date').value;
     const todoName = document.querySelector('#todo-name').value;
+    const todoDescription = document.querySelector('#todo-description').value;
 
     const splitDate = todoDate.split('-');
     const displayedDate = `${splitDate[2]}/${splitDate[1]}/${splitDate[0]}`;
     const formatedDate = `${splitDate[2]}-${splitDate[1]}-${splitDate[0]}`;
     // isSameWeek(new Date(todayDateFormat), new Date(formatedDate)); // Alt
 
-    const todo = domHandler.createTodo(todoName, displayedDate, selectedProject);
+    const todo = domHandler.createTodo(todoName, displayedDate, todoPriority, todoDescription, selectedProject);
 
     if (formatedDate === todayDateFormat) {
       console.log('today date');
