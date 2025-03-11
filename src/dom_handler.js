@@ -122,11 +122,14 @@ export const handleAsideGrid = (state) => {
   }
 }
 
-export const createTodo = (todoName, displayedDate, todoPriority, selectedProject) => {
+export const createTodo = (todoName, displayedDate, todoPriority, todoDescription, selectedProject) => {
   const todo = document.createElement('section');
   todo.classList.add('todo');
   todo.classList.add('not-checked');
   todo.classList.add(selectedProject);
+
+  const todoSection = document.createElement('section');
+  todo.appendChild(todoSection);
 
   const priorityColor = document.createElement('section');
   if (todoPriority === 'low') {
@@ -136,10 +139,10 @@ export const createTodo = (todoName, displayedDate, todoPriority, selectedProjec
   } else if (todoPriority === 'high') {
     priorityColor.classList.add('priority-color-high')
   }
-  todo.appendChild(priorityColor);
+  todoSection.appendChild(priorityColor);
 
   const checkboxSection = document.createElement('section');
-  todo.appendChild(checkboxSection);
+  todoSection.appendChild(checkboxSection);
 
   const checkboxLabel = document.createElement('label');
   checkboxLabel.setAttribute('for', 'checkbox');
@@ -163,31 +166,60 @@ export const createTodo = (todoName, displayedDate, todoPriority, selectedProjec
   const name = document.createElement('p');
   name.classList.add('name');
   name.textContent = todoName;
-  todo.appendChild(name);
+  todoSection.appendChild(name);
 
   const date = document.createElement('p');
   date.classList.add('date');
   date.textContent = displayedDate;
-  todo.appendChild(date);
+  todoSection.appendChild(date);
 
   const seeMoreButton = document.createElement('button');
   seeMoreButton.setAttribute('type', 'button');
   seeMoreButton.classList.add('see-more-button');
-  todo.appendChild(seeMoreButton);
+  todoSection.appendChild(seeMoreButton);
 
   const seeMoreImage = document.createElement('img');
   seeMoreImage.setAttribute('src', '/dist/images/DownIcon.svg');
   seeMoreImage.setAttribute('alt', 'See more button');
   seeMoreButton.appendChild(seeMoreImage);
 
+  seeMoreButton.addEventListener('click', () => {
+    if (!todo.classList.contains('todo-extended')) {
+      todo.classList.add('todo-extended');
+      seeMoreImage.setAttribute('src', '/dist/images/UpIcon.svg');
+
+      const descriptionSection = document.createElement('section');
+      descriptionSection.classList.add('description-section');
+      todo.appendChild(descriptionSection);
+  
+      const descriptionTitle = document.createElement('p');
+      descriptionTitle.textContent = 'Description:';
+      descriptionSection.appendChild(descriptionTitle);
+  
+      const descriptionText = document.createElement('p');
+      descriptionText.textContent = todoDescription;
+      descriptionSection.appendChild(descriptionText);
+    } else {
+      todo.classList.remove('todo-extended');
+      seeMoreImage.setAttribute('src', '/dist/images/DownIcon.svg');
+
+      const descriptionSection = todo.querySelector('.description-section');
+      descriptionSection.remove();
+    }
+  })
+
+
   const deleteButton = document.createElement('button');
   deleteButton.setAttribute('type', 'button');
   deleteButton.classList.add('delete-button');
-  todo.appendChild(deleteButton);
+  todoSection.appendChild(deleteButton);
 
   deleteButton.addEventListener('click', () => {
-    todo.remove();
+    const project = selectedProject;
+    const todoIndex = project.todoList.findIndex((e) => e.name === todoName);
+    project.todoList.splice(todoIndex, 1);
 
+    todo.remove();
   })
 
   const deleteImage = document.createElement('img');
