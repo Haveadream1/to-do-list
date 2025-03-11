@@ -182,9 +182,11 @@ const home = () => {
       const isFormValid = formNameValid && formDateValid;
 
       if (isFormValid) {
-        const todoName = document.querySelector('#todo-name').value;
+        const todoPriority = document.querySelector('#todo-priority').value;
         const todoDate = document.querySelector('#todo-date').value;
-        const todo = new Todo(todoName, todoDate);
+        const todoName = document.querySelector('#todo-name').value;
+        const todoDescription = document.querySelector('#todo-description').value;
+        const todo = new Todo(todoPriority, todoName, todoDate, todoDescription);
 
         if (!document.contains(document.querySelector('.selected'))) {
           const selectedProject = 'Default'
