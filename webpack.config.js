@@ -11,7 +11,18 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.(png|svg|jpg|jpeg|gif|js|mjs|cjs)$/i,
+        test: /\.css$/i,
+        use: ['style-loader', 'css-loader'],
+      },
+      {
+        test: /\.html$/i,
+        loader: 'html-loader',
+      },
+      {
+        test: /\.(png|svg|jpg|jpeg|gif)$/i, /* for image in our js */
+        type: 'asset/resource',
+      },
+      {
         exclude: {
           and: [/node_modules/], // Exclude libraries in node_modules ...
           not: [
