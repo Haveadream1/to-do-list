@@ -1,13 +1,25 @@
 const path = require('path');
+const { watch } = require('fs');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
-  mode: process.env.NODE_ENV === 'production' ? 'production' : 'development',
+  mode: 'development',
   entry: './src/init.js',
   output: {
     filename: 'main.js',
     library: 'date_fns',
     path: path.resolve(__dirname, 'dist'),
+    clean: true,
   },
+  devtool: 'eval-source-map',
+  devServer: {
+    watchFiles: ['./src/template.html'],
+  },
+  plugins: [
+    new HtmlWebpackPlugin({
+      template: './src/template.html',
+    })
+  ],
   module: {
     rules: [
       {

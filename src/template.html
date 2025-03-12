@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css"/>
+    <title>To-do List</title>
+  </head>
+
+  <body>
+    <aside>
+      <button type="button" class="aside-button">
+        <img src="/dist/images/TabSymbole.svg" alt="Aside button"/>
+      </button>
+      
+      <section class="form-section">
+        <section class="add-project-section">
+          <p>Add project</p>
+
+          <button type="button" class="add-project-button">
+            <img
+              src="/dist/images/SmallPlus.svg"
+              alt="Add project"
+            />
+          </button>
+        </section>
+      </section>
+
+      <section class="project-section">
+        <p>My projects:</p>
+      </section>
+    </aside>
+
+    <main>
+      <section class="main-button-section">
+        <button type="button" class="todo-button">Todo</button>
+        <button type="button" class="completed-button">Completed</button>
+      </section>
+
+      <section class="time-section">
+        <section class="today-section">
+          <p>Today</p>
+        </section>
+
+        <section class="actual-week-section">
+          <p>This week</p>
+        </section>
+
+        <section class="upcoming-week-section">
+          <p>Upcoming</p>
+        </section>
+      </section>
+    </main>
+
+    <footer>
+      <button type="button" class="add-todo-button">
+        <img src="/dist/images/BigPlus.svg" alt="Add to-do"/>
+      </button>
+    </footer>
+
+    <!--<script type="module" src="main.js"></script> Webpack normaly take care of module/defer-->
+  </body>
+</html>

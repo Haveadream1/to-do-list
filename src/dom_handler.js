@@ -1,4 +1,7 @@
 // Handle all the DOM with a module
+import deleteIcon from '../dist/images/DeleteIcon.svg'; // Import images this way not with the path in src
+import downIcon from '../dist/images/DownIcon.svg';
+import upIcon from '../dist/images/UpIcon.svg';
 
 export const renderAside = () => {
   const aside = document.querySelector('aside');
@@ -179,14 +182,14 @@ export const createTodo = (todoName, displayedDate, todoPriority, todoDescriptio
   todoSection.appendChild(seeMoreButton);
 
   const seeMoreImage = document.createElement('img');
-  seeMoreImage.setAttribute('src', '/dist/images/DownIcon.svg');
+  seeMoreImage.src = downIcon;
   seeMoreImage.setAttribute('alt', 'See more button');
   seeMoreButton.appendChild(seeMoreImage);
 
   seeMoreButton.addEventListener('click', () => {
     if (!todo.classList.contains('todo-extended')) {
       todo.classList.add('todo-extended');
-      seeMoreImage.setAttribute('src', '/dist/images/UpIcon.svg');
+      seeMoreImage.src = upIcon;
 
       const descriptionSection = document.createElement('section');
       descriptionSection.classList.add('description-section');
@@ -201,7 +204,7 @@ export const createTodo = (todoName, displayedDate, todoPriority, todoDescriptio
       descriptionSection.appendChild(descriptionText);
     } else {
       todo.classList.remove('todo-extended');
-      seeMoreImage.setAttribute('src', '/dist/images/DownIcon.svg');
+      seeMoreImage.src = downIcon;
 
       const descriptionSection = todo.querySelector('.description-section');
       descriptionSection.remove();
@@ -224,7 +227,7 @@ export const createTodo = (todoName, displayedDate, todoPriority, todoDescriptio
   })
 
   const deleteImage = document.createElement('img');
-  deleteImage.setAttribute('src', '/dist/images/DeleteIcon.svg');
+  deleteImage.src = deleteIcon;
   deleteImage.setAttribute('alt', 'Delete todo button');
   deleteButton.appendChild(deleteImage);
 
