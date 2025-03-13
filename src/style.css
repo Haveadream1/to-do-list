@@ -154,7 +154,7 @@ main {
   color: var(--light-grey);
 }
 
-/* Main Form */
+/* Todo Form */
 .alert-section {
   height: 100vh;
   width: 100vw;
@@ -191,6 +191,7 @@ main {
   padding: 0;
   display: flex;
   flex-direction: row;
+  justify-content: space-between;
 }
 #todo-form > :nth-child(2) > * > label,
 #todo-form > * > label {
@@ -202,7 +203,8 @@ main {
   height: 25px;
 }
 #todo-priority {
-  width: 196px;
+  width: 174px;
+  height: 27px;
   border: 0;
   background-color: white;
 }
@@ -215,6 +217,11 @@ main {
 }
 #todo-description {
   height: 50px;
+}
+.submit-todo-button,
+.cancel-todo-button {
+  width: 100px;
+  height: 35px;
 }
 
 /* Todo */
