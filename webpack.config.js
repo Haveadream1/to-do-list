@@ -9,7 +9,6 @@ module.exports = {
     filename: 'main.js',
     library: 'date_fns',
     path: path.resolve(__dirname, 'dist'),
-    clean: true,
   },
   devtool: 'eval-source-map',
   devServer: {
