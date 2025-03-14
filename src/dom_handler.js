@@ -1,11 +1,7 @@
 // Handle all the DOM with a module
-// import deleteIcon from '../dist/images/DeleteIcon.svg'; // Import images this way not with the path in src
-// import downIcon from '../dist/images/DownIcon.svg';
-// import upIcon from '../dist/images/UpIcon.svg';
-
-import deleteIcon from '../dist/e68eb5ceab0af37c15f3.svg'; // Import images this way not with the path in src
-import downIcon from '../dist/a13d1cbbf820048f569d.svg';
-import upIcon from '../dist/0139b722fd2ff1eca652.svg';
+import deleteIcon from '../dist/images/DeleteIcon.svg'; // Import images this way not with the path in src
+import downIcon from '../dist/images/DownIcon.svg';
+import upIcon from '../dist/images/UpIcon.svg';
 
 export const renderAside = () => {
   const aside = document.querySelector('aside');
@@ -226,6 +222,10 @@ export const createTodo = (todoName, displayedDate, todoPriority, todoDescriptio
 
     projectList[projectIndex].todoList.splice(todoIndex, 1); // splice modifies the original array
     console.log(projectList);
+
+    localStorage.setItem('projectList', JSON.stringify(projectList)) // Update the memory
+    const storedProject = JSON.parse(localStorage.getItem('projectList'));
+    console.log(storedProject);
 
     todo.remove();
   })
