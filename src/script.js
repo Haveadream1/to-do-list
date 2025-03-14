@@ -38,22 +38,43 @@ const home = () => {
 
 
   window.addEventListener('load', () => {
-    for (let i = 0; i < localStorage.length; i++) {
-      const key = localStorage.key(i);
-      const memoryList = JSON.parse(localStorage.getItem(key));
-      console.log(key, memoryList[0], memoryList[0].todoList);
-      const projectName = memoryList[0].name;
+    const key = localStorage.key('projectList');
+    const memoryList = JSON.parse(localStorage.getItem(key));
 
-      if (projectList[i].name !== projectName) { // Do the same with todoList
-        const project = new Project(projectName);
+    if (memoryList.length === 0) {
+      const project = new Project('Default');
+      projectList.push(project);
+      localStorage.setItem('projectList', JSON.stringify(projectList));
+  
+      domHandler.createProject('Default');
+    } else {
+      for (let i = 0; i < memoryList.length; i++) {
+        const projectName = memoryList[i].name;
+        console.log(i, memoryList[i],projectList[i], memoryList.length);
+
+        const project = new Project(projectName); // Just not default
         projectList.push(project);
         
         domHandler.createProject(projectName);
+        console.log(projectList);
+    }
 
-        console.log(projectList);
-      } else {
-        console.log(projectList);
-      }
+
+
+
+      // console.log(key, memoryList[0], memoryList[0].todoList);
+      // const projectName = memoryList[i].name;
+
+      // if (projectList[i].name !== projectName) { // Do the same with todoList
+      //   const project = new Project(projectName); // Just not default
+      //   projectList.push(project);
+        
+      //   domHandler.createProject(projectName);
+
+      //   console.log(projectList);
+      // } else {
+      //   console.log(projectList);
+      // }
     }
     // if (localStorage.getItem('projectList') === '[]') { // Check if empty
     //   console.log('Local Storage empty');
@@ -134,13 +155,13 @@ const home = () => {
   }
 
   // Remove after done with memory function
-  (() => { // Init default project
-    const project = new Project('Default');
-    projectList.push(project);
-    // localStorage.setItem('projectList', JSON.stringify(projectList));
+  // (() => { // Init default project
+  //   const project = new Project('Default');
+  //   projectList.push(project);
+  //   // localStorage.setItem('projectList', JSON.stringify(projectList));
 
-    domHandler.createProject('Default');
-  })();
+  //   domHandler.createProject('Default');
+  // })();
 
   addProjectButton.addEventListener('click', () => {
     domHandler.handleAsideGrid('visible');
