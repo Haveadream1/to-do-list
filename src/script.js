@@ -65,7 +65,7 @@ const home = () => {
   
       domHandler.createProject('Default');
     } else { // Fetch project from memory
-      for (let i = 0; i < memoryList.length; i++) {
+      for (let i = 0; i < memoryList.length; i =+ 1) {
         const projectName = memoryList[i].name;
         // console.log(i, memoryList[i],projectList[i], memoryList.length);
 
@@ -75,7 +75,7 @@ const home = () => {
         domHandler.createProject(projectName);
         console.log(projectList);
 
-        for (let j = 0; j < memoryList[i].todoList.length; j++) {
+        for (let j = 0; j < memoryList[i].todoList.length; j =+ 1) {
           // console.log(memoryList[i].todoList[j]);
 
           const todoPriority = memoryList[i].todoList[j].priority;
