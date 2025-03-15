@@ -27,6 +27,32 @@ const home = () => {
 
   domHandler.renderAside();
 
+
+  const handleTodo = (todoPriority, todoDate, todoName, todoDescription, selectedProject) => {
+    // const todoPriority = document.querySelector('#todo-priority').value;
+    // const todoDate = document.querySelector('#todo-date').value;
+    // const todoName = document.querySelector('#todo-name').value;
+    // const todoDescription = document.querySelector('#todo-description').value;
+
+    const splitDate = todoDate.split('-');
+    const displayedDate = `${splitDate[2]}/${splitDate[1]}/${splitDate[0]}`;
+    const formatedDate = `${splitDate[2]}-${splitDate[1]}-${splitDate[0]}`;
+    // isSameWeek(new Date(todayDateFormat), new Date(formatedDate)); // Alt
+
+    const todo = domHandler.createTodo(todoName, displayedDate, todoPriority, todoDescription, selectedProject, projectList);
+
+    if (formatedDate === todayDateFormat) {
+      console.log('today date');
+      todaySection.appendChild(todo);
+    } else if (formatedDate > todayDateFormat && formatedDate <= actualWeekFormat) {
+      console.log('actual week');
+      actualWeekSection.appendChild(todo);
+    } else if (formatedDate > actualWeekFormat) {
+      console.log('next week');
+      upcomingWeekSection.appendChild(todo);
+    }
+  }
+
   // Fecth todo from memory
     // if the memory is empty then create a default project
   // Loop over the memory 
@@ -41,13 +67,14 @@ const home = () => {
     const key = localStorage.key('projectList');
     const memoryList = JSON.parse(localStorage.getItem(key));
 
+    // Init project
     if (memoryList.length === 0) {
       const project = new Project('Default');
       projectList.push(project);
       localStorage.setItem('projectList', JSON.stringify(projectList));
   
       domHandler.createProject('Default');
-    } else {
+    } else { // Fetch project from memory
       for (let i = 0; i < memoryList.length; i++) {
         const projectName = memoryList[i].name;
         console.log(i, memoryList[i],projectList[i], memoryList.length);
@@ -57,8 +84,27 @@ const home = () => {
         
         domHandler.createProject(projectName);
         console.log(projectList);
-    }
 
+        for (let j = 0; j < memoryList[i].todoList.length; j++) {
+          console.log(memoryList[i].todoList[j]);
+
+          const todoPriority = memoryList[i].todoList[j].priority;
+          const todoDate = memoryList[i].todoList[j].date;
+          const todoName = memoryList[i].todoList[j].name;
+          const todoDescription = memoryList[i].todoList[j].description;
+          const todo = new Todo(todoPriority, todoName, todoDate, todoDescription);
+
+          project.addTodo(todo);
+
+          handleTodo(todoPriority, todoDate, todoName, todoDescription, projectName);
+          console.log(todo, project, projectList);
+          // Delete each todo and create them from memory
+          // Here call function to create the all the todo from default project
+        }
+      }
+    }
+    // Fecth the todo from the memory and insert in the projectList
+    // Only make visible the default project todo, other with project hide
 
 
 
@@ -75,7 +121,7 @@ const home = () => {
       // } else {
       //   console.log(projectList);
       // }
-    }
+
     // if (localStorage.getItem('projectList') === '[]') { // Check if empty
     //   console.log('Local Storage empty');
     //   projectList = []; 
@@ -205,31 +251,6 @@ const home = () => {
     return valid;
   }
 
-  const handleTodo = (selectedProject) => {
-    const todoPriority = document.querySelector('#todo-priority').value;
-    const todoDate = document.querySelector('#todo-date').value;
-    const todoName = document.querySelector('#todo-name').value;
-    const todoDescription = document.querySelector('#todo-description').value;
-
-    const splitDate = todoDate.split('-');
-    const displayedDate = `${splitDate[2]}/${splitDate[1]}/${splitDate[0]}`;
-    const formatedDate = `${splitDate[2]}-${splitDate[1]}-${splitDate[0]}`;
-    // isSameWeek(new Date(todayDateFormat), new Date(formatedDate)); // Alt
-
-    const todo = domHandler.createTodo(todoName, displayedDate, todoPriority, todoDescription, selectedProject, projectList);
-
-    if (formatedDate === todayDateFormat) {
-      console.log('today date');
-      todaySection.appendChild(todo);
-    } else if (formatedDate > todayDateFormat && formatedDate <= actualWeekFormat) {
-      console.log('actual week');
-      actualWeekSection.appendChild(todo);
-    } else if (formatedDate > actualWeekFormat) {
-      console.log('next week');
-      upcomingWeekSection.appendChild(todo);
-    }
-  }
-
   const handleTodoForm = () => {
     const {alertSection, todoForm} = domHandler.createTodoForm();
 
@@ -257,7 +278,7 @@ const home = () => {
           const storedProject = JSON.parse(localStorage.getItem('projectList'));
           console.log(storedProject);
 
-          handleTodo(selectedProject);
+          handleTodo(todoPriority, todoDate, todoName, todoDescription, selectedProject);
         } else {
           const selectedProject = document.querySelector('.selected').textContent;
           const project = projectList.find(p => p.name === selectedProject);
@@ -269,7 +290,7 @@ const home = () => {
           const storedProject = JSON.parse(localStorage.getItem('projectList'));
           console.log(storedProject);
 
-          handleTodo(selectedProject);
+          handleTodo(todoPriority, todoDate, todoName, todoDescription, selectedProject);
         }
         alertSection.remove();
         addTodoButton.disabled = false;
