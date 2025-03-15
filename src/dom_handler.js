@@ -224,7 +224,7 @@ export const createTodo = (todoName, displayedDate, todoPriority, todoDescriptio
     const todoIndex = projectList[projectIndex].todoList.findIndex((toDo) => toDo.name === todoName);
 
     projectList[projectIndex].todoList.splice(todoIndex, 1); // splice modifies the original array
-    console.log(projectList);
+    // console.log(projectList);
 
     localStorage.setItem('projectList', JSON.stringify(projectList)) // Update the memory
     const storedProject = JSON.parse(localStorage.getItem('projectList'));
