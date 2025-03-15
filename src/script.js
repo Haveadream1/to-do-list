@@ -15,25 +15,19 @@ const home = () => {
   const addTodoButton = document.querySelector('.add-todo-button');
   const addProjectButton = document.querySelector('.add-project-button');
 
-  let projectList = []; 
-  // localStorage.setItem('projectList', JSON.stringify(projectList));
+  const projectList = []; 
+  // localStorage.setItem('projectList', JSON.stringify(projectList)); --> FOR DEBUG, clear memory
 
   const todayDate = new Date();
   const todayDateFormat = format(todayDate, 'dd-MM-yyyy');
 
   const actualWeek  = addDays(new Date(todayDate), 7);
   const actualWeekFormat = format(actualWeek, 'dd-MM-yyyy');
-  console.log(todayDateFormat, actualWeekFormat);
+  // console.log(todayDateFormat, actualWeekFormat);
 
   domHandler.renderAside();
 
-
   const handleTodo = (todoPriority, todoDate, todoName, todoDescription, selectedProject, loading) => {
-    // const todoPriority = document.querySelector('#todo-priority').value;
-    // const todoDate = document.querySelector('#todo-date').value;
-    // const todoName = document.querySelector('#todo-name').value;
-    // const todoDescription = document.querySelector('#todo-description').value;
-
     const splitDate = todoDate.split('-');
     const displayedDate = `${splitDate[2]}/${splitDate[1]}/${splitDate[0]}`;
     const formatedDate = `${splitDate[2]}-${splitDate[1]}-${splitDate[0]}`;
@@ -56,12 +50,8 @@ const home = () => {
   // Fecth todo from memory
     // if the memory is empty then create a default project
   // Loop over the memory 
-    // Create each object buttons
-    // Create each todo
-  // Dont need to modify list, only create in the dom
-
-
-
+    // Create each project buttons
+    // Create each todo and push to projectList
 
   window.addEventListener('load', () => {
     const key = localStorage.key('projectList');
@@ -77,16 +67,16 @@ const home = () => {
     } else { // Fetch project from memory
       for (let i = 0; i < memoryList.length; i++) {
         const projectName = memoryList[i].name;
-        console.log(i, memoryList[i],projectList[i], memoryList.length);
+        // console.log(i, memoryList[i],projectList[i], memoryList.length);
 
-        const project = new Project(projectName); // Just not default
+        const project = new Project(projectName); 
         projectList.push(project);
         
         domHandler.createProject(projectName);
         console.log(projectList);
 
         for (let j = 0; j < memoryList[i].todoList.length; j++) {
-          console.log(memoryList[i].todoList[j]);
+          // console.log(memoryList[i].todoList[j]);
 
           const todoPriority = memoryList[i].todoList[j].priority;
           const todoDate = memoryList[i].todoList[j].date;
@@ -104,42 +94,10 @@ const home = () => {
           }
 
           console.log(todo, project, projectList);
-          // Delete each todo and create them from memory
-          // Here call function to create the all the todo from default project
         }
       }
     }
-    // Fecth the todo from the memory and insert in the projectList
-    // Only make visible the default project todo, other with project hide
-
-
-
-      // console.log(key, memoryList[0], memoryList[0].todoList);
-      // const projectName = memoryList[i].name;
-
-      // if (projectList[i].name !== projectName) { // Do the same with todoList
-      //   const project = new Project(projectName); // Just not default
-      //   projectList.push(project);
-        
-      //   domHandler.createProject(projectName);
-
-      //   console.log(projectList);
-      // } else {
-      //   console.log(projectList);
-      // }
-
-    // if (localStorage.getItem('projectList') === '[]') { // Check if empty
-    //   console.log('Local Storage empty');
-    //   projectList = []; 
-    //   localStorage.setItem('projectList', JSON.stringify(projectList));
-    // } // else {
-    //   console.log('Retrieve data from local storage')
-    //   projectList = JSON.parse(localStorage.getItem('projectList'));
-    //   console.log(projectList)
-    // }
   })
-
-
 
   const isDate = (value) => {
     if (value === -1) {
@@ -186,7 +144,7 @@ const home = () => {
         console.log(projectList);
 
         localStorage.setItem('projectList', JSON.stringify(projectList)) // Pass the whole array in the memory by modifying it to a string
-        const storedProject = JSON.parse(localStorage.getItem('projectList')); // Extract the content by making it an array
+        const storedProject = JSON.parse(localStorage.getItem('projectList')); // Extract the content and turn it an array
         console.log(storedProject);
 
         domHandler.createProject(projectName);
@@ -205,15 +163,6 @@ const home = () => {
       }
     })
   }
-
-  // Remove after done with memory function
-  // (() => { // Init default project
-  //   const project = new Project('Default');
-  //   projectList.push(project);
-  //   // localStorage.setItem('projectList', JSON.stringify(projectList));
-
-  //   domHandler.createProject('Default');
-  // })();
 
   addProjectButton.addEventListener('click', () => {
     domHandler.handleAsideGrid('visible');
