@@ -28,7 +28,7 @@ const home = () => {
   domHandler.renderAside();
 
 
-  const handleTodo = (todoPriority, todoDate, todoName, todoDescription, selectedProject) => {
+  const handleTodo = (todoPriority, todoDate, todoName, todoDescription, selectedProject, loading) => {
     // const todoPriority = document.querySelector('#todo-priority').value;
     // const todoDate = document.querySelector('#todo-date').value;
     // const todoName = document.querySelector('#todo-name').value;
@@ -39,7 +39,7 @@ const home = () => {
     const formatedDate = `${splitDate[2]}-${splitDate[1]}-${splitDate[0]}`;
     // isSameWeek(new Date(todayDateFormat), new Date(formatedDate)); // Alt
 
-    const todo = domHandler.createTodo(todoName, displayedDate, todoPriority, todoDescription, selectedProject, projectList);
+    const todo = domHandler.createTodo(todoName, displayedDate, todoPriority, todoDescription, selectedProject, projectList, loading);
 
     if (formatedDate === todayDateFormat) {
       console.log('today date');
@@ -96,7 +96,13 @@ const home = () => {
 
           project.addTodo(todo);
 
-          handleTodo(todoPriority, todoDate, todoName, todoDescription, projectName);
+          if (memoryList[i].name === 'Default') {
+            console.log(memoryList[i].name)
+            handleTodo(todoPriority, todoDate, todoName, todoDescription, projectName, false);
+          } else {
+            handleTodo(todoPriority, todoDate, todoName, todoDescription, projectName, true);
+          }
+
           console.log(todo, project, projectList);
           // Delete each todo and create them from memory
           // Here call function to create the all the todo from default project
@@ -278,7 +284,7 @@ const home = () => {
           const storedProject = JSON.parse(localStorage.getItem('projectList'));
           console.log(storedProject);
 
-          handleTodo(todoPriority, todoDate, todoName, todoDescription, selectedProject);
+          handleTodo(todoPriority, todoDate, todoName, todoDescription, selectedProject, false);
         } else {
           const selectedProject = document.querySelector('.selected').textContent;
           const project = projectList.find(p => p.name === selectedProject);
@@ -290,7 +296,7 @@ const home = () => {
           const storedProject = JSON.parse(localStorage.getItem('projectList'));
           console.log(storedProject);
 
-          handleTodo(todoPriority, todoDate, todoName, todoDescription, selectedProject);
+          handleTodo(todoPriority, todoDate, todoName, todoDescription, selectedProject, false);
         }
         alertSection.remove();
         addTodoButton.disabled = false;
