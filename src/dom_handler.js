@@ -126,10 +126,14 @@ export const handleAsideGrid = (state) => {
 }
 
 export const createTodo = (todoName, displayedDate, todoPriority, todoDescription, selectedProject, projectList, loading) => {
+  const splitedProject = selectedProject.split(' ');
+  const projectClassName = splitedProject.join('');
+  console.log(splitedProject, projectClassName);
+  
   const todo = document.createElement('section');
   todo.classList.add('todo');
   todo.classList.add('not-checked');
-  todo.classList.add(selectedProject);
+  todo.classList.add(projectClassName);
   if (loading === true) {
     todo.classList.add('project-hide');
   }
