@@ -7,7 +7,7 @@ Note that the checked or completed todo can be seen separately and all are store
 The main goal of the project is to practice the use of the class, set up the environment around it and use the localStorage API.
 
 ## Preview
-[To-Do List](http://127.0.0.1:3000/dist/index.html)  
+[To-Do List](https://haveadream1.github.io/to-do-list/)  
 
 ## Credit
 [Icons source](https://www.figma.com/design/R2uuGTAjvoJnjHJ1y8CP1p/Free-Universal-Icons-(Community)?node-id=0-1&t=OcbEsOGLsbmpp0Va-1)    
