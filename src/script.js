@@ -16,7 +16,7 @@ const home = () => {
   const addProjectButton = document.querySelector('.add-project-button');
 
   const projectList = []; 
-  // localStorage.setItem('projectList', JSON.stringify(projectList)); --> FOR DEBUG, clear memory
+  localStorage.setItem('projectList', JSON.stringify(projectList)); // --> FOR DEBUG, clear memory
 
   const todayDate = new Date();
   const todayDateFormat = format(todayDate, 'dd-MM-yyyy');
